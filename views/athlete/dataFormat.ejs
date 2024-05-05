@@ -1,0 +1,55 @@
+<%
+<script>
+const callAge=(bday)=>{
+    const birthDate = new Date(bday);
+    const currentDate = new Date();
+    const ageInMilliseconds = currentDate - birthDate;
+    const age = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
+
+    return age
+}
+const convertSecondsToMin = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    const formattedTime = `(${minutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds})`;
+
+    return formattedTime;
+}
+const convertSecondsToTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    let formattedTime = '';
+
+    if (hours > 0) {
+        formattedTime += `${hours} ชั่วโมง}`;
+    }
+
+    if (minutes > 0) {
+        if (formattedTime.length > 0) {
+        formattedTime += `${hours > 0 ? ' ' : ''}${minutes < 10 ? '0' + minutes : minutes} นาที`;
+        } else {
+        formattedTime += `${minutes} นาที`;
+        }
+    }
+
+    if (remainingSeconds > 0) {
+        if (formattedTime.length > 0) {
+        formattedTime += `${minutes > 0 ? ' ' : ''}${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds} วินาที`;
+        } else {
+        formattedTime += `${remainingSeconds} วินาที`;
+        }
+    }
+
+    return formattedTime.trim();
+}
+
+const formatDate = (inputDate)=>{
+    const date = new Date(inputDate);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+</script>
+%>

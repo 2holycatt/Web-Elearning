@@ -1,0 +1,86 @@
+<style>
+  .each-lesson-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    padding: 1em 0 !important;
+  }
+
+  .small-text {
+    font-size: small !important;
+    width: 40% !important;
+    margin: 0 0 !important;
+
+  }
+
+  .each-lesson-a:hover {
+    /* เพิ่ม .each-lesson-a:focus */
+    border-left: 0.2em solid #8A2BE2 !important;
+    /* background-color: #404258 !important; */
+  }
+
+  .each-lesson-a:hover .hide-button {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  .addLessonLink {
+    width: 60%;
+    background-color: #8A2BE2 !important;
+    border-radius: 2em !important;
+    margin: 1em auto !important;
+  }
+
+  .addLessonLink:hover {
+    width: 60%;
+    background-color: white !important;
+    border-radius: 2em !important;
+    margin: 1em auto !important;
+    color: #8A2BE2 !important;
+    border: 1px solid #8A2BE2 !important;
+    transition: 0.5s;
+  }
+
+  .addLessonLink:hover i {
+    color: #8A2BE2 !important;
+    border: none !important;
+    transition: 0.5s;
+  }
+
+  .addLessonLink i {
+    color: white !important;
+
+  }
+</style>
+<div class="above-nav-status w-25 h-auto  py-3 px-5">
+  <p class="list-lesson-p fw-bold fs-5 mx-2 my-3">จัดการข้อมูลนักศึกษา
+  </p>
+  <a href="/adminIndex/" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <span class="list-lesson-p-span fw-light">แดชบอร์ด (Dashboard)</span>
+      </p>
+    </div>
+  </a>
+  <a href="/adminIndex/uploadStudent" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <span class="list-lesson-p-span fw-light">รายชื่อนักศึกษา</span>
+      </p>
+    </div>
+  </a>
+  <a href="/adminIndex/" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <span class="list-lesson-p-span fw-light">การเข้าใช้งาน (Logs file)</span>
+      </p>
+    </div>
+  </a>
+  <a href="/adminIndex/" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <span class="list-lesson-p-span fw-light">การกำหนดสิทธิ์ในการเข้าใช้งาน</span>
+      </p>
+    </div>
+  </a>
+
+</div>

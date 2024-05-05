@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/header.ejs")%>
+    <link rel="stylesheet" href="/css/profile.css">
+    <style>
+        .profile-information{
+            width: calc(40%);
+            margin: 0 auto;
+        }
+        .btn{
+            color: white !important;
+        }
+        .form-input{
+            width: 65% !important;
+            padding: 0 !important;
+            margin-bottom: 1em;
+        }
+        .form-input input, select{
+            width: 100%;
+        }
+
+        .row{
+            column-gap: 2rem;
+        }
+    </style>
+
+    <script>
+        const fetProvince = (selectProvince)=>{
+            fetch('https://ckartisan.com/api/provinces')
+                .then((response) => response.json())
+                .then((provinces) => {
+                    for (const provinceObj of provinces) {
+                        let pro = provinceObj.province
+                        const option = document.createElement('option')
+                        if(`<%= user.province%>`== pro){
+                            option.setAttribute('selected', 'selected')
+                        }
+                        option.innerHTML = provinceObj.province
+                        option.value = provinceObj.province
+                        selectProvince.appendChild(option)
+                    }
+                })
+        }
+        const fetAmphoe = (pro, selectAmphoe)=>{
+            fetch(`https://ckartisan.com/api/amphoes?province=${pro}`)
+                .then((response) => response.json())
+                .then((amphoe) => {
+                    amphoe.forEach(e => {
+                        const option = document.createElement('option')
+                        if(`<%= user.amphoe%>`== e.amphoe){
+                            option.setAttribute('selected', 'selected')
+                        }
+                        option.innerHTML = e.amphoe
+                        option.value = e.amphoe
+                        selectAmphoe.appendChild(option)
+                    });
+                })
+        }
+        const fetTambon = (province, amphoe, selectTambon)=>{
+            const url = `https://ckartisan.com/api/tambons?province=${province}&amphoe=${amphoe}`
+            fetch(`https://ckartisan.com/api/tambons?province=${province}&amphoe=${amphoe}`)
+            .then((response) => response.json())
+            .then((tambon) => {
+                tambon.forEach(e => {
+                    const option = document.createElement('option')
+                    if(`<%= user.tambon%>`== e.tambon){
+                            option.setAttribute('selected', 'selected')
+                    }
+                    option.innerHTML = e.tambon
+                    option.value = e.tambon
+                    selectTambon.appendChild(option)
+                });
+            })
+        }
+        window.onload = async ()=>{
+            const selectProvince = document.querySelector("#select-province")
+            const selectAmphoe = document.querySelector("#select-amphoe")
+            const selectTambon = document.querySelector("#select-tambon")
+            const selectJob = document.querySelector('#select-job')
+            let province = null
+            let amphoe = null
+            await fetProvince(selectProvince)
+            if(`<%= user.province%>` && `<%= user.amphoe%>`){
+                await fetAmphoe(`<%= user.province%>`, selectAmphoe)
+                await fetTambon(`<%= user.province%>`, `<%= user.amphoe%>`, selectTambon)
+            }
+            selectProvince.addEventListener('change', async ()=>{
+                province = (selectProvince.value)? selectProvince.value:""
+                if(province){
+                    selectAmphoe.innerHTML = '<option value="">เลือกอำเภอ</option>'
+                    selectTambon.innerHTML = '<option value="">เลือกตำบล</option>'
+                    await fetAmphoe(province, selectAmphoe)
+                }else{
+                    selectAmphoe.innerHTML = '<option value="">เลือกอำเภอ</option>'
+                    selectTambon.innerHTML = '<option value="">เลือกตำบล</option>'
+                }
+            })
+            selectAmphoe.addEventListener('change', async ()=>{
+                amphoe = (selectAmphoe.value)? selectAmphoe.value:""
+                if(amphoe){
+                    selectTambon.innerHTML = '<option value="">เลือกตำบล</option>'
+                    await fetTambon(province, amphoe, selectTambon)
+                }else{
+                    selectTambon.innerHTML = '<option value="">เลือกตำบล</option>'
+                }
+            })
+
+            if (`<%= user.job%>`) {
+                for (const option of selectJob.children) {
+                    if (`<%= user.job%>`==option.value) {
+                        option.setAttribute('selected', 'selected')
+                    }       
+                }
+            }
+
+            const updateForm = document.forms['update-profile']
+            const submitUpdate = document.querySelector("#submit-update")
+            submitUpdate.addEventListener('click', function(event) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success mx-2',
+                        cancelButton: 'btn btn-danger mx-2'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Are you sure?',
+                    text: "ต้องการแก้ไขข้อมูลส่วนตัว",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'ตกลง',
+                    cancelButtonText: 'ยกเลิก',
+                    reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire({
+                        title:'สำเร็จ!',
+                        text:'อัพเดตข้อมูลผู้ใช้ของคุณแล้ว',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#5cb85c',
+                        confirmButtonText: 'ตกลง'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            updateForm.submit()
+                        }
+                    })
+                }
+                })
+            });
+
+            document.querySelector(".view-profile").addEventListener('click', ()=>{
+                modalProfile(`<%= user.img%>`)
+            })  
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+<body>
+    <%- include("./partials/nav.ejs")%>
+    <%
+    const job = (user.job)? user.job:"Jobless"
+    const tel = (user.tel)? user.tel:"No phone number"
+    const address = (user.address)? user.address:"No address"
+    const img = (user.img)? `/images/profile/${user.img}`:"/images/profile/avartar.png"
+    %>
+    <div class="container my-5">
+        <div aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/profile" class="text-decoration-none">โปรไฟล์</a></li>
+              <li class="breadcrumb-item active" aria-current="page">ตั้งค่าโปรไฟล์</li>
+            </ol>
+        </div>
+        <div class="d-flex flex-column align-items-center text-center profile-info">
+            <div class="profile-wrap">
+                <img src="<%=img%>" id="user-profile" alt="user profile"
+                class="rounded-circle" width="150">
+            </div>
+            <div class="profile-manage">
+                <div class="view-profile">
+                    <label class="text-start pointer">
+                        <i class="bi bi-person me-2"></i> ดูรูปโปรไฟล์
+                    </label>
+                </div>
+                <div class="change-profile">
+                    <label class="text-start pointer">
+                        <form action="/profile/upload/image" method="post" name="upload-profile-form" enctype="multipart/form-data">
+                            <input type="file" name="profileImg"/>
+                        </form>
+                        <i class="bi bi-images me-2"></i> เลือกรูปโปรไฟล์
+                    </label>
+                </div>
+
+            </div>
+            <div class="mt-3">
+                <h4><%= user.username%></h4>
+                <p class="text-muted font-size-sm"><%= user.email%></p>
+            </div>
+        </div>
+        <div class="card mt-4 mb-3 profile-information">
+            <div class="card-body">
+                <!-- action="/profile/update" method="post"  -->
+                <form name="update-profile" action="/profile/update" method="post">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">User Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input">
+                            <input required type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="username" value="<%= user.username%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">First Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input">
+                            <input required type="text" class="form-control" aria-label="First Name" aria-describedby="basic-addon1" name="fname" value="<%= user.fname%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Last Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input">
+                            <input required type="text" class="form-control" aria-label="Last Name" aria-describedby="basic-addon1" name="lname" value="<%= user.lname%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input form-group">
+                            <input required type="tel" class="form-control" aria-label="Email" aria-describedby="basic-addon1" name="tel" value="<%= user.tel%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Job</h6>
+                        </div>
+                        <div class="col-sm-9 form-input form-group">
+                            <select required class="form-control" name="job" id="select-job">
+                                <option value="" hidden>Select Job</option>
+                                <option value="student">Student</option>
+                                <option value="programmer">Programmer</option>
+                                <option value="software tester">Software Tester</option>
+                                <option value="data engineering">Data Engineering</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Province</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input form-group">
+                            <select required name="province" id="select-province" class="form-control">
+                                <option value="">เลือกจังหวัด</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Amphoe</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input form-group">
+                           <select required name="amphoe" id="select-amphoe" class="form-control">
+                                <option value="">เลือกอำเภอ</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Tambons</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input form-group">
+                           <select required name="tambon" id="select-tambon" class="form-control">
+                                <option value="">เลือกตำบล</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary form-input form-group">
+                            <textarea required class="form-control" name="address" cols="36" rows="5"><%= user.address%></textarea>
+                        </div>
+                    </div>
+                </form>
+                <div class="mt-3 d-flex justify-content-end">
+                    <button class="border btn btn-primary px-5 py-2" id="submit-update">ตกลง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/profilesetting.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin add</title>
+</head>
+<body>
+
+    <h1>Admin Add Athlete Information</h1>
+    
+    <form method="POST" action="/athletes/AdminAddAthlete">
+        <!-- User Registration Fields -->
+        <h2>Athlete Information</h2>
+        <label for="aka">AKA (Athlete's Nickname):</label>
+        <input type="text" id="nickname" name="nickname" required><br>
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" name="weight" required><br>
+        <label for="height">Height:</label>
+        <input type="number" id="height" name="height" required><br>
+        <label for="height">Reach:</label>
+        <input type="number" id="reach" name="reach" required><br>
+        <label for="height">Dday:</label>
+        <input type="date" id="bday" name="bday" required><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required><br>
+        <label for="weightClass">Weight Class:</label>
+        <input type="text" id="weightClass" name="weightClass" required><br>
+        <select class="form-select" name="team" id="team">
+            <!-- <option value="teamA">team A</option>
+            <option value="teamB">team B</option>
+            <option value="teamC">team C</option>
+            <option value="teamD">team D</option> -->
+            <%
+            for (const item of teams) {%>
+                <option value="<%= item._id %>"><%=item.teamname%></option>
+            <%}
+            %>
+        </select>
+        <label for="weightClass">username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="weightClass">fname:</label>
+        <input type="text" id="fname" name="fname" required><br>
+        <label for="weightClass">lname:</label>
+        <input type="text" id="lname" name="lname" required><br>
+        <label for="weightClass">email:</label>
+        <input type="text" id="knockouts" name="email" required><br>
+        <label for="weightClass">password:</label>
+        <input type="password" id="knockoutsLosses" name="password" required><br>
+        <label for="weightClass">confirm:</label>
+        <input type="password" id="knockoutsLosses" name="confirm" required><br>
+        
+        <!-- <label for="weightClass">wins:</label>
+        <input type="number" id="wins" name="wins" required><br>
+        <label for="weightClass">losses:</label>
+        <input type="number" id="losses" name="losses" required><br>
+        <label for="weightClass">draw:</label>
+        <input type="number" id="draws" name="draws" required><br>
+        <label for="weightClass">knockouts:</label>
+        <input type="number" id="knockouts" name="knockouts" required><br>
+        <label for="weightClass">knockoutsLosses:</label>
+        <input type="number" id="knockoutsLosses" name="knockoutsLosses" required><br>
+        <label for="weightClass">technicalKnockouts:</label>
+        <input type="number" id="technicalKnockouts" name="technicalKnockouts" required><br>
+        <label for="weightClass">technicalKnockoutsLosses:</label>
+        <input type="number" id="technicalKnockoutsLosses" name="technicalKnockoutsLosses" required><br>
+        <label for="weightClass">overwhelmingScore:</label>
+        <input type="number" id="overwhelmingScore" name="overwhelmingScore" required><br>
+        <label for="weightClass">overwhelmingScoreLosses:</label>
+        <input type="number" id="overwhelmingScoreLosses" name="overwhelmingScoreLosses" required><br>
+        <label for="weightClass">majorityVotes:</label>
+        <input type="number" id="majorityVotes" name="majorityVotes" required><br>
+        <label for="weightClass">majorityVotesLosses:</label>
+        <input type="number" id="majorityVotesLosses" name="majorityVotesLosses" required><br> -->
+
+
+        <button type="submit">Register and Add Athlete</button>
+    </form>
+</body>
+</html>

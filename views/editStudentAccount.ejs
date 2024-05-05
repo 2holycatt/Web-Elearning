@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>อัปเดตบัญชีนักศึกษา</title>
+  <%- include("./partials/header.ejs")%>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    .add-button {
+      width: fit-content !important;
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    .setWidth85 {
+      width: 85% !important;
+    }
+
+    .setWidth70 {
+      width: 70% !important;
+    }
+
+    /* * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    } */
+
+    .container2 {
+      align-items: center;
+      display: grid;
+      grid-template-columns: 0.5fr 1.5fr;
+    }
+
+    .container3 {
+      display: grid;
+      grid-template-columns: 0.5fr 1.5fr;
+    }
+
+
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+      background-color: #ffffff;
+      padding: 1em !important;
+    }
+
+    .card h3 {
+      font-size: x-large;
+      font-weight: 600;
+      margin-bottom: 0.5em !important;
+
+    }
+
+    .drop_box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 3px dotted #a3a3a3;
+      border-radius: 5px;
+      padding: 1.5em 1em !important;
+    }
+
+    .drop_box h4 {
+      font-size: 16px;
+      font-weight: 400;
+      color: #2e2e2e;
+    }
+
+    .drop_box p {
+      font-size: 12px;
+      color: #a3a3a3;
+    }
+
+    .btn-focus {
+      text-decoration: none !important;
+      background-color: #005af0 !important;
+      color: #ffffff !important;
+      padding: 10px 20px !important;
+      border: none !important;
+      outline: none !important;
+      transition: 0.3s !important;
+    }
+
+    .btn-focus:hover {
+      text-decoration: none !important;
+      background-color: #ffffff !important;
+      color: #005af0 !important;
+      padding: 10px 20px !important;
+      border: none !important;
+      outline: 1px solid #010101 !important;
+    }
+
+    .form input {
+      margin: 10px 0;
+      width: 100%;
+      background-color: #e2e2e2;
+      border: none;
+      outline: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+    }
+
+    .form-select:focus {
+      /* border-color: #000; */
+      box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+
+    .form-select:focus-visible option:checked {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .set-border-header {
+      border-left: 0.25em solid #387bef;
+      padding-left: 0.50em !important;
+    }
+
+    .list-div {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      padding-top: 0.5em;
+      border-bottom: 1px solid #EAEFF4;
+    }
+
+    .list-div-data {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      padding-top: 1em;
+      border-bottom: 1px solid #EAEFF4;
+      text-align: start;
+
+    }
+
+    .setGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .file-description {
+      align-items: normal !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="blur-container2">
+    <%- include("./partials/nav.ejs")%>
+    <div class="main-content d-flex w-100 h-auto">
+      <%- include("./partials/lessonsList.ejs")%>
+      <div class="aside-right w-75 h-auto p-4">
+        <div class="manange-bar p-3 bg-white d-flex w-100">
+          <p class="fw-bold fs-3">แก้ไขบัญชีนักศึกษา</p>
+          <a href="/adminIndex/uploadStudent" class="add-button btn btn-primary m-0 p-2">
+            ย้อนกลับ <i class="bi bi-x-circle-fill mx-2"></i>
+          </a>
+        </div>
+        <div class="lesson-content p-4 bg-white w-100 my-2" style="height: fit-content !important;">
+          <!-- <hr class="bg-black" style="margin: 2em 0 !important;width:100%; height:0.125em;text-align:left;"> -->
+          <p class="fw-bold fs-3 my-4 set-border-header">แบบฟอร์มแก้ไขบัญชีนักศึกษา</p>
+          <form action="/adminIndex/doEditAccount" method="post">
+            <div class="h-auto">
+              <div class="setGrid">
+                <div class="w-100">
+                  <div class="d-flex justify-content-between">
+                    <input type="text" class="form-control p-3 setWidth70 d-none" name="_id" value="<%=stuInfo._id%>">
+
+                    <div class="mb-3">
+                      <label for="prefix" class="form-label fs-bold">คำนำหน้า:</label>
+                      <input type="text" class="form-control p-3 setWidth70" name="prefix" value="<%=stuInfo.user.prefix%>">
+                    </div>
+                    <div>
+                      <label for="fname" class="form-label fs-bold">ชื่อ:</label>
+                      <input type="text" class="form-control p-3 setWidth70" name="fname" value="<%=firstName%>">
+
+                    </div>
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="studentId" class="form-label fs-bold">รหัสนักศึกษา:</label>
+                    <input type="text" class="form-control p-3 setWidth85" name="studentId" value="<%=stuInfo.schoolId%>">
+
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="schoolYears" class="form-label fs-bold">ชั้นปี:</label>
+                    <input type="text" class="form-control p-3 setWidth85" name="schoolYears" value="<%=stuInfo.yearLevel%>">
+
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="email" class="form-label fs-bold">Email:</label>
+                    <input type="text" class="form-control p-3 setWidth85" name="email" value="<%=stuInfo.user.email%>">
+
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="schoolYears" class="form-label fs-bold">ปีการศึกษา:</label>
+                    <select class="form-select form-select-nm w-50 p-3" name="schoolYears" aria-label="Small select example">
+                      <option selected style="color: #dee2e6 !important;" value="<%=findSchool.schoolYear%>"><%=findSchool.schoolYear%></option>
+                      <% for (let i = 2560; i < 2580 + 1; i++) { %>
+                      <option value="<%= i %>"><%= i %></option>
+                      <% } %>
+                    </select>
+
+                  </div>
+                </div>
+                <!-- //// -->
+                <div class="w-100">
+                  <div class="my-1 mb-3">
+                    <label for="lname" class="form-label fs-bold">นามสกุล:</label>
+                    <input type="text" class="form-control p-3 w-50" name="lname" value="<%=lastName%>">
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="faculty" class="form-label fs-bold">คณะ:</label>
+                    <input type="text" class="form-control p-3 setWidth85" name="faculty" placeholder="คณะ...">
+                  </div>
+                  <div class="my-1 mb-3">
+                    <label for="branch" class="form-label fs-bold">สาขาวิชา:</label>
+                    <input type="text" class="form-control p-3 setWidth85" name="branch" placeholder="สาขาวิชา...">
+                  </div>
+                  <div class="my-1">
+                    <label for="section" class="form-label fs-bold">กลุ่มเรียน:</label>
+                    <input type="number" class="form-control p-3 w-25" name="section" placeholder="1, 2 หรือ 3 เป็นต้น">
+                  </div>
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-success py-2 px-3 shadow">
+                    <span>บันทึก</span><i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/footer.ejs")%>
+  </div>
+
+  <script>
+    const dropArea = document.querySelector(".drop_box"),
+      button = dropArea.querySelector(".choose-btn"),
+      dragText = dropArea.querySelector("header"),
+      input = dropArea.querySelector(".input-file");
+    let file;
+    var filename;
+
+    button.onclick = () => {
+      input.click();
+    };
+
+    input.addEventListener("change", function(e) {
+      var fileName = e.target.files[0].name;
+      var headerText = document.querySelector('.drop_box header h4');
+      var descText = document.querySelector('.desText');
+
+      // เปลี่ยนข้อความใน element เป็นชื่อไฟล์ที่ถูกเลือก
+      headerText.textContent = fileName;
+      descText.textContent = 'ไฟล์ถูกอัปโหลดแล้ว';
+      // let filedata = `
+      // <h4 class="my-2">${fileName}</h4>
+      //;
+      // dropArea.innerHTML = filedata;
+      var uploadButton = document.createElement('div');
+      uploadButton.classList.add('d-flex', 'justify-content-center', 'my-1');
+      uploadButton.innerHTML = `
+        <button class="btn-focus">อัปโหลด</button>
+        `;
+      dropArea.appendChild(uploadButton);
+
+      // ซ่อนปุ่ม "เลือกไฟล์"
+      var chooseButton = document.querySelector('.choose-btn');
+      chooseButton.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>

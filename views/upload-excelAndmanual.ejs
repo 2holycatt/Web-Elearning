@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>อัปเดตรายชื่อ</title>
+  <%- include("./partials/header.ejs")%>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+    .add-button{
+        width: fit-content !important;
+    }
+    .list-header {
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important;    
+    }
+    .p-header-1, .p-header-2{
+      border-right: 1px solid #999999 !important;
+    }
+    .p-header-4{
+      border-left: 1px solid #999999 !important;
+    }
+    .student-list{
+      border-bottom: 1px solid #cdcdcd !important;
+      color: #898989 !important;
+    }
+    .email-p{
+      font-size: smaller !important;
+    }
+    .link-list{
+      text-decoration: none !important;
+    }
+    .link-list:hover .student-list{
+      color: black !important;
+      transition: 0.3s;
+    }
+    .addContent-a {
+      text-decoration: none !important;
+      transition-duration: 0.3s;
+    }
+
+    .addContent-a:hover {
+      color: #0d57d6 !important;
+      transition: 0.3s;
+    }
+</style>
+</head>
+
+<body>
+  <div id="blur-container">
+    <%- include("./partials/nav.ejs")%>
+    <!-- <div class="above-nav d-flex px-4 py-3">
+      <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+        <i class="bi bi-house mx-2"></i>
+        <a href="/adminIndex" class="a-home">
+          <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+        </a>
+      </div>
+      <a href="#" class="status-a mx-2 my-0 align-middle">
+        <p class="m-0">บทเรียน</p>
+      </a>
+    </div> -->
+  </div>
+  <div class="main-content d-flex w-100 h-auto">
+    <%- include("./partials/lessonsList.ejs")%>
+    <div class="aside-right w-75 h-auto p-4">
+      <div class="manange-bar p-3 bg-white d-flex w-100">
+        <p class="fw-bold fs-3">รายชื่อนักศึกษา</p>
+        <div>
+          <a href="/adminIndex/uploadStudent2" class="add-button btn btn-primary m-0 p-2">
+            อัปโหลดข้อมูลนักศึกษา (Import file) <i class="bi bi-file-arrow-up-fill"></i>
+          </a>
+          <a href="#" class="add-button btn btn-dark m-0 p-2">
+            นำออกข้อมูลนักศึกษา (Export file) <i class="bi bi-file-arrow-down-fill"></i>
+          </i>
+          </a>
+        </div>
+      </div>
+      <% if (allStudents.length < 1) { %>
+      <!-- <div class="lesson-content p-4 bg-white w-100 my-4 ">
+        <p class="fs-5 my-3"><span class="text-warning fs-3">* </span>ยังไม่มีข้อมูลของนักศึกษา</p>
+        <p class="fs-6 ">ทำการอัปโหลดข้อมูลนักษาก่อน >>
+          <span>
+            <a href="/adminIndex/uploadStudent2">
+            อัปโหลด
+            </a>
+          </span>
+        </p>
+      </div> -->
+      <div class="lesson-content bg-white w-100 py-3 my-2" style="height: fit-content;">
+        <p class="px-3">ยังไม่มีรายชื่อนักศึกษา เนื่องจากคุณยังไม่ได้เพิ่มรายชื่อนักศึกษาและข้อมูลใด ๆ ลงในระบบ
+        </p>
+        <a href="/adminIndex/uploadStudent2" class="px-3 addContent-a text-primary">
+          เพื่มรายชื่อและข้อมูลนักศึกษา
+          <i class="bi bi-plus-circle-fill"></i>
+        </a>
+      </div>
+      <% } else if (allStudents.length > 0) {%>
+        <div class="lesson-content p-4 bg-white w-100 my-2">
+          <div class="list-header d-flex justify-content-between">
+            <div class="header-1" style="width: 10% !important;">
+              <p class="fw-bold p-header-1 text-center px-2 my-2">ลำดับ</p>
+            </div>
+            <div class="header-2" style="width: 50% !important;">
+              <p class="fw-bold p-header-2 px-3 my-2">ชื่อ-นามสกุล</p>
+            </div>
+            <div class="header-3" style="width: 10% !important;">
+              <p class="fw-bold p-header-3 text-center px-2 my-2">ชั้นปี</p>
+            </div>
+            <div class="header-4" style="width: 40% !important;">
+              <p class="fw-bold p-header-4 px-3 my-2">รหัสนักศึกษา</p>
+            </div>
+          </div>
+          <% allStudents.forEach ((student, index) => { %>
+            <a href="/adminIndex/editAccount?stuId=<%=student._id%>" class="link-list">
+              <div class="student-list d-flex justify-content-between my-2">
+                <div class="header-1" style="width: 10% !important;">
+                  <p class="p-header-1 text-center px-2 my-2"><%= index + 1%></p>
+                </div>
+                <div class="header-2" style="width: 50% !important;">
+                  <p class="p-header-2 px-3 my-2"><%= student.user.name%>
+                  <span class="fs-6 email-p">(<%= student.user.email %>)</span>
+                  </p>
+                </div>
+                <div class="header-3" style="width: 10% !important;">
+                  <p class="p-header-3 text-center px-2 my-2"><%= student.yearLevel %></p>
+                </div>
+                <div class="header-4" style="width: 40% !important;">
+                  <p class="p-header-4 px-3 my-2"><%= student.schoolId %></p>
+                </div>
+              </div>
+            </a>
+          <% }); %>
+        </div>
+      <% } %>
+
+    </div>
+  </div>
+  <%- include("./partials/footer.ejs")%>
+
+</body>
+</html>

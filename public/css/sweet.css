@@ -1,0 +1,47 @@
+/* คลาสที่กำหนดใน customClass */
+.custom-popup-class {
+    width: fit-content !important;
+    /* กำหนดความกว้างของ popup */
+    height: fit-content !important;
+    padding: 2em !important;
+    margin-top: 1em !important;
+    margin-right: 1em !important;
+    font-size: 1em;
+    /* กำหนดขนาดตัวอักษรใน content */
+    color: white !important;
+    /* กำหนดสีของข้อความใน content */
+    background-color: #007BFF !important;
+}
+
+
+.custom-actions-class {
+    text-align: center;
+    /* จัดวางข้อความใน actions ตรงกลาง */
+}
+
+.custom-popup-class2 {
+    width: fit-content !important;
+    /* กำหนดความกว้างของ popup */
+    height: fit-content !important;
+    padding: 2em !important;
+    margin-top: 1em !important;
+    margin-right: 1em !important;
+    font-size: 1em;
+    /* กำหนดขนาดตัวอักษรใน content */
+    color: black !important;
+    /* กำหนดสีของข้อความใน content */
+    background-color: #FFC107 !important;
+}
+
+
+.custom-actions-class2 {
+    text-align: center;
+    /* จัดวางข้อความใน actions ตรงกลาง */
+}
+
+/* .blur-background {
+    filter: blur(5px) !important;
+    -webkit-filter: blur(5px) !important;
+    transition: filter 0.3s ease-in-out !important;
+} */
+

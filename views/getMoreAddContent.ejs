@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เพิ่มบทเรียน</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/getMoreAddContent.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="/css/animation.css">
+  <link rel="stylesheet" href="/css/sweet.css">
+
+  <%- include("./partials/header.ejs")%>
+  <style>
+    * {
+
+      word-wrap: break-word !important;
+
+    }
+
+    .allContent {
+      height: fit-content !important;
+    }
+
+    .oldContent {
+      height: fit-content !important;
+    }
+
+    .hide-layout-11,
+    .layout-2,
+    .hide-layout-3,
+    .hide-layout-4 {
+      display: none;
+      opacity: 1;
+      height: fit-content !important;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      transition: display 0.5s ease !important;
+      /* transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1); */
+      margin-bottom: 2em !important;
+
+    }
+
+    .cancelIcon,
+    .cancelIcon2,
+    .cancelIcon3 {
+      font-size: 2em !important;
+      border: none !important;
+      background-color: white !important;
+      margin-bottom: 0em !important;
+    }
+
+    .addLayout01Form {
+      padding-bottom: 1em !important;
+    }
+
+    .show-layout-2 {
+      display: block;
+      opacity: 1;
+      /* สิ้นสุดที่ความทึบ 1 */
+      transition: opacity 0.5s ease;
+      /* กำหนดการเปลี่ยนแปลงที่ต้องการ */
+      height: fit-content !important;
+
+    }
+
+    .showoldlayoutSpan,
+    .hidoldlayoutSpan {
+      font-size: smaller !important;
+    }
+
+    .showAndHideBtn {
+      height: fit-content !important;
+    }
+
+
+    .hideOldContentDiv,
+    .showOldContentDiv {
+      display: flex;
+      justify-content: start;
+      height: fit-content !important;
+    }
+
+    .hideOldContentDiv,
+    .hidedContent {
+      display: none;
+    }
+
+    .showOldContent {
+      display: block;
+      opacity: 1;
+      /* สิ้นสุดที่ความทึบ 1 */
+      transition: opacity 0.5s ease;
+      /* กำหนดการเปลี่ยนแปลงที่ต้องการ */
+      height: fit-content !important;
+
+    }
+
+    .hide-layout-2 {
+      height: fit-content !important;
+    }
+
+    .teaxtAreaLayout4_1 {
+      text-indent: 1em !important;
+      padding-top: 1em !important;
+      width: 100% !important;
+      border: none !important;
+
+    }
+
+    .addAndMinus {
+      border: none !important;
+      margin-top: 0.5em !important;
+      margin-right: 0.5em !important;
+      font-size: x-large !important;
+      transition-duration: 0.3s;
+
+    }
+
+    .addAnd:hover .bi-plus-circle {
+      display: none !important;
+      transition: 0.3s;
+    }
+
+    .addAnd:hover .bi-plus-circle-fill {
+      display: inline !important;
+      transition: 0.3s;
+
+    }
+
+    .minusAnd:hover .bi-dash-circle {
+      display: none !important;
+      transition: 0.3s;
+
+    }
+
+    .minusAnd:hover .bi-dash-circle-fill {
+      display: inline !important;
+      transition: 0.3s;
+
+    }
+
+
+    .setBorder {
+      border: 0.125px solid black;
+      border-radius: 0.5em !important;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
+      padding: 0.10em !important;
+      text-indent: 0.25em !important;
+      font-size: medium !important;
+      margin-bottom: 0.5em !important;
+    }
+
+    .header-1::after {
+      content: "";
+      display: block !important;
+      background-color: #007bff !important;
+      margin: 0.5em !important;
+      width: 5em;
+      height: 5px;
+    }
+
+    .discription-layout {
+      color: #747474 !important;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .example-pic1 {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-radius: 0.5em;
+    }
+
+    .header-managebar {
+      border-left: 0.25em solid #387bef;
+      padding-left: 0.50em !important;
+      margin-bottom: 0.5em !important;
+
+    }
+
+    .main-content {
+      height: fit-content !important;
+    }
+
+    input[type=file] {
+      border: 1px solid #ced4da;
+      border-radius: 0.5em;
+
+    }
+
+    input[type=file]::file-selector-button {
+      margin-right: 1em;
+      border-top: none;
+      border-left: none;
+      border-bottom: none;
+      border-right: 1px solid #ced4da;
+      background: white;
+      padding: 0.5em 1em;
+      border-radius: 0.5em;
+      color: #084cdf;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+
+    }
+
+    input[type=file]::file-selector-button:hover {
+      background: #0d45a5;
+      color: white;
+    }
+
+    .img-input::placeholder {
+      color: #ced4da !important;
+    }
+
+    .none-border {
+      border-left: none !important;
+      border-top: none !important;
+      border-right: none !important;
+      border-radius: 0 !important;
+
+    }
+
+    .set-small-font {
+      font-size: smaller;
+      font-style: italic;
+      margin-bottom: 0.5em !important;
+    }
+
+    .lesson-bar {
+      border-left: 0.25em solid #007bff !important;
+      padding-left: 0.5em !important;
+      margin-right: 0.5em !important;
+
+    }
+
+    .return-a {
+      transition-duration: 0.3s;
+    }
+
+    .return-a:hover {
+      transition: 0.3s;
+      color: #0062cb !important;
+    }
+
+    .set-border-title {
+      border: 0.125em solid #007bff;
+      border-radius: 0.5em;
+    }
+
+    .set-border-title-2 {
+      border: 0.125em solid #007bff;
+      border-radius: 0.5em;
+
+
+    }
+
+    .ImageScript {
+      border-top: 0.125em solid #007bff;
+      border-radius: 0.5em;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      height: max-content;
+
+    }
+
+    .layout-1-typing {
+      /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important; */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 0.25em;
+      border-top: 0.125em solid #007bff;
+      border-bottom-left-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      max-width: 28em !important;
+      /* width: auto; */
+      padding-top: 0.5em !important;
+      height: 18.75em;
+      /* หรือค่าสูงสุดที่คุณต้องการ */
+      /* เพื่อให้มีการเลื่อนเนื้อหาเมื่อเกินขนาดที่กำหนด */
+      background-color: white;
+      margin-bottom: 1em !important;
+      overflow-y: auto !important;
+
+    }
+
+    .layout-1-topic-p,
+    .layout-1-MainDescription-p {
+      border-bottom: 0.5px solid #ced4daac;
+      padding-top: 0.5em !important;
+    }
+
+    .layout-1-MainDescription-p2 {
+      border-bottom: 0.5px solid #ced4daac;
+      /* padding-top: 0.5em !important; */
+      margin: 0.5em 0.5em !important;
+      font-size: small !important;
+    }
+
+    .layout-1-MainDescription-p3 {
+
+      border-bottom: 0.5px solid #ced4daac;
+      /* padding-top: 0.5em !important; */
+      margin: 1em 1.5em !important;
+      font-size: small !important;
+
+    }
+
+    .layout-1-MainDescription-p {
+      margin-left: 2em !important;
+      margin-right: 1em !important;
+    }
+
+    .content-1 {
+      border-top: 0.125em solid #007bff;
+      border-radius: 0.5em;
+      margin-top: 1em !important;
+    }
+
+    .set-grid {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+
+    }
+
+    #outputParagraph2,
+    #outputParagraph3,
+    #outputParagraph6 {
+      font-size: smaller !important;
+    }
+
+    #outputParagraph4 {
+      font-size: x-small;
+    }
+
+    #outputParagraph3 {
+      max-width: 28em;
+
+    }
+
+    .img222 {
+      border-radius: 0.5em;
+      width: 80%;
+      /* justify-content: center; */
+    }
+
+    .img223 {
+      border-radius: 0.25em;
+      width: 100%;
+      /* justify-content: center; */
+    }
+
+    .border-div {
+      border: 1px solid #ced4da;
+      width: 80%;
+    }
+
+    .exampleLayout-2 {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-radius: 0.25em !important;
+      height: max-content;
+      margin-top: 1em !important;
+      padding-bottom: 1em !important;
+
+
+    }
+
+    .exampleLayout {
+      border-bottom: 0.125em solid #007bff !important;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-radius: 0.25em !important;
+      padding-bottom: 1em !important;
+
+    }
+
+
+    /* .exampleLayout2-2 {
+
+    } */
+
+    .layout-2-typing {
+      /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important; */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 0.25em;
+      border-top: 0.125em solid #007bff;
+
+
+      border-bottom-left-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      max-width: 28em !important;
+      /* width: auto; */
+      padding-top: 0.5em !important;
+      padding-bottom: 1em !important;
+
+      height: 14em;
+      /* หรือค่าสูงสุดที่คุณต้องการ */
+      /* เพื่อให้มีการเลื่อนเนื้อหาเมื่อเกินขนาดที่กำหนด */
+      background-color: white;
+      overflow-y: auto !important;
+
+    }
+
+    .layout-3-typing {
+      /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important; */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 0.25em;
+      border-top: 0.125em solid #007bff;
+      border-bottom-left-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      max-width: 28em !important;
+      /* width: auto; */
+      padding-top: 0.5em !important;
+      padding-bottom: 1em !important;
+      height: fit-content;
+      /* หรือค่าสูงสุดที่คุณต้องการ */
+      /* เพื่อให้มีการเลื่อนเนื้อหาเมื่อเกินขนาดที่กำหนด */
+      background-color: white;
+
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <div id="blur-container">
+    <%- include("./partials/nav.ejs")%>
+    <!-- <div class="above-nav d-flex px-4 py-3">
+      <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+        <i class="bi bi-house mx-2"></i>
+        <a href="/adminIndex" class="a-home">
+          <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+        </a>
+      </div>
+      <a href="#" class="status-a mx-2 my-0 align-middle">
+        <p class="m-0">บทเรียน</p>
+      </a>
+    </div> -->
+    <div class="main-content bg-white d-flex w-100 h-auto">
+      <%- include("./partials/lessonsList.ejs")%>
+      <div class=" row allContent bg-white" style="width: 80%;">
+        <div class="col-12 oldContent aside-right bg-white px-4 py-4" style="width: 100% !important;">
+          <div class="manange-bar px-4 py-3 bg-white w-100">
+            <div class="d-flex" style="border-bottom: 1px solid #ced4daa0; padding-bottom: 0.5em !important;">
+              <div class="d-flex w-75" style="align-items: center; grid-template-columns: 0.5fr 1.5fr;">
+                <p class="fw-bold w-auto fs-6 lesson-bar">เพิ่มเนื้อหา</p>
+                <p class="fw-normal w-auto fs-6" style="margin-left: 0.5em !important;">บทเรียน:
+                  <span class="fw-normal fs-6 text-primary" style="margin-right: 1em !important;"><%=lesson.LessonName%></span>
+                  ปีการศึกษา:
+                  <span class="fw-normal fs-6 text-primary"><%=lesson.schoolYear.schoolYear%></span>
+                </p>
+                <a href="/adminIndex/eachLessons?lessonId=<%=lesson._id%>" class="edit-a text-dark px-2" style="border-left: 1px solid #ced4daa0 ;margin:0em 1em !important; font-size: small;">แก้ไขชื่อและรูปปก<i class="bi bi-pencil mx-2"></i>
+                </a>
+              </div>
+              <div class="d-flex w-25 justify-content-end" style="align-items: center; margin-top: 0.5 !important;">
+                <a href="/adminIndex/eachLessons?lessonId=<%=lesson._id%>" class="return-a text-primary">กลับสู่เนื้อหา<i class="bi bi-arrow-return-left mx-2"></i>
+                </a>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="d-flex w-50">
+                <button disabled href="#" class=" add-button btn btn-primary my-2 p-2" style="height: fit-content !important;">
+                  เพิ่มเนื้อหา<i class="bi bi-plus-circle-fill mx-2"></i>
+                </button>
+                <a href="/adminIndex/editLesson?lesson=<%=lesson._id%>" class="btn add-button btn-warning my-2 p-2 mx-2" style="height: fit-content !important;">
+                  แก้ไขเนื้อหาภายในบทเรียน<i class="bi bi-pencil-square mx-2"></i>
+                </a>
+              </div>
+              <div class="d-flex w-50 justify-content-end">
+                <a href="/adminIndex/deleteLesson?lessonId=<%=lesson._id%>" class="btn add-button btn-danger my-2 p-2 mx-2" style="height: fit-content !important;">
+                  ลบบทเรียน: <span class="text-light"><%=lesson.LessonName%></span><i class="bi bi-eraser-fill mx-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <% if (foundLayouts.length > 0) {%>
+          <div class="showOldContentDiv col-12">
+            <p class="layout01-mainDes my-3 mx-3 fs-6 fw-normal text-dark">
+              <span class="text-danger">*</span>เนื้อหาของบทเรียนที่ถูกเพิ่มนั้นถูกซ่อนอยู่ คลิกปุ่ม <span class="text-primary">"แสดง"</span> เพื่อแสดงเนื้อหา
+            </p>
+            <button class="showOldContentBtn btn btn-primary h-50 my-3 px-2"><span class="showoldlayoutSpan">แสดง</span></button>
+          </div>
+          <div class="hideOldContentDiv col-12">
+            <p class="layout01-mainDes my-3 mx-3 fs-6 fw-normal text-dark">
+              <span class="text-danger">*</span>คลิกปุ่ม <span class="text-warning">"ซ่อน"</span> หากต้องการซ่อนเนื้อหา
+            </p>
+            <button class="hideOldContentBtn btn btn-warning h-50 my-3 px-2"><span class="text-primary">ซ่อน</span></button>
+          </div>
+          <% } else { %>
+          <div class="">
+            <p>&nbsp;</p>
+          </div>
+          <% } %>
+          <div class="hidedContent py-2">
+            <% if (foundLayouts.length > 0) { %>
+            <% foundLayouts.forEach(Layout => { %>
+            <% if (Layout.name == "Layout01") { %>
+            <p class="layout01-mainDes mx-3"><%= Layout.Topic%></p>
+            <p class="text-areas-indent mx-3 w-75"><%= Layout.MainDescription%></p>
+            <div class="lesson-content py-4 px-3 bg-white w-100 my-4">
+              <p class="text-areas-indent my-2 w-75"><%= Layout.SubDescription%></p>
+              <% const AboutImage = Layout.AboutImage %>
+              <% AboutImage.forEach ( Img => { %>
+              <% if (Img[0]) {%>
+              <div class="layout1-contents h-auto my-0 mx-auto p-5">
+                <div class="layout01_gird">
+                  <div class="AboutImage h-auto">
+                    <div class="w-100">
+                      <p class="Topic1 p-3 h-auto my-0 mx-auto text-center"><%= Img.title %></p>
+                    </div>
+                    <div class="w-100 text-center">
+                      <img class="ImageFile w-75 h-75 my-4 shadow rounded" src="data:image/<%= Img.Url.contentType %>;base64,<%= Img.Url.data.toString('base64') %>" alt="รูปภาพประกอบการเรียน">
+                    </div>
+                  </div>
+                  <div class="h-100 content-2">
+                    <p class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-3 text-dark"><%= Img.ImageDescription %></p>
+                  </div>
+                </div>
+              </div>
+              <% } else {%>
+              <div class="layout01_gird my-5">
+                <div class="AboutImage h-auto">
+                  <div class="w-100">
+                    <p class="Topic1 p-3 h-auto my-0 mx-auto text-center"><%= Img.title %></p>
+                  </div>
+                  <div class="w-100 text-center">
+                    <img class="ImageFile w-75 h-75 my-4 shadow rounded" src="data:image/<%= Img.Url.contentType %>;base64,<%= Img.Url.data.toString('base64') %>" alt="รูปภาพประกอบการเรียน">
+                  </div>
+                </div>
+                <div class="h-100 content-2">
+                  <p class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-3 text-dark"><%= Img.ImageDescription %></p>
+                </div>
+              </div>
+              <% } %>
+              <% }); %>
+            </div>
+            <% } %>
+            <% }); %>
+            <% } %>
+          </div>
+
+          <!-- จุด error -->
+          <div class="col-12 w-100" style="position: relative;">
+            <div class="hide-layout-11 lesson-content py-2 bg-white my-1">
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">รูปแบบที่ 1</p>
+              </div>
+              <p class="discription-layout mx-4">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                รูปแบบที่ 1 นี้จะมีองค์ประกอบ ประกอบอยู่ 5 ส่วน ได้แก่ <br>
+                <span class="fw-bold text-primary">ส่วนที่ 1:</span>
+                หัวข้อ เหมาะสำหรับข้อความที่เป็นหัวข้อ
+                เป็นข้อความสั้น ๆ
+                ที่เอาไว้ใช้อธิบายเนื้อหาที่อยู่ถัดไป
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 2:</span>
+                คำอธิบายเพิ่มเติม ส่วนนี้เป็นส่วนที่ใช้อธิบายเนื้อหาเพิ่มเติมรองลงมาจากหัวข้อ
+                เป็นข้อความเกริ่น ๆ ว่าเนื้อหานี้กล่าวถึงอะไรและมีความหมายว่าอย่างไร
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 3:</span>
+                คำอธิบายเนื้อหาหลัก ส่วนนี้เหมาะสำหรับใช้อธิบายเนื้อหาหลักที่ได้ถูกเพิ่มและอยู่ในส่วนถัดไป
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 4:</span>
+                ชื่อรูปภาพ เป็นส่วนที่ใช้บอกว่ารูปภาพด้านล่างนั้นคือรูปอะไร
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 5:</span>
+                รูปภาพ ในส่วนนี้จะรับรองข้อมูลไฟล์ที่เป็นประเภทรูปภาพเท่านั้น เช่น .jpg, jpeg, .png.
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 6:</span>
+                คำอธิบายเกี่ยวกับรูปภาพ ใช้ส่วนนี้อธิบายเกี่ยวกับรูปภาพดังกล่าวที่ถูกเพิ่มลงไป
+                เป็นรูปเกี่ยวกับอะไร มีความสำคัญอย่างไร
+              </p>
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">ส่วนของการเพิ่มเนื้อหาของบทเรียน</p>
+              </div>
+              <form class="addLayout01Form" action="/adminIndex/createLayout_01" method="post" enctype="multipart/form-data">
+                <input class="d-none" type="text" name="_id" value="<%= lesson._id %>">
+                <div class="form-grid px-4 py-1">
+                  <div class="underForm-1">
+                    <div class="my-1 mb-3">
+                      <label for="Topic" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 1 >> </span>หัวข้อ: </label>
+                      <input type="text" class="form-control p-3 w-75 layout-1-topic" name="Topic" id="topicInput" placeholder="ส่วนประกอบฟั..." required>
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="MainDescription" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 2 >> </span>คำอธิบายเพิ่มเติม: </label>
+                      <textarea class="form-control w-75 p-3" name="MainDescription" id="topicInput2" style="height: 100px;"></textarea>
+                    </div>
+                    <div class="form my-1 mb-3 mb-3">
+                      <label for="subDescription" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 3 >> </span>คำอธิบายเนื้อหาหลัก: </label>
+                      <textarea class="form-control w-75 p-3" name="SubDescription" id="topicInput3" style="height: 100px;" placeholder=""></textarea>
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="title" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 4 >> </span>ชื่อรูปภาพ: </label>
+                      <input type="text" class="form-control p-3 w-75" name="title" id="topicInput4" placeholder="Occlusal Re..." required>
+                    </div>
+                    <div class="my-1 mb-3">
+                      <label for="Url" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 5 >> </span>รูปภาพ: </label><br>
+                      <input type="file" class="w-75 img-input" id="topicInput5" style="background-color: white !important;" name="Url" accept="image/*,video/*">
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="ImageDescription" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 6 >> </span>คำอธิบายเกี่ยวกับรูปภาพ: </label>
+                      <textarea class="form-control w-75 p-3" name="ImageDescription" id="topicInput6" style="height: 100px;" placeholder=""></textarea>
+                    </div>
+
+
+                  </div>
+                  <div class="underForm-2">
+                    <!-- <a href="#img1">
+                    <img src="/images/indexMed/example-1.png" class="img-fluid my-2 example-pic1" alt="">
+                  </a> -->
+                    <p class="fw-normal text-secondary my-1" style="font-size: small;"><i class="bi bi-info-circle text-primary" style="margin-right: 0.25em !important;"></i>
+                      สามารถกรอกข้อมูลต่าง ๆ พร้อมกับดูรูปแบบที่และหน้าตาที่จะได้ในเวลาพร้อมกัน
+                    </p>
+                    <p class="fw-bold text-dark my-1" style="font-size: small;">คำอธิบาย: <span class="fw-normal text-secondary">ตัวเลขใช้แทนส่วนต่าง ๆ เมื่อกรอกข้อมูลลงไป</span></p>
+
+                    <div class="layout-1-typing my-2">
+                      <!-- <p class="fs-2 layout-1-topic-p w-auto h-auto"> -->
+                      <p class="fs-5 fw-bold layout-1-topic-p w-auto h-auto mx-3" id="outputParagraph">
+                        <i class="bi fs-6 bi-1-circle-fill text-primary"></i><span class="fw-normal fs-6 text-secondary exaple-text mx-2"></span>
+                      </p>
+                      <p class="fs-6 layout-1-MainDescription-p w-auto h-auto" id="outputParagraph2">
+                        <i class="bi fs-6 bi-2-circle-fill text-primary"></i>
+                      </p>
+                      <div class="py-3 px-2 content-1 h-auto">
+                        <p class="fs-6 layout-1-MainDescription-p w-auto h-auto" id="outputParagraph3">
+                          <i class="bi fs-6 bi-3-circle-fill text-primary"></i>
+                        </p>
+                        <div class="w-100 set-grid" style="margin-top: 1em !important;">
+                          <div class="">
+                            <div class="d-flex justify-content-center">
+                              <div class="p-1 set-border-title w-75">
+                                <p class="text-center" id="outputParagraph4">
+                                  <i class="fs-6 bi bi-4-circle-fill text-primary "></i>
+                                </p>
+                              </div>
+                            </div>
+                            <div id="imagePlaceholder" class="d-flex justify-content-center" style="margin-top: 0.5em !important;">
+                              <div class="p-3 set-border-title-2 w-75">
+                                <p class="fs-6 text-center">
+                                  <i class="bi bi-5-circle-fill text-primary"></i>
+                                </p>
+                                <p class="fs-6 text-center">
+                                  รูปภาพ
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="h-auto ImageScript p-2">
+                            <p class="fs-6" id="outputParagraph6">
+                              <i class="bi bi-6-circle-fill text-primary "></i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="fw-bold text-center text-dark my-2">
+                        รูปแบบที่ได้เมื่อกรอกข้อมูล
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25">บันทึก
+                      <i class="bi bi-save-fill mx-2"></i>
+                    </button>
+                    <button type="button" class="cancelBtn1 setRadius submitBtn btn btn-danger my-3 p-2 shadow-sm w-25 mx-3">ยกเลิก
+                      <!-- <i class="bi bi-save-fill mx-2"></i> -->
+                      <i class="bi bi-arrow-return-left mx-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Layout2 -->
+            <div class="lesson-content layout-2 h-auto py-2 bg-white">
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">รูปแบบที่ 2</p>
+              </div>
+              <p class="discription-layout mx-4">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                รูปแบบที่ 2 นี้จะมีองค์ประกอบ ประกอบอยู่ 4 ส่วน ได้แก่ <br>
+                <span class="fw-bold text-primary">ส่วนที่ 1:</span>
+                หัวข้อ เหมาะกับข้อความที่เป็นหัวข้อ มีขนาดตัวอักษรที่เด่นกว่าส่วนอื่น ๆ
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 2:</span>
+                คำอธิบาย เหมาะสำหรับอธิบายเนื้อหาหรือข้อความแบบบรรยาย
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 3:</span>
+                คำอธิบาย เช่นเดี่ยวกับส่วนที่ 2 เหมาะสำหรับอธิบายเนื้อหาหรือข้อความแบบบรรยาย
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 4:</span>
+                คำอธิบาย เป็นส่วนสุดท้ายที่ใช้สำหรับอธิบายหรือบรรยายเนื้อหาเช่นเดียวกับส่วนที่ 2 และ 3
+                <br>
+              </p>
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">ส่วนของการเพิ่มเนื้อหาของบทเรียน</p>
+              </div>
+              <form class="addLayout01Form" action="/adminIndex/createLayout_02" method="post" enctype="multipart/form-data">
+                <input class="d-none" type="text" name="_id" value="<%= lesson._id %>">
+                <div class="form-grid px-4 py-1">
+                  <div class="underForm-1">
+                    <div class="my-1">
+                      <label for="Topic" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 1 >> </span>หัวข้อ: </label>
+                      <input type="text" class="form-control p-3 w-75" id="topicInput7" name="Topic" placeholder="ส่วนประกอบฟั..." required>
+
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="TextArea1" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 2 >> </span>คำอธิบายหรือบรรยาย: </label>
+                      <textarea class="form-control w-75 p-3" id="topicInput8" name="TextArea1" style="height: 100px;"></textarea>
+
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="TextArea2" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 3 >> </span>คำอธิบายหรือบรรยาย: </label>
+                      <textarea class="form-control w-75 p-3" name="TextArea2" id="topicInput9" style="height: 100px;" placeholder=""></textarea>
+
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="TextArea3" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 4 >> </span>คำอธิบายหรือบรรยาย: </label>
+                      <textarea class="form-control w-75 p-3" name="TextArea3" id="topicInput10" style="height: 100px;" placeholder=""></textarea>
+                    </div>
+                  </div>
+                  <div class="underForm-2">
+                    <p class="fw-normal text-secondary my-1" style="font-size: small;"><i class="bi bi-info-circle text-primary" style="margin-right: 0.25em !important;"></i>
+                      สามารถกรอกข้อมูลต่าง ๆ พร้อมกับดูรูปแบบที่และหน้าตาที่จะได้ในเวลาพร้อมกัน
+                    </p>
+                    <p class="fw-bold text-dark my-1" style="font-size: small;">คำอธิบาย: <span class="fw-normal text-secondary">ตัวเลขใช้แทนส่วนต่าง ๆ เมื่อกรอกข้อมูลลงไป</span></p>
+
+                    <div class="layout-2-typing my-2">
+                      <!-- <p class="fs-2 layout-1-topic-p w-auto h-auto"> -->
+                      <p class="fs-5 fw-bold layout-1-topic-p w-auto h-auto mx-3" id="outputParagraph7">
+                        <i class="bi fs-6 bi-1-circle-fill text-primary"></i><span class="fw-normal fs-6 text-secondary example-text-2 mx-2">
+                        </span>
+                      </p>
+                      <div class="exampleLayout-2 mx-3" style="border-top: 0.125em solid #007bff;">
+                        <div class="d-grid" style="grid-template-columns: 1fr 1fr; margin: 1em !important;">
+                          <div class="w-100" style="max-width: 10em;">
+                            <p class="fs-6 layout-1-MainDescription-p2 h-auto" id="outputParagraph8">
+                              <i class="bi fs-6 bi-2-circle-fill text-primary"></i>
+
+                            </p>
+                          </div>
+                          <div class="w-100" style="max-width: 10em;">
+                            <p class="fs-6 layout-1-MainDescription-p2 w-auto h-auto" id="outputParagraph9">
+                              <i class="bi fs-6 bi-3-circle-fill text-primary"></i>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="w-100 px-1">
+                          <div class="" style="border-top: 1px solid #ced4da ;margin: 0 auto !important; width: 90%; height: 1px !important;">
+                            &nbsp;
+                          </div>
+                          <p class="fs-6 layout-1-MainDescription-p3 w-auto h-auto" id="outputParagraph10">
+                            <i class="bi fs-6 bi-4-circle-fill text-primary" style="font-size:medium !important;"></i>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="fw-bold text-center text-dark my-2">
+                        รูปแบบที่ได้เมื่อกรอกข้อมูล
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <div class="underForm-2">
+                    
+                    <p class="fw-bold text-primary my-1">ตัวอย่าง: <span class="text-dark fw-light">ตัวหนังสือที่เป็นสี<span class="text-primary fw-bold"> "น้ำเงิน" </span>ดังในรูปภาพ คือส่วนที่ใช้บอกว่าแต่ละส่วนนั้นอยู่ที่ไหน หากเพิ่มข้อมูลลงไปแล้วจะมีหน้าตาเป็นอย่างไร</span></p>
+                    <a data-caption="ภาพตัวอย่างของรูปแบบที่ 2" data-fancybox="gallery" href="/images/indexMed/example-1.png">
+                      <img title="กดที่รูปภาพเพื่อขยาย" src="/images/indexMed/example-1.png" class="img-fluid my-2 example-pic1" alt="Image">
+                    </a>
+                    <p class="text-center fs-6 my-3">ภาพตัวอย่างของรูปแบบที่ 2</p>
+                  </div> -->
+                  <div class="d-flex">
+                    <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25">บันทึก
+                      <i class="bi bi-save-fill mx-2"></i>
+                    </button>
+                    <button type="button" class="cancelBtn2 setRadius submitBtn btn btn-danger my-3 p-2 shadow-sm w-25 mx-3">ยกเลิก
+                      <!-- <i class="bi bi-save-fill mx-2"></i> -->
+                      <i class="bi bi-arrow-return-left mx-2"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="กรอกข้อความหรือคำอธิบาย..." required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon2 layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="setMargin py-4 px-4 bg-white w-100">
+                <div class="Layout2Contents w-100">
+                  <div class="changeLayout02">
+                    <div class="Layout2ContentsDiv p-1">
+                      <div class="subLayout2Contents bg-white">
+                        <textarea name="TextArea1" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                      </div>
+                      <div class="subLayout2Contents bg-white">
+                        <textarea name="TextArea2" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                      </div>
+                    </div>
+                    <div class="subLayout2Contents2 bg-white">
+                      <textarea name="TextArea3" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-end">
+
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout02 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div> -->
+              </form>
+            </div>
+
+            <!-- Layout03 -->
+
+            <div class="hide-layout-3 lesson-content py-2 bg-white my-4">
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">รูปแบบที่ 3</p>
+              </div>
+              <p class="discription-layout mx-4">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                รูปแบบที่ 3 นี้จะมีองค์ประกอบ ประกอบอยู่ 2 ส่วน ได้แก่ <br>
+                <span class="fw-bold text-primary">ส่วนที่ 1:</span>
+                คำอธิบาย ใช้อธิบายส่วนที่ 2 ซึ่งในส่วนนั้นสามารถเป็นรูปภาพหรือวิดีโอก็ได้
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 2:</span>
+                ไฟล์ ไฟล์ที่ใช้ในการอัปโหลดคือไฟล์ประเภทรูปภาพและวิดีโอ เช่นไฟล์ที่มีนามสกุลต่อไปนี้
+                <br>
+                <span class="text-success fw-bold">รูปภาพ: </span><span>.jpg, .jpeg, .png, .gif</span><br>
+                <span class="text-success fw-bold">วิดีโอ: </span><span>.mp4, .avi, .mov .wmv</span>
+              </p>
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">ส่วนของการเพิ่มเนื้อหาของบทเรียน</p>
+              </div>
+              <form class="addLayout01Form" action="/adminIndex/createLayout_03" method="post" enctype="multipart/form-data">
+                <input class="d-none" type="text" name="_id" value="<%= lesson._id %>">
+                <div class="form-grid px-4 py-1">
+                  <div class="underForm-1">
+                    <div class="my-1 mb-3">
+                      <label for="Description" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 1 >> </span>คำอธิบาย: </label>
+                      <input type="text" class="form-control p-3 w-75" id="topicInput11" name="Description" placeholder="ส่วนประกอบฟั..." required>
+
+                    </div>
+                    <div class="my-1 mb-3">
+                      <label for="FileForm" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 2 >> </span>รูปภาพ: </label><br>
+                      <input type="file" class="w-75 img-input" id="topicInput12" style="background-color: white !important;" name="FileForm" accept="image/*,video/*,application/pdf">
+
+                      <!-- <div id="emailHelp" class="form-text my-1">*ไม่ต้องทำการอัปโหลดรูปภาพ หากไม่มีรูปภาพที่ต้องการใช้</div> -->
+                    </div>
+                    <div class="d-flex my-1">
+                      <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25">บันทึก
+                        <i class="bi bi-save-fill mx-2"></i>
+                      </button>
+                      <button type="button" class="cancelBtn3 setRadius submitBtn btn btn-danger my-3 p-2 shadow-sm w-25 mx-3">ยกเลิก
+                        <!-- <i class="bi bi-save-fill mx-2"></i> -->
+                        <i class="bi bi-arrow-return-left mx-2"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="underForm-2">
+                    <p class="fw-normal text-secondary my-1" style="font-size: small;"><i class="bi bi-info-circle text-primary" style="margin-right: 0.25em !important;"></i>
+                      สามารถกรอกข้อมูลต่าง ๆ พร้อมกับดูรูปแบบที่และหน้าตาที่จะได้ในเวลาพร้อมกัน
+                    </p>
+                    <p class="fw-bold text-dark my-1" style="font-size: small;">คำอธิบาย: <span class="fw-normal text-secondary">ตัวเลขใช้แทนส่วนต่าง ๆ เมื่อกรอกข้อมูลลงไป</span></p>
+
+                    <div class="layout-3-typing my-2">
+                      <!-- <p class="fs-2 layout-1-topic-p w-auto h-auto"> -->
+                      <p class="fs-5 fw-bold layout-1-topic-p w-auto h-auto mx-3" id="outputParagraph11">
+                        <i class="bi fs-6 bi-1-circle-fill text-primary"></i><span class="fw-normal fs-6 text-secondary example-text-3 mx-2">
+                        </span>
+                      </p>
+                      <div class="exampleLayout-3 mx-3">
+                        <div id="imagePlaceholder2" class="d-flex justify-content-center" style="margin-top: 0.5em !important;">
+                          <div class="p-2 set-border-title-2 w-100 my-1">
+                            <p class="fs-6 text-center">
+                              <i class="bi bi-2-circle-fill text-primary"></i>
+                            </p>
+                            <p class="fs-6 text-center">
+                              รูปภาพ
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="fw-bold text-center text-dark my-2">
+                        รูปแบบที่ได้เมื่อกรอกข้อมูล
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Layout04 -->
+
+            <div class="hide-layout-4 lesson-content py-2 bg-white">
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">รูปแบบที่ 4</p>
+              </div>
+              <p class="discription-layout mx-4">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                รูปแบบที่ 4 นี้จะมีองค์ประกอบ ประกอบอยู่ 3 ส่วน ได้แก่ <br>
+                <span class="fw-bold text-primary">ส่วนที่ 1:</span>
+                หัวข้อ เหมาะสำหรับข้อความที่เป็นหัวข้อ
+                เป็นข้อความสั้น ๆ
+                ที่เอาไว้ใช้อธิบายเนื้อหาที่อยู่ถัดไป
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 2:</span>
+                คำอธิบาย เหมาะสำหรับอธิบายเนื้อหาหรือข้อความแบบบรรยาย
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 3:</span>
+                รายการหรือลิสต์ (lists) ข้อความที่ถูกแบ่งเป็นรายการหรือข้อย่อยทีละหัวข้อ
+              </p>
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">ส่วนของการเพิ่มเนื้อหาของบทเรียน</p>
+              </div>
+              <form class="addLayout01Form" action="/adminIndex/createLayout_04" method="post" enctype="multipart/form-data">
+                <input class="d-none" type="text" name="_id" value="<%= lesson._id %>">
+                <div class="form-grid px-4 py-1">
+                  <div class="underForm-1">
+                    <div class="my-1 mb-3">
+                      <label for="Topic" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 1 >> </span>หัวข้อ: </label>
+                      <input type="text" class="form-control p-3 w-75" name="Topic" placeholder="ส่วนประกอบฟั..." required>
+
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="Description" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 2 >> </span>คำอธิบายหรือบรรยาย: </label>
+                      <textarea class="form-control w-75 p-3" name="Description" style="height: 100px;" placeholder=""></textarea>
+                    </div>
+                    <div class="form my-1 mb-3">
+                      <label for="list" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 3 >> </span>รายการหรือลิสต์ (lists): </label>
+                      <p class="text-dark set-small-font"><span class="text-primary">* </span>คุณสามารถเพิ่มและลบรายการได้ตามต้องการ</p>
+                      <div class="listContents">
+                        <input type="text" placeholder="- ประเภทที่เหมาะสมกั..." class="form-control p-1 w-75 none-border" name="list" required>
+                      </div>
+                      <div class="add-button-1 w-50 d-flex justify-content-start">
+                        <a href="#" class="addAndMinus addAnd">
+                          <i class="bi bi-plus-circle text-success"></i>
+                          <i class="bi bi-plus-circle-fill text-success fs-4" style="display: none;"></i>
+                        </a>
+                        <a href="#" class="addAndMinus minusAnd">
+                          <i class="bi bi-dash-circle text-danger"></i>
+                          <i class="bi bi-dash-circle-fill text-danger fs-4" style="display: none;"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="underForm-2">
+                    <p class="fw-bold text-primary my-1">ตัวอย่าง: <span class="text-dark fw-light">ตัวหนังสือที่เป็นสี<span class="text-primary fw-bold"> "น้ำเงิน" </span>ดังในรูปภาพ คือส่วนที่ใช้บอกว่าแต่ละส่วนนั้นอยู่ที่ไหน หากเพิ่มข้อมูลลงไปแล้วจะมีหน้าตาเป็นอย่างไร</span></p>
+                    <a data-caption="ภาพตัวอย่างของรูปแบบที่ 4" data-fancybox="gallery" href="/images/indexMed/example-1.png">
+                      <img title="กดที่รูปภาพเพื่อขยาย" src="/images/indexMed/example-1.png" class="img-fluid my-2 example-pic1" alt="Image">
+                    </a>
+                    <p class="text-center fs-6 my-3">ภาพตัวอย่างของรูปแบบที่ 4</p>
+                  </div>
+                  <div class="d-flex my-1">
+
+                    <button type="submit" class="setRadius submitBtn4 btn btn-success my-3 p-2 shadow-sm w-25">บันทึก
+                      <i class="bi bi-save-fill mx-2"></i>
+                    </button>
+                    <button type="button" class="cancelBtn4 setRadius submitBtn btn btn-danger my-3 p-2 shadow-sm w-25 mx-3">ยกเลิก
+                      <!-- <i class="bi bi-save-fill mx-2"></i> -->
+                      <i class="bi bi-arrow-return-left mx-2"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="หัวข้อหรือคำอธิบาย" required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon4 layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="setMargin py-4 px-4 bg-white w-100">
+                <div class="Layout2Contents w-100 p-3">
+                  <textarea class="teaxtAreaLayout4_1" name="Description" class="w-100 h-25" placeholder="คำอธิบาย"></textarea>
+                  <div class="columnGrid">
+                    <div class="listContents my-2 w-100">
+                      <input type="text" name="list" class="setBorder w-75" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-start">
+                  <button type="button" class="addAndMinus addAnd bg-white my-3">
+                    <i class="bi bi-plus-square text-success fs-4"><span class="fs-6"> เพิ่มรายการ</span></i>
+                    <i class="bi bi-plus-square-fill text-success fs-4" style="display: none;"><span class="fs-6"> เพิ่มรายการ</span></i>
+                  </button>
+                  <button type="button" class="addAndMinus minusAnd bg-white my-3">
+                    <i class="bi bi-dash-square text-danger fs-4"><span class="fs-6"> ลดรายการ</span></i>
+                    <i class="bi bi-dash-square-fill text-danger fs-4" style="display: none;"><span class="fs-6"> ลดรายการ</span></i>
+                  </button>
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout04 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn2 btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div> -->
+              </form>
+            </div>
+
+            <!-- Layout05 -->
+
+            <div class="hide-layout-5 lesson-content py-2 bg-white my-4">
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">PDF File</p>
+              </div>
+              <p class="discription-layout mx-4">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                รูปแบบที่ 3 นี้จะมีองค์ประกอบ ประกอบอยู่ 2 ส่วน ได้แก่ <br>
+                <span class="fw-bold text-primary">ส่วนที่ 1:</span>
+                คำอธิบาย ใช้อธิบายส่วนที่ 2 ซึ่งในส่วนนั้นสามารถเป็นรูปภาพหรือวิดีโอก็ได้
+                <br>
+                <span class="fw-bold text-primary">ส่วนที่ 2:</span>
+                ไฟล์ ไฟล์ที่ใช้ในการอัปโหลดคือไฟล์ประเภทรูปภาพและวิดีโอ เช่นไฟล์ที่มีนามสกุลต่อไปนี้
+                <br>
+                <span class="text-success fw-bold">รูปภาพ: </span><span>.jpg, .jpeg, .png, .gif</span><br>
+                <span class="text-success fw-bold">วิดีโอ: </span><span>.mp4, .avi, .mov .wmv</span>
+              </p>
+              <div class="d-flex mx-4">
+                <p class="fw-bold fs-4 my-3 setpBorder2">ส่วนของการเพิ่มเนื้อหาของบทเรียน</p>
+              </div>
+              <form class="addLayout01Form" action="/adminIndex/createLayout_05" method="post" enctype="multipart/form-data">
+                <input class="d-none" type="text" name="_id" value="<%= lesson._id %>">
+                <div class="form-grid px-4 py-1">
+                  <div class="underForm-1">
+                    <div class="my-1 mb-3">
+                      <label for="MainDescription" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 1 >> </span>คำอธิบาย: </label>
+                      <input type="text" class="form-control p-3 w-75" id="topicInput11" name="MainDescription" placeholder="ส่วนประกอบฟั..." required>
+                    </div>
+                    <div class="my-1 mb-3">
+                      <label for="file" class="form-label fs-bold"><span class="fw-bold text-primary">ส่วนที่ 2 >> </span>ไฟล์ PDF: </label><br>
+                      <input type="file" class="w-75 img-input" id="topicInput12" style="background-color: white !important;" name="file" accept="image/*,video/*,application/pdf">
+                      <!-- <input type="file" class="w-75 img-input" id="topicInput12" style="background-color: white !important;" name="file" accept="image/*,video/*,application/pdf" multiple> -->
+                    </div>
+                    <div class="d-flex my-1">
+                      <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25">บันทึก
+                        <i class="bi bi-save-fill mx-2"></i>
+                      </button>
+                      <button type="button" class="cancelBtn3 setRadius submitBtn btn btn-danger my-3 p-2 shadow-sm w-25 mx-3">ยกเลิก
+                        <i class="bi bi-arrow-return-left mx-2"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- other form elements -->
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="lesson-content p-4 bg-white w-100 h-auto">
+            <div class="descp-div">
+              <div class="d-flex">
+                <p class="fw-bold fs-4 my-3 mx-2">เพิ่มเนื้อหา</p>
+              </div>
+              <p class="discription-layout mx-2">
+                <span class="fw-bold text-dark">คำอธิบาย: </span>
+                ให้ทำการเลือกรูปแบบที่ต้องการ ซึ่งแต่ละรูปแบบจะมีการจัดวางเนื้อหาหรือองค์ประกอบ และมีการเก็บข้อมูลเก็บไฟล์ในรูปแบบที่แตกต่างกัน
+              </p>
+            </div>
+            <div class="layouts-div px-4 py-3">
+              <div class="row">
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <a type="button" class="py-5 layout w-75 h-auto shadow rounded border-0">
+                    <!-- <img class="img-fluid" src="/images/layout1.png" alt="รูปใช้ในการทดสอบ"> -->
+                    <p class="fs-2 fw-bold text-center">
+                      รูปแบบที่ 1
+                    </p>
+                  </a>
+
+                </div>
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <a type="button" class="py-5 layout-2-a w-75 h-auto shadow rounded border-0">
+                    <!-- <img class="img-fluid" src="/images/layout2.png" alt="รูปใช้ในการทดสอบ"> -->
+                    <p class="fs-2 fw-bold text-center">
+                      รูปแบบที่ 2
+                    </p>
+                  </a>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <a type="button" class="py-5 layout-3-a w-75 h-auto shadow rounded border-0">
+                    <!-- <img class="img-fluid" src="/images/layout3.png" alt="รูปใช้ในการทดสอบ"> -->
+                    <p class="fs-2 fw-bold text-center">
+                      รูปแบบที่ 3
+                    </p>
+                  </a>
+
+                </div>
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <a type="button" class="layout-4-a w-75 h-auto shadow rounded border-0 py-5">
+                    <!-- <img class="img-fluid" src="/images/indexMed/test-image.jpg" alt="รูปใช้ในการทดสอบ"> -->
+                    <p class="fs-2 fw-bold text-center">
+                      รูปแบบที่ 4
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include("./partials/footer.ejs")%>
+  <script src="/js/two-way.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      document.getElementById("topicInput5").addEventListener("change", function(event) {
+        if (event.target.files.length > 0) {
+          var file = event.target.files[0];
+          var imageUrl = URL.createObjectURL(file);
+          // console.log(imageUrl);
+          document.getElementById("imagePlaceholder").innerHTML = `
+          <div class="w-auto d-flex justify-content-center">
+          <img src="${imageUrl}" alt="รูปภาพ" class="img-fluid img222">
+          </div>`;
+        }
+      });
+
+      document.getElementById("topicInput12").addEventListener("change", function(event) {
+        if (event.target.files.length > 0) {
+          var file = event.target.files[0];
+          var imageUrl = URL.createObjectURL(file);
+          // console.log(imageUrl);
+          document.getElementById("imagePlaceholder2").innerHTML = `
+          <div class="w-auto d-flex justify-content-center">
+          <img src="${imageUrl}" alt="รูปภาพ" class="img-fluid img223">
+          </div>`;
+        }
+      });
+
+      // const cancelBtn2 = document.querySelector('.cancelIcon2');
+      const cancelBtn3 = document.querySelector('.cancelIcon3');
+      const cancelBtn4 = document.querySelector('.cancelIcon4');
+
+      const cancelBtn1 = document.querySelector('.cancelBtn1');
+      const cancelbtnLayout02 = document.querySelector('.cancelbtnLayout02');
+      const cancelbtnLayout03 = document.querySelector('.cancelbtnLayout03');
+      const cancelbtnLayout04 = document.querySelector('.cancelbtnLayout04');
+      const showOldContentBtn = document.querySelector('.showOldContentBtn');
+      const showOldContentDiv = document.querySelector('.showOldContentDiv');
+      const hideOldContentBtn = document.querySelector('.hideOldContentBtn');
+      const hideOldContentDiv = document.querySelector('.hideOldContentDiv');
+      const hidedContent = document.querySelector('.hidedContent');
+
+      const blurContainer = document.getElementById('blur-container');
+
+      Fancybox.bind("[data-fancybox]", {
+        Carousel: {
+          infinite: false,
+        },
+
+      });
+
+      // Add a delegated change event listener for .file-input
+      $(document).on('change', '.file-input', function() {
+        var fileName = this.files[0].name;
+        // console.log(fileName);
+
+        if (fileName.includes('.')) {
+          var fileParts = fileName.split('.');
+          var fileExtension = fileParts.pop();
+          var fileNameWithoutExtension = fileParts.join('.');
+
+          var maxLength = 10;
+
+          if (fileNameWithoutExtension.length > maxLength) {
+            fileNameWithoutExtension = fileNameWithoutExtension.substring(0, maxLength) + '...';
+          }
+
+          var newFileName = fileNameWithoutExtension + '.' + fileExtension;
+          document.querySelector('.upload-font').innerText = newFileName;
+        } else {
+          document.querySelector('.upload-font').innerText = fileName;
+        }
+      });
+
+      showOldContentBtn.addEventListener('click', function() {
+        hideOldContentDiv.style.display = 'flex';
+        hidedContent.style.display = 'block';
+        hidedContent.style.marginTop = '0px';
+        showOldContentDiv.style.display = 'none';
+        //   blurContainer.classList.add('blur');
+        Swal.fire({
+          position: 'top-end',
+          title: 'บทเรียนถูกแสดง',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'custom-popup-class',
+            header: 'custom-header-class',
+            content: 'custom-content-class',
+            actions: 'custom-actions-class',
+          },
+          didOpen: () => {
+            blurContainer.classList.add('blur');
+          },
+          willClose: () => {
+            blurContainer.classList.remove('blur');
+          }
+        });
+      });
+
+      hideOldContentBtn.addEventListener('click', function() {
+        hideOldContentDiv.style.display = 'none';
+        showOldContentDiv.style.display = 'flex';
+        hidedContent.style.display = 'none';
+
+        Swal.fire({
+          position: 'top-end',
+          title: 'บทเรียนถูกซ่อน',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'custom-popup-class2',
+            header: 'custom-header-class2',
+            content: 'custom-content-class2',
+            actions: 'custom-actions-class2',
+            confirmButton: 'custom-confirm-button-class2',
+            blur: 'blur-container'
+          },
+          didOpen: () => {
+            blurContainer.classList.add('blur');
+          },
+          willClose: () => {
+            blurContainer.classList.remove('blur');
+          }
+        });
+
+      });
+
+      // cancelBtn2.addEventListener('click', function(event) {
+      //   event.preventDefault();
+      //   hideLayout2Div.style.display = 'none';
+
+      // });
+
+
+
+    });
+
+
+    let layoutCounter = 0;
+    $('.minusNewLayout').addClass('d-none');
+
+    $('.addMore').click(function() {
+      layoutCounter++;
+      var newLayout = `<div class="newLayout layout1-contents${layoutCounter} h-auto my-3 mx-auto p-5">` +
+        `<div class="h-auto">` +
+        `<input class="Topic1 form-control p-3 h-auto my-0 mx-auto" name="title${layoutCounter}" id="title${layoutCounter}" placeholder="..." required>` +
+        `<div class="h-100 w-100 d-flex justify-content-center">` +
+        `<div class="file-input-container">` +
+        `<input class="new-file-input file-input${layoutCounter}" type="file" name="Url${layoutCounter}" accept="image/*,video/*" required />` +
+        `<p class="new-upload-font new-text${layoutCounter}">อัปโหลดไฟล์</p>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `<div class="h-100 content-2">` +
+        `<textarea class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-0" name="ImageDescription${layoutCounter}" id="ImageDescription${layoutCounter}" rows="auto" placeholder="เนื้อหา..." required></textarea>` +
+        `</div>` +
+        `</div>`;
+
+      $('.aboutImageLayout').append(newLayout).hide().fadeIn('slow');
+      $('.minusNewLayout').removeClass('d-none');
+
+      // Trigger a change event for the new file input
+      // $(`.file-input${layoutCounter}`).change();
+      $(document).on('change', `.file-input${layoutCounter}`, function() {
+        // let countFiles = 1;
+        var fileName = this.files[0].name;
+
+        if (fileName.includes('.')) {
+          var fileParts = fileName.split('.');
+          var fileExtension = fileParts.pop();
+          var fileNameWithoutExtension = fileParts.join('.');
+          var maxLength = 10;
+
+          if (fileNameWithoutExtension.length > maxLength) {
+            fileNameWithoutExtension = fileNameWithoutExtension.substring(0, maxLength) + '...';
+          }
+
+          var newFileName = fileNameWithoutExtension + '.' + fileExtension;
+          document.querySelector(`.new-text${layoutCounter}`).innerText = newFileName;
+          // countFiles++;
+        } else {
+          document.querySelector(`.new-text${layoutCounter}`).innerText = fileName;
+          // countFiles++;
+        }
+      })
+    });
+
+
+    $('.submitBtn4').click(function() {
+      var newlayoutCounter = `<input type="hidden" class="d-none" name="layoutCounter" value="${layoutCounter}">`;
+      $('.addLayout01Form').append(newlayoutCounter);
+    });
+
+    $('.minusNewLayout').click(function() {
+      var numberOfLayouts = $('.newLayout').length;
+
+      if (numberOfLayouts > 0) {
+        $('.newLayout:last').fadeOut('slow', function() {
+          $(this).remove();
+        });
+
+        layoutCounter--;
+      }
+
+      if (layoutCounter === 0) {
+        $('.minusNewLayout').addClass('d-none');
+      }
+
+    });
+
+    let layoutCounter2 = 0;
+    $('.minusAnd').addClass('d-none');
+
+    $('.addAnd').click(function() {
+      event.preventDefault();
+      layoutCounter2++;
+      var newList = `<input type="text" class="form-control p-1 w-75 none-border" name="list${layoutCounter2}" required>`;
+      // var newList = `<input type="text" name="list${layoutCounter2}" class="setBorder w-75" required>`;
+      $('.listContents').append(newList).hide().fadeIn('fast');
+      $('.minusAnd').removeClass('d-none');
+    });
+
+    $('.minusAnd').click(function() {
+      event.preventDefault();
+      var numberOfLayouts = $('.listContents input').length;
+
+      if (numberOfLayouts > 0) {
+        $('.listContents input:last').fadeOut('fast', function() {
+          $(this).remove();
+        });
+
+        layoutCounter2--;
+      }
+
+      if (layoutCounter2 === 0) {
+        $('.minusAnd').addClass('d-none');
+      }
+    });
+
+    $('.submitBtn4').click(function() {
+      var newlayoutCounter2 = `<input type="hidden" class="d-none" name="layoutCounter2" value="${layoutCounter2}">`;
+      $('.listContents').append(newlayoutCounter2);
+    });
+
+    document.querySelector('.layout').addEventListener('click', function(event) {
+      event.preventDefault();
+      const maneBar = document.querySelector('.manange-bar');
+      const hideLayout1Div = document.querySelector('.hide-layout-11');
+      if (hideLayout1Div.style.display === 'block') {
+        hideLayout1Div.style.display = 'none';
+        maneBar.scrollIntoView();
+      } else {
+        hideLayout1Div.style.display = 'block';
+        hideLayout1Div.scrollIntoView();
+
+      }
+    });
+
+    document.querySelector('.cancelBtn1').addEventListener('click', function(event) {
+      // event.preventDefault();
+      const maneBar = document.querySelector('.manange-bar');
+      const hideLayout1Div = document.querySelector('.hide-layout-11');
+      if (hideLayout1Div.style.display === 'block') {
+        hideLayout1Div.style.display = 'none';
+        maneBar.scrollIntoView();
+      }
+    });
+
+    document.querySelector('.cancelBtn2').addEventListener('click', function(event) {
+      // event.preventDefault();
+      const maneBar = document.querySelector('.manange-bar');
+      const hideLayout2Div = document.querySelector('.layout-2');
+      if (hideLayout2Div.style.display === 'block') {
+        hideLayout2Div.style.display = 'none';
+        maneBar.scrollIntoView();
+      }
+    });
+
+    document.querySelector('.cancelBtn3').addEventListener('click', function(event) {
+      // event.preventDefault();
+      const maneBar = document.querySelector('.manange-bar');
+      const hideLayout3Div = document.querySelector('.hide-layout-3');
+      if (hideLayout3Div.style.display === 'block') {
+        hideLayout3Div.style.display = 'none';
+        maneBar.scrollIntoView();
+      }
+    });
+
+    document.querySelector('.cancelBtn4').addEventListener('click', function(event) {
+      // event.preventDefault();
+      const maneBar = document.querySelector('.manange-bar');
+      const hideLayout4Div = document.querySelector('.hide-layout-4');
+      if (hideLayout4Div.style.display === 'block') {
+        hideLayout4Div.style.display = 'none';
+        maneBar.scrollIntoView();
+      }
+    });
+
+    document.querySelector('.layout-2-a').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      const hideLayout2Div = document.querySelector('.layout-2');
+      if (hideLayout2Div.style.display === 'block') {
+        hideLayout2Div.style.display = 'none';
+      } else {
+        hideLayout2Div.style.display = 'block';
+      }
+    });
+
+    document.querySelector('.layout-3-a').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      const hideLayout3Div = document.querySelector('.hide-layout-3');
+
+      if (hideLayout3Div.style.display === 'block') {
+        hideLayout3Div.style.display = 'none';
+      } else {
+        hideLayout3Div.style.display = 'block';
+      }
+    });
+
+    document.querySelector('.layout-4-a').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      const hideLayout4Div = document.querySelector('.hide-layout-4');
+      if (hideLayout4Div.style.display === 'block') {
+        hideLayout4Div.style.display = 'none';
+      } else {
+        hideLayout4Div.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

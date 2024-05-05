@@ -1,0 +1,48 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+
+.event-card {
+    display: flex;
+    flex-direction: column; /* แสดงเนื้อหาแนวดิ่ง */
+    align-items: center; /* จัดเนื้อหาในแนวดิ่งตรงกลาง */
+    text-align: center; /* จัดเนื้อหาในแนวนอนตรงกลาง */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 300px; /* กำหนดความกว้างสูงสุด */
+    margin: 0 auto; /* จัดกลางตามแนวนอน */
+    margin-top: 20px; /* ระยะห่างด้านบน */
+    color: #181D31;
+}
+
+
+
+.blackP{
+    color: #181D31;
+}
+
+
+
+.event-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #181D31;
+}
+.event-info {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.fighter-info {
+    font-size: 14px;
+}
+

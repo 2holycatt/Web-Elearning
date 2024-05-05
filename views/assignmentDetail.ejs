@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>งานที่มอบหมาย</title>
+  <%- include("./partials/header.ejs")%>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/assignment.css">
+  <link rel="stylesheet" href="/css/fixedSwal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@4/lib/noty.css">
+  <script src="https://cdn.jsdelivr.net/npm/noty@4/lib/noty.min.js"></script>
+</head>
+
+<body>
+  <div id="blur-container">
+    <%- include("./partials/nav.ejs")%>
+    <!-- <div class="above-nav d-flex px-4 py-3">
+      <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+        <i class="bi bi-house mx-2"></i>
+        <a href="/adminIndex" class="a-home">
+          <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+        </a>
+      </div>
+      <a href="#" class="status-a mx-2 my-0 align-middle">
+        <p class="m-0">บทเรียน</p>
+      </a>
+    </div> -->
+  </div>
+  <div class="main-content d-flex w-100 h-auto">
+    <%- include("./partials/lessonsList.ejs")%>
+    <div class="aside-right w-75 h-auto p-4">
+      <div class="manange-bar px-4 py-3 bg-white d-flex w-100">
+        <p class="fw-bold fs-3 lesson-bar">งานที่มอบหมาย</p>
+        <!-- <div>
+          <a href="/adminIndex/addAssign" class="add-button btn btn-primary m-0 p-2">
+            มอบหมายงาน <i class="bi bi-file-arrow-up-fill"></i>
+          </a>
+          <a href="#" class="add-button btn btn-dark m-0 p-2">
+            นำออกข้อมูลนักศึกษา (Export file) <i class="bi bi-file-arrow-down-fill"></i>
+            </i>
+          </a>
+        </div> -->
+      </div>
+      <div class="lesson-content bg-white w-100 p-4 my-4" style="height: fit-content;">
+        <div class="row assign-head">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <p class="fs-5 fw-bold"><i class="bi bi-clipboard-fill text-primary fs-5"></i> <%=assignment.name%></p>
+            </div>
+            <div class="col-6 mb-3 d-flex justify-content-end">
+              <a href="#editForm" class="btn btn-warning py-1 px-3 mx-2">แก้ไข </a>
+              <a href="/adminIndex/delAssign?assignId=<%=assignment._id%>" class="btn btn-danger py-1 px-3">ลบ</a>
+            </div>
+          </div>
+          <div class="col-12 row">
+            <div class="col-4">
+              <p class="fs-6 fw-bold"><i class="fs-5 bi bi-stopwatch text-success"></i><span class="mx-1 text-success">วันที่เปิดให้ส่ง</span>: <span class="fw-normal"><%=formattedStartDate%></span></p>
+            </div>
+            <div class="col-4">
+              <p class="fs-6 fw-bold"><i class="fs-5 bi bi-stopwatch text-danger"></i><span class="mx-1 text-danger">วันที่หมดเขตส่ง</span>: <span class="fw-normal"><%=formattedDeadline%></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 desDiv">
+          <p class="fs-6 fw-bold text-primary">คำอธิบาย: </p>
+          <textarea class="form-control w-100 descriptionText" name="Description" disabled><%=assignment.Description%></textarea>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <p class="my-1 w-100 text-center fw-bold text-primary">ไฟล์ที่เกี่ยวข้อง</p>
+            <% if (assignment.files.length > 0) { %>
+              <div class="row">
+                <div class="fileRowRight col-4 p-2 bg-danger text-white text-center">PDF<i class="mx-1 bi bi-filetype-pdf text-white"></i>
+                </div>
+                <div class="col-4 p-2 bg-primary text-white text-center">Word (docx)<i class="mx-1 bi bi-filetype-docx"></i>
+                </div>
+                <div class="fileRowLeft col-4 p-2 bg-success text-white text-center">รูปภาพ (image)<i class="mx-1 bi bi-file-earmark-image"></i>
+                </div>
+              </div>
+              <div class="row">
+                <% const files = assignment.files%>
+                <div class="col-4 pdfCol px-2">
+                  <% files.forEach((file, index) => { %>
+                  <% if (file.contentType == "application/pdf" ) { %>
+                  <div class="py-1">
+                    <a class="file-a" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                      <%=updatedFiles[index]%></a>
+                  </div>
+                  <% } %>
+                  <%}); %>
+                </div>
+                <div class="col-4 docxCol px-2">
+                  <% files.forEach((file, index) => { %>
+                  <% if (file.contentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ) { %>
+                  <div class="py-1">
+                    <a class="file-a" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                      <%=updatedFiles[index]%></a>
+                  </div>
+                  <% } %>
+                  <%}); %>
+                </div>
+                <div class="col-4 imageCol px-2">
+                  <% files.forEach((file, index) => { %>
+                  <% if (file.contentType.startsWith("image/")) { %>
+                  <div class="py-1">
+                    <a class="file-a" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                      <%=updatedFiles[index]%></a>
+                  </div>
+                  <% } %>
+                  <%}); %>
+                </div>
+              </div>
+            <% } else if (assignment.files.length < 1) { %>
+              <div class="row">
+                <p class="fs-6 text-center py-2" style="border-top: 1px solid #EAEFF4; border-bottom: 1px solid #EAEFF4;">ไม่มีไฟล์ที่ถูกแนบ</p>
+              </div>
+            <% } %>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <div class="col-6">
+                <p class="my-1 w-100 text-center fw-bold text-primary">คะแนนเต็ม</p>
+              </div>
+              <div class="col-6">
+                <p class="my-1 w-100 text-center fw-bold text-primary">จำนวนนักศึกษาส่งงาน</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="h-auto row">
+                <div class="col-6 setRight p-3 d-flex justify-content-center">
+                  <p class="fw-bold fs-2 text-success"><%=assignment.Score%></p>
+                </div>
+                <div class="col-6 p-3 d-flex justify-content-center">
+                  <p class="fw-bold fs-2 text-info"><%=assignment.sentCount%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <p class="fw-bold fs-5 my-1 mx-2" style="border-left: 0.25em solid #387bef; padding-left: 0.75em !important;">มอบหมายงาน
+        </p> -->
+      </div>
+      <div class="lesson-content bg-white w-100 p-4 my-4 row" style="height: fit-content;">
+        <div class="col-12">
+          <p class="fs-5 fw-bold"><i class="bi bi-people-fill fs-5 text-success"></i>
+           รายชื่อนักศึกษาที่ส่งงาน
+          </p>
+        </div>
+        <div class="col-12">
+          <div class="list-div">
+            <p class="fs-6 fw-bold">
+              รหัสนักศึกษา
+            </p>
+            <p class="fs-6 fw-bold">
+              ชื่อ-นามสกุล
+            </p>
+            <p class="fs-6 fw-bold">
+              วันที่ส่งงาน
+            </p>
+            <p class="fs-6 fw-bold">
+              สถานะการส่ง
+            </p>
+            <p class="fs-6 fw-bold">
+              คะแนนที่ได้
+            </p>
+          </div>
+          <a href="/adminIndex/submitDetail?id=<%=assignment._id%>" class="data-a">
+            <div class="list-div-data py-3">
+              <p class="fs-6 fw-normal">
+                643020388-6
+              </p>
+              <p class="fs-6 fw-normal">
+                ปภินวิทย์ สิมาวัน
+              </p>
+              <p class="fs-6 fw-normal">
+                09/05/2024 02:21 PM
+              </p>
+              <p class="fs-6 fw-normal text-danger">
+                ส่งช้า
+              </p>
+              <p class="fs-6 fw-normal text-success">
+                5 / 10       
+              </p>
+            </div>
+          </a>
+          <a href="/adminIndex/submitDetail?id=<%=assignment._id%>" class="data-a">
+            <div class="list-div-data py-3">
+              <p class="fs-6 fw-normal">
+                643020423-0
+              </p>
+              <p class="fs-6 fw-normal">
+                อริญชวุธ กัลยานาม
+              </p>
+              <p class="fs-6 fw-normal">
+                12/02/2024 02:21 PM
+              </p>
+              <p class="fs-6 fw-normal text-success">
+                ส่งทันเวลา
+              </p>
+              <p class="fs-6 fw-normal text-success">
+                10 / 10       
+              </p>
+            </div>
+          </a>
+          <a href="/adminIndex/submitDetail?id=<%=assignment._id%>" class="data-a">
+            <div class="list-div-data py-3">
+              <p class="fs-6 fw-normal">
+                643020349-6
+              </p>
+              <p class="fs-6 fw-normal">
+                กมลวรรณ หอมสมบัติ
+              </p>
+              <p class="fs-6 fw-normal">
+                30/06/2024 02:21 PM
+              </p>
+              <p class="fs-6 fw-normal text-success">
+                ส่งทันเวลา
+              </p>
+              <p class="fs-6 fw-normal text-success">
+                8.5 / 10       
+              </p>
+            </div>
+          </a>
+        </div>
+
+      </div>  
+      <div class="lesson-content bg-white w-100 p-4 my-4" style="height: fit-content;">
+
+        <form action="/adminIndex/editAssign" id="editForm" method="post" enctype="multipart/form-data">
+          <input type="text" name="assignId" class="d-none" value="<%=assignment._id%>">
+          <div class="assignFormContainer p-2 row">
+            <div class="col-12 mb-3">
+              <p class="fs-5 fw-bold"><i class="bi bi-pencil-square text-warning fs-5"></i>
+                แก้ไข <%=assignment.name%></p>
+            </div>
+            <div class="col-6">
+              <div class="my-1 mb-3">
+                <label for="name" class="form-label fs-bold">ชื่อ:</label>
+                <input type="text" class="form-control p-3 setWidth70" name="name" value="<%=assignment.name%>">
+              </div>
+              <div class="my-1 mb-3">
+                <label for="description" class="form-label fs-bold">คำอธิบาย:</label>
+
+                <textarea class="form-control setWidth70 p-3" name="Description" style="height: 100px;"><%=assignment.Description%></textarea>
+              </div>
+              <div class="mb-3 row">
+                <p>ไฟล์ที่เกี่ยวข้อง:</p>
+                <div class="row">
+                  <% if (assignment.files.length< 1) {%>
+                    <p class="mx-1" style="font-size: small;"> - ไม่มีไฟล์ที่ถูกอัปโหลด</p>
+                  <% } else if (assignment.files.length > 0) {%>
+                    <div class="pdfEdit mb-2 row col-10">
+                      <p class="text-danger fw-bold">PDF:</p>
+                      <% assignment.files.forEach((file, index) => { %>
+                      <% if (file.contentType == "application/pdf" ) { %>
+                      <div class="col-10">
+                        <a class="file-a-2 mb-1" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                          <%=updatedFiles[index]%></a>
+                      </div>
+                      <div class="col-2 d-flex justify-content-center">
+                        <a href="/adminIndex/delFile?assignId=<%=assignment._id%>&fileIndex=<%=index%>" class="text-danger fs-6 delFile">ลบ</a>
+                      </div>
+                      <% } %>
+                      <%}); %>
+                    </div>
+                    <div class="docxEdit mb-2 row col-10">
+                      <p class="text-primary fw-bold">Word (docx):</p>
+                      <% assignment.files.forEach((file, index) => { %>
+                      <% if (file.contentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ) { %>
+                      <div class="col-10">
+                        <a class="file-a-2 mb-1" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                          <%=updatedFiles[index]%></a>
+                      </div>
+                      <div class="col-2 d-flex justify-content-center">
+                        <a href="/adminIndex/delFile?assignId=<%=assignment._id%>&fileIndex=<%=index%>" class="text-danger fs-6 delFile">ลบ</a>
+                      </div>
+                      <% } %>
+                      <%}); %>
+                    </div>
+                    <div class="ImgEdit mb-2 row col-10">
+                      <p class="text-success fw-bold">รูปภาพ (Image):</p>
+                      <% assignment.files.forEach((file, index) => { %>
+                      <% if (file.contentType.startsWith("image/")) { %>
+                      <div class="col-10">
+                        <a class="file-a-2 mb-1" href="/adminIndex/showFileArray?id=<%=assignment._id%>&index=<%=index%>"><i class="bi bi-circle-fill" style="font-size: x-small;"></i>
+                          <%=updatedFiles[index]%></a>
+                      </div>
+                      <div class="col-2 d-flex justify-content-center">
+                        <a href="/adminIndex/delFile?assignId=<%=assignment._id%>&fileIndex=<%=index%>" class="text-danger fs-6 delFile">ลบ</a>
+                      </div>
+                      <% } %>
+                      <%}); %>
+                    </div>
+                  <% }%> 
+                </div>
+              </div>
+              <div class="row">
+                <label for="formFileMultiple" class="form-label">อัปโหลดไฟล์:</label>
+                <input class="form-control setWidth70 file-input" name="file" type="file" id="formFileMultiple" accept="image/*,application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple>
+                <p class="p-1" style="font-size: small;"><span class="text-primary">ประเภทไฟล์ที่รองรับ:</span> รูปภาพ, PDF และ Word, (ไม่บังคับ)</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="my-1 row">
+                <div class="col-12 mb-3">
+                  <label for="StartDate" class="form-label fs-bold">วันที่เปิดให้ส่ง:</label>
+                  <input type="datetime-local" class="form-control p-3 w-50" name="StartDate" id="StartDate" value="<%=assignment.formattedStartDate%>">
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="Deadline" class="form-label fs-bold">วันที่หมดเขต:</label>
+                  <input type="datetime-local" class="form-control p-3 w-50" name="Deadline" id="Deadline">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 my-1 mb-3">
+                  <label for="Score" class="form-label fs-bold">กำหนดคะแนน:</label>
+                  <input type="number" min="0" class="form-control p-3 w-75" name="Score" value="<%=assignment.Score%>">
+                </div>
+                <div class="col-6 my-1 mb-3">
+                  <label for="schoolYear" class="form-label fs-bold">ปีการศึกษา:</label>
+                  <input type="text" list="script" class="form-control p-3 w-75" value="<%=assignment.schoolYear.schoolYear%>" name="schoolYear" pattern="\d{4}" title="กรุณากรอกตัวเลข 4 ตัวอักษร" required>
+                  <datalist id="script">
+                    <% schoolYear.forEach (year => {%>
+                    <option value="<%= year.schoolYear%>"></option>
+                    <% });%>
+                  </datalist>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-12 d-flex justify-content-start pt-4" style="border-top: 1px solid #387bef;">
+              <button class="btn btn-warning p-2" type="submit">บันทึกการแก้ไข <i class="bi bi-pencil-square text-dark"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <%- include("./partials/footer.ejs")%>
+  <script>
+    // ดึง element ของ startTime และ endTime จากฟอร์ม
+    const startTimeInput = document.getElementById('StartDate');
+    const endTimeInput = document.getElementById('Deadline');
+
+    startTimeInput.addEventListener('input', function() {
+      checkTimeValidity();
+    });
+
+    endTimeInput.addEventListener('input', function() {
+      checkTimeValidity();
+    });
+
+    // ฟังก์ชันสำหรับตรวจสอบความถูกต้องของเวลาและแสดง alert ถ้ามีข้อผิดพลาด
+    function checkTimeValidity() {
+      const startTime = new Date(startTimeInput.value);
+      const endTime = new Date(endTimeInput.value);
+
+      if (startTime >= endTime) {
+        Swal.fire({
+          icon: "error",
+          title: "กำหนดวันที่และเวลาไม่ถูกต้อง",
+          text: "วันที่หมดเขตส่งไม่สามารถต่ำกว่าวันที่เปิดให้ส่งได้",
+          timer: 2000,
+          customClass: {
+            container: 'swal-container-padding', // กำหนด padding ให้ container ของ Swal
+            icon: 'swal-icon-center', // กำหนดให้ icon อยู่กึ่งกลาง
+            confirmButton: 'swal-btn-padding' // กำหนด padding ให้ปุ่ม "OK"
+          }
+        });
+        endTimeInput.value = '';
+      }
+    }
+  </script>
+</body>
+
+
+</html>

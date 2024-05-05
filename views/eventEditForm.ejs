@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการตาราง (TKO)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="/css/fixedCss.css"> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="sweetalert2.min.css">
+
+  <% 
+  const formatDate = (inputDate)=>{
+        const date = new Date(inputDate);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+  %>
+  <style>
+    /* *{
+            color: #181D31 !important;
+
+        } */
+    .nameEvent,
+    .datep,
+    .timep {
+      color: #181D31 !important;
+      margin: 0 !important;
+    }
+
+    .nameEvent {
+      font-weight: bolder !important;
+    }
+
+    /* .marginChange{
+            margin: 0 !important;
+        } */
+    .headr1 {
+      padding: 0.5em;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #181D31;
+    }
+
+    .n4_input_div {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      background-color: white;
+      color: black;
+      padding: 1em 2em;
+      border-radius: 0.5em;
+
+    }
+
+    .datetime {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .nameEvent {
+      font-weight: bold;
+
+    }
+
+    .dtailLink {
+      text-decoration: none;
+      width: 70%;
+      background-color: #007FFF;
+      color: white;
+      border-radius: 0.2em;
+      text-align: center;
+      padding: 0.1em;
+      margin: 0 auto;
+    }
+
+    .dtailLink1 {
+      text-decoration: none;
+      width: 70%;
+      background-color: orange;
+      color: white;
+      border-radius: 0.2em;
+      text-align: center;
+      padding: 0.1em;
+      margin: 0 auto;
+    }
+
+    .dtailLink2 {
+      text-decoration: none;
+      width: 70%;
+      background-color: #F50057;
+      color: white;
+      border-radius: 0.2em;
+      text-align: center;
+      padding: 0.1em;
+      margin: 0 auto;
+    }
+
+    .locateSpan {
+      color: #181D31 !important;
+      font-size: smaller !important;
+    }
+
+    .p_sub_title {
+      font-size: medium !important;
+      color: #181D31 !important;
+
+    }
+
+    .eventTopic {
+      width: 15%;
+      background-color: white;
+      color: #F50057 !important;
+      margin: 0 auto !important;
+      text-align: center;
+      padding: 0.25em;
+      border-radius: 0.5em;
+      border: 0.5px solid #F50057;
+      margin-bottom: 3em !important;
+    }
+
+    .statusp {
+      color: green !important;
+      margin: 0 !important;
+      font-weight: bolder;
+    }
+
+    .nav-item,
+    .nav-link {
+      color: #181D31 !important;
+    }
+
+    .inAmatch {
+      padding: 0.3em 0.7em;
+      border: 1px solid #007FFF;
+      background-color: #007FFF;
+      border-radius: 0.5em;
+      text-align: center;
+      color: white !important;
+    }
+
+    .weightClass {
+      margin-left: 1em;
+      width: 20% !important;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs")%>
+  <section class="explore-section section-padding" id="section_2">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="tab-pane show fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
+            <div class="row">
+              <div class="col-12 mb-4 mb-lg-3">
+                <div class="custom-block bg-white shadow-lg">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="d-flex">
+                        <div>
+                          <h5 class="mb-4 text-primary">แก้ไขตารางการแข่งขัน</h5>
+                          <!-- <p class="mb-4 text-black">1
+                                ตารางการแข่งขันจะต้องทำการเพิ่มให้ครบ 8 คู่</p> -->
+                        </div>
+                        <span class="badge bg-advertising rounded-pill ms-auto"></span>
+                      </div>
+                      <div class="row">
+                        <form action="/eventIndex/updateEvent" method="post" onsubmit="return validateSelection();">
+                          <div class="col-lg-6 col-md-6 col-6">
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label text-dark">รหัสตารางการแข่งขัน (ID)
+                              </label>
+                              <input type="text" value="<%=getEvent._id %>" class="form-control text-dark" id="exampleInputEmail1" name="_idEvent" readonly>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label text-dark">ชื่อ
+                                Event</label>
+                              <input type="text" value="<%=getEvent.eventName %>" class="form-control text-dark" id="exampleInputEmail1" name="eventName" required>
+                              <!-- <div id="emailHelp" class="form-text text-dark">We'll never share your email with anyone else.</div> -->
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label text-dark">วันที่</label>
+                              <input type="date" value="<%= getEvent.eventDate %>" class="form-control text-dark" id="exampleInputPassword1" name="eventDate" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label text-dark">เวลาเริ่มการแข่งขัน</label>
+                              <input type="time" value="<%=getEvent.eventTime %>" class="form-control text-dark" id="exampleInputPassword1" name="eventTime" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label text-dark">สนามที่จัดการแข่งขัน</label>
+                              <input type="text" value="<%=getEvent.Location %>" class="form-control text-dark" id="exampleInputPassword1" name="Location" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label text-dark">ประเทศ</label>
+                              <input type="text" value="<%=getEvent.country %>" class="form-control text-dark" id="exampleInputPassword1" name="country" required>
+                            </div>
+                            <% if (getEvent.Status == "1") { %>
+                            <div class="mb-3 form-check">
+                              <input type="checkbox" class="form-check-input" name="getEndEvent" checked>
+                              <label class="form-check-label" for="exampleCheck1">การแข่งขันจบลงไปแล้ว</label>
+                            </div>
+                            <% } else if (getEvent.Status == "0") { %>
+                            <div class="mb-3 form-check">
+                              <input type="checkbox" class="form-check-input" name="getEndEvent">
+                              <label class="form-check-label" for="exampleCheck1">การแข่งขันจบลงไปแล้ว</label>
+                            </div>
+                            <% } %>
+                          </div>
+                          <div class="col-12">
+                            <h5 class="mb-2 mt-5 text-primary">นักกีฬาที่เข้าร่วมการแข่งขัน</h5>
+                            <% for (let i = 0; i < 8; i++) { %>
+                            <div class="mb-3 p-3 shadow-sm rounded">
+                              <% if (getMatches.length > 0) { %>
+                              <% let match = getMatches[i]; %>
+                              <div class="d-flex">
+                                <label for="InaMatch<%= i %>" class="form-label text-light inAmatch"><%= i+1 %>
+                                </label>
+                                <input type="text" value="<%=match._id %>" class="form-control text-dark" id="exampleInputPassword1" name="match<%= i+1%>" readonly style="display: none;">
+                                <select class="form-select text-dark weightClass" name="weightClass<%= i %>">
+                                  <option value="<%= match.WeightClass %>" selected><%= match.WeightClass %></option>
+                                  <option value="Super Flyweight">Super Flyweight</option>
+                                  <option value="Flyweight">Flyweight</option>
+                                  <option value="Middleweight">Middleweight</option>
+                                  <option value="Strawweight">Strawweight</option>
+                                  <option value="Atomweight">Atomweight</option>
+                                  <option value="Featherweight">Featherweight</option>
+                                  <option value="Welterweight">Welterweight</option>
+                                  <option value="Heavyweight">Heavyweight</option>
+                                  <option value="Catchweight">Catchweight</option>
+                                  <option value="Bantamweight">Bantamweight</option>
+                                  <option value="Lightweight">Lightweight</option>
+                                  <option value="Lightweight">Light Heavyweight</option>
+                                </select>
+                              </div>
+                              <div class="row mt-3">
+                                <!-- <label for="exampleInputPassword1" class="form-label text-dark mt-2">นักกีฬา</label> -->
+                                <% var index0 = 0; %>
+                                <% var index1 = 1; %>
+                                <% let usedWeightClasses = []; %>
+                                <% let usedWeightClasses2 = []; %>
+                                <% let athleteArrayObject = getAthlete[i]; %>
+                                <% let athleteInArray1 = athleteArrayObject[index0]; %>
+                                <% let athleteInArray2 = athleteArrayObject[index1]; %>
+
+                                <input type="text" value="<%=athleteInArray1._id._id%>" class="form-control text-dark" name="athleteId1<%=i%>" readonly style="display: none;">
+                                <input type="text" value="<%=athleteInArray2._id._id%>" class="form-control text-dark" name="athleteId2<%=i%>" readonly style="display: none;">
+
+                                <label for="firstselector" class="mb-2 mt-3"> นักกีฬาที่เข้าร่วม: </label>
+                                <div class="d-flex">
+
+                                  <select class="form-select w-25 text-dark" name="firstselector<%= i+1 %>">
+                                    <option selected hidden>เลือกนักกีฬา</option>
+
+                                    <% let getWeightClass = athleteInArray1._id.weightClass %>
+                                    <% if (!usedWeightClasses.includes(getWeightClass)) { %>
+                                    <optgroup label="<%= getWeightClass %>">
+                                      <% usedWeightClasses.push(getWeightClass); %>
+                                      <% if (athleteInArray1._id.weightClass === getWeightClass) { %>
+                                      <option value="<%= athleteInArray1._id._id %>" selected>
+                                        <%= athleteInArray1._id.aka %>
+                                      </option>
+                                      <% } %>
+                                    </optgroup>
+                                    <% } %>
+                                  </select>
+
+                                  <h6 class="text-dark m-2 align-middle">VS</h6>
+                                  <select class="form-select w-25 text-dark" name="secondselector<%= i+1 %>">
+                                    <option selected hidden>เลือกนักกีฬา</option>
+
+                                    <% let getWeightClass2 = athleteInArray2._id.weightClass %>
+                                    <% if (!usedWeightClasses2.includes(getWeightClass2)) { %>
+                                    <optgroup label="<%= getWeightClass2 %>">
+                                      <% usedWeightClasses2.push(getWeightClass2); %>
+                                      <% if (athleteInArray2._id.weightClass === getWeightClass2) { %>
+                                      <option value="<%= athleteInArray2._id._id %>" selected>
+                                        <%= athleteInArray2._id.aka %>
+                                      </option>
+                                      <% } %>
+                                    </optgroup>
+                                    <% } %>
+                                  </select>
+
+                                </div>
+
+                                <% if (match.Description === "การแข่งขันชิงแชมป์") {%>
+                                <div class="form-check form-switch m-3">
+                                  <input class="form-check-input" type="checkbox" role="switch" name="description<%= i+1 %>" checked>
+                                  <label class="form-check-label" for="flexSwitchCheckDefault">การแข่งขันชิงแชมป์</label>
+                                </div>
+                                <% } else {%>
+                                <div class="form-check form-switch m-3">
+                                  <input class="form-check-input" type="checkbox" role="switch" name="description<%= i+1 %>">
+                                  <label class="form-check-label" for="flexSwitchCheckDefault">การแข่งขันชิงแชมป์</label>
+                                </div>
+                                <% } %>
+                                <div class="row mt-3">
+                                  <div class="col-3">
+                                    <label class="mb-2" for="Round">จำนวนยกทั้งหมด: </label>
+                                    <input class="form-control w-75" type="text" name="round<%= i+1 %>" value="<%= match.Rounds %>" readonly>
+                                  </div>
+                                  <div class="col-3">
+                                    <label class="mb-2" for="Round">จำนวนยกที่ใช้ไป: </label>
+                                    <input class="form-control w-75" type="number" name="ResultRound<%= i+1 %>" min="1" max="3" value="<%= match.ResultRound %>" required>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-3">
+                                    <label class="mb-2" for="Round">เวลาที่ใช้ไปทั้งหมด: </label>
+                                    <input class="form-control w-75" type="text" name="ResultClock<%= i+1 %>" value="<%= match.ResultClock %>" placeholder="โปรดกรอกเป็นรูปแบบ 0.00 เช่น 3.41 ">
+                                  </div>
+
+                                </div>
+                                <div class="row mt-3">
+                                  <label class="mb-2" for="Round">นักกีฬาที่ชนะการแข่งขัน: </label>
+                                  <div class="col-5">
+                                    <div class="input-group">
+                                      <% if (athleteInArray1.Winner == true){ %>
+                                      <input type="text" class="form-control" value="<%=athleteInArray1._id.aka%>" readonly>
+
+                                      <%} else if (athleteInArray2.Winner == true){ %>
+                                      <input type="text" class="form-control" value="<%=athleteInArray2._id.aka%>" readonly>
+
+                                      <% }else if (athleteInArray1.Winner == false && athleteInArray2.Winner == false) { %>
+                                      <input type="text" class="form-control" value="นักกีฬาที่ชนะยังไม่ถูกเลือก" readonly>
+                                      <% } %>
+
+                                      <% if (match.resultType == "overwhelming score") {%>
+                                      <input type="text" class="form-control" value="ชนะคะแนนเอกฉันท์">
+                                      <%} else if (match.resultType == "majority votes") {%>
+                                      <input type="text" class="form-control" value="ชนะคะแนนไม่เอกฉันท์">
+                                      <%} else if (match.resultType == "knockouts") {%>
+                                      <input type="text" class="form-control" value="ชนะน็อคเอาท์">
+                                      <%} else if (match.resultType == "technical knockout") {%>
+                                      <input type="text" class="form-control" value="ชนะ TKO">
+                                      <%} else  {%>
+                                      <input type="text" class="form-control" value="ยังไม่มีผลการตัดสิน">
+                                      <% } %>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <label class="mb-2" for="Round">แก้ไขนักกีฬาที่ชนะการแข่งขัน: </label>
+                                  <div class="col-5">
+                                    <div class="input-group prepend mb-3">
+                                      <select class="form-select" name="getWinner<%= i+1 %>">
+                                        <option selected hidden>เลือกนักกีฬาที่ชนะ</option>
+                                        <option value="<%=athleteInArray1._id._id%>"><%=athleteInArray1._id.aka%></option>
+                                        <option value="<%=athleteInArray2._id._id%>"><%=athleteInArray2._id.aka%></option>
+                                      </select>
+
+                                      <select class="form-select" name="getResultType<%= i+1 %>">
+                                        <option selected hidden>เลือกรูปแบบการชนะ</option>
+                                        <option value="overwhelming score">ชนะคะแนนเอกฉันท์</option>
+                                        <option value="majority votes">ชนะคะแนนไม่เอกฉันท์</option>
+                                        <option value="knockouts">ชนะน็อคเอาท์</option>
+                                        <option value="technical knockout">ชนะ TKO</option>
+
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                              <% } %>
+                            </div>
+                            
+                            
+
+
+
+
+                            <% } %>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary" onclick="confirmSave(event)">บันทึก</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%- include("./partials/footer.ejs")%>
+  <script>
+    function confirmSave(event) {
+      event.preventDefault(); // ยกเลิกการส่งคำร้องขอฟอร์มเพื่อแสดงกล่องข้อความ SweetAlert2
+
+      Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'บันทึกการแก้ไข',
+        denyButtonText: 'ไม่บันทึก',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // ส่งคำร้องขอไปยังเส้นทาง action="/eventIndex/updateEvent"
+          document.forms[0].submit();
+        } else if (result.isDenied) {
+          Swal.fire('ตารางไม่ถูกบันทึกการแก้ไข');
+        }
+      });
+    }
+  </script>
+
+
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>อัปเดตรายชื่อ</title>
+  <%- include("./partials/header.ejs")%>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/assignment.css">
+  <link rel="stylesheet" href="/css/fixedSwal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@4/lib/noty.css">
+  <script src="https://cdn.jsdelivr.net/npm/noty@4/lib/noty.min.js"></script>
+</head>
+
+<body>
+  <div id="blur-container">
+    <%- include("./partials/nav.ejs")%>
+    <!-- <div class="above-nav d-flex px-4 py-3">
+      <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+        <i class="bi bi-house mx-2"></i>
+        <a href="/adminIndex" class="a-home">
+          <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+        </a>
+      </div>
+      <a href="#" class="status-a mx-2 my-0 align-middle">
+        <p class="m-0">บทเรียน</p>
+      </a>
+    </div> -->
+  </div>
+  <div class="main-content d-flex w-100 h-auto">
+    <%- include("./partials/lessonsList.ejs")%>
+    <div class="aside-right w-75 h-auto p-4">
+      <div class="manange-bar px-4 py-3 bg-white d-flex w-100 row" id="topBar">
+        <div class="col-6">
+          <p class="fw-bold fs-3 lesson-bar">งานที่มอบหมาย</p>
+        </div>        
+        <div class="col-6 d-flex justify-content-end">
+          <a href="#addForm" class="btn btn-primary py-2 px-2">มอบหมายงาน <i class="bi bi-plus-circle-fill"></i></a>
+        </div>
+        <!-- <div>
+          <a href="/adminIndex/addAssign" class="add-button btn btn-primary m-0 p-2">
+            มอบหมายงาน <i class="bi bi-file-arrow-up-fill"></i>
+          </a>
+          <a href="#" class="add-button btn btn-dark m-0 p-2">
+            นำออกข้อมูลนักศึกษา (Export file) <i class="bi bi-file-arrow-down-fill"></i>
+            </i>
+          </a>
+        </div> -->
+      </div>
+      <div class="lesson-content bg-white w-100 p-4 my-4" style="height: fit-content;">
+        <p class="fw-bold">
+          <i class="bi bi-card-list text-primary fs-5"></i>
+          <span class="mx-1 fs-5 py-1">รายชื่องานที่มอบหมาย
+          </span>
+        </p>
+        <% schoolYear.forEach (year => {%>
+          <div class="showYear show<%=year.schoolYear%>">
+            <div class="set-border-bottom">
+              <p class="my-2 p-schoolYear"><span class="text-dark fw-bold">ปีการศึกษา:</span>
+                <span class="text-primary"> <%=year.schoolYear%></span>
+              </p>
+            </div>
+          </div>
+          <% if (year.Assignments.length > 0) { %>
+            <div class="list-div">
+              <p class="fs-6 fw-bold">
+                ชื่อ
+              </p>
+              <p class="fs-6 fw-bold">
+                วันที่เปิดให้ส่ง
+              </p>
+              <p class="fs-6 fw-bold">
+                วันที่หมดเขตส่ง
+              </p>
+              <p class="fs-6 fw-bold text-center">
+                จำนวนที่นักศึกษาส่งาน
+              </p>
+              <p class="fs-6 fw-bold text-center">
+                คะแนนเต็ม
+              </p>
+            </div>
+            <% formattedAssignments.forEach(assign => { %>
+              <% const assignYearId = assign._doc.schoolYearNumber %>
+              <% const YearId = year.schoolYear %>
+              <% if (assignYearId == YearId) {%>
+                <a href="/adminIndex/assignmentDetail?id=<%= assign._doc._id %>" class="data-a">
+                  <div class="list-div-data py-3">
+                    <p class="fs-6 fw-normal text-dark">
+                      <%= assign._doc.name  %>
+                    </p>
+                    <p class="fs-6 fw-normal text-success">
+                      <%= assign.StartDate %>
+                    </p>
+                    <p class="fs-6 fw-normal text-danger">
+                      <%= assign.Deadline %>
+                    </p>
+                    <p class="fs-6 fw-normal text-center">
+                      <%= assign._doc.sentCount %>
+                    </p>
+                    <p class="fs-6 fw-normal text-success text-center">
+                      <%= assign._doc.Score %>
+                    </p>
+                  </div>
+                </a>
+              <% } %>
+            <% }); %>
+            <% } else if (year.Assignments.length < 1) {%>
+            <div class="list-no-assign">
+              <p class="text-start text-secondary" style="font-size: small;">ยังไม่มีงานที่มอบหมายในระบบในปีการศึกษา: <span class="mx-1 text-primary"><%=year.schoolYear%></span></p>
+            </div>
+            <% } %>
+        <% }); %>
+      </div>
+      <div class="lesson-content bg-white w-100 p-4 my-4" style="height: fit-content;" id="assignForm">
+        <p class="fw-bold fs-5 my-1 mx-2" style="border-left: 0.25em solid #387bef; padding-left: 0.75em !important;">มอบหมายงาน
+        </p>
+        <form action="/adminIndex/uploadAssignments" method="post" enctype="multipart/form-data" id="addForm">
+          <div class="assignFormContainer p-2 row">
+            <div class="col-6">
+              <div class="my-1 mb-3">
+                <label for="name" class="form-label fs-bold">ชื่อ:</label>
+                <input type="text" class="form-control p-3 setWidth70" name="name" placeholder="ชื่องานที่มอบหมาย...">
+              </div>
+              <div class="my-1 mb-3">
+                <label for="description" class="form-label fs-bold">คำอธิบาย:</label>
+                <!-- <input type="text" class="form-control p-3 w-75" name="description" placeholder="คำอธิบายเกี่ยวงานที่มอบหมาย..."> -->
+                <textarea class="form-control setWidth70 p-3" name="Description" style="height: 100px;" placeholder="คำอธิบายเกี่ยวงานที่มอบหมาย..."></textarea>
+
+              </div>
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">แนบไฟล์:</label>
+                <input class="form-control setWidth70 file-input" name="file" type="file" id="formFileMultiple" accept="image/*,application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple>
+                <p class="p-1" style="font-size: small;"><span class="text-primary">ประเภทไฟล์ที่รองรับ:</span> รูปภาพ, PDF และ Word, (ไม่บังคับ)</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="my-1 row">
+                <div class="col-12 mb-3">
+                  <label for="StartDate" class="form-label fs-bold">วันที่เปิดให้ส่ง:</label>
+                  <input type="datetime-local" class="form-control p-3 w-50" name="StartDate" id="StartDate">
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="Deadline" class="form-label fs-bold">วันที่หมดเขต:</label>
+                  <input type="datetime-local" class="form-control p-3 w-50" name="Deadline" id="Deadline">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 my-1 mb-3">
+                  <label for="Score" class="form-label fs-bold">กำหนดคะแนน:</label>
+                  <input type="number" min="0" class="form-control p-3 w-75" name="Score">
+                </div>
+                <div class="col-6 my-1 mb-3">
+                  <label for="schoolYear" class="form-label fs-bold">ปีการศึกษา:</label>
+                  <input type="text" list="script" class="form-control p-3 w-75" name="schoolYear" placeholder="ตัวเลข 4 หลัก" pattern="\d{4}" title="กรุณากรอกตัวเลข 4 ตัวอักษร" required>
+                  <datalist id="script">
+                    <% schoolYear.forEach (year => {%>
+                    <option value="<%= year.schoolYear%>"></option>
+                    <% });%>
+                  </datalist>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12 d-flex justify-content-start pt-4" style="border-top: 1px solid #387bef;">
+              <button class="btn btn-primary p-2" type="submit">มอบหมายงาน <i class="bi bi-plus-circle-fill"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  <%- include("./partials/footer.ejs")%>
+  <script>
+    // ดึง element ของ startTime และ endTime จากฟอร์ม
+    const startTimeInput = document.getElementById('StartDate');
+    const endTimeInput = document.getElementById('Deadline');
+
+    startTimeInput.addEventListener('input', function() {
+      checkTimeValidity();
+    });
+
+    endTimeInput.addEventListener('input', function() {
+      checkTimeValidity();
+    });
+
+    // ฟังก์ชันสำหรับตรวจสอบความถูกต้องของเวลาและแสดง alert ถ้ามีข้อผิดพลาด
+    function checkTimeValidity() {
+      const startTime = new Date(startTimeInput.value);
+      const endTime = new Date(endTimeInput.value);
+
+      if (startTime >= endTime) {
+        Swal.fire({
+          icon: "error",
+          title: "กำหนดวันที่และเวลาไม่ถูกต้อง",
+          text: "วันที่หมดเขตส่งไม่สามารถต่ำกว่าวันที่เปิดให้ส่งได้",
+          timer: 2000,
+          customClass: {
+            container: 'swal-container-padding', // กำหนด padding ให้ container ของ Swal
+            icon: 'swal-icon-center', // กำหนดให้ icon อยู่กึ่งกลาง
+            confirmButton: 'swal-btn-padding' // กำหนด padding ให้ปุ่ม "OK"
+          }
+        });
+        endTimeInput.value = '';
+      }
+    }
+  </script>
+</body>
+
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Lesson's name</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <%- include("./partials/header.ejs")%>
+  <style>
+    .descp {
+      text-indent: 2em;
+      margin: 0 2em;
+    }
+
+    .rectangle-141 {
+      background-color: white;
+      border-radius: 0.75em;
+      box-shadow: 0em 0.75em 1.5em -0.25em #919eab1f, 0em 0em 0.125em #919eab33;
+      height: 14.6875em;
+      left: 4.6875em;
+      top: 37.3125em;
+      width: 39.125em;
+      width: 75%;
+      margin: 2em 2em;
+    }
+
+    .home-div,
+    .a-home {
+      color: #999999 !important;
+    }
+
+    .above-nav {
+      background-color: #dde6ed33;
+    }
+
+    .status-a {
+      color: #404258 !important;
+    }
+
+    .list-lesson-p {
+      color: #8A2BE2;
+
+    }
+
+    .list-lesson-p-span {
+      color: #4B0082;
+    }
+
+    .each-lesson {
+      border-top: 0.1em solid #8A2BE2;
+
+    }
+
+    .aside-right {
+      background-color: #dde6ed1a;
+      height: 100%;
+    }
+
+    .manange-bar {
+      border-radius: 1em;
+      justify-content: space-between !important;
+    }
+
+    .add-button {
+      border-radius: 0.5em !important;
+      width: 20%;
+
+    }
+
+    .main-content {
+      height: 100%;
+    }
+
+    .lesson-content {
+      height: 100%;
+      border-radius: 1em !important;
+
+      justify-content: center !important;
+      border-top: 0.5em solid #8A2BE2;
+    }
+
+    .lesson-nothing {
+      margin: 25% 0 !important;
+      padding: 0 !important;
+    }
+
+    .add-lesson-btn {
+      float: right;
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs")%>
+  <div class="above-nav d-flex px-4 py-3">
+    <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+      <i class="bi bi-house mx-2"></i>
+      <a href="/adminIndex" class="a-home">
+        <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+      </a>
+    </div>
+
+    <a href="#" class="status-a mx-2 my-0 align-middle">
+      <p class="m-0">บทเรียน</p>
+    </a>
+  </div>
+  <div class="main-content d-flex">
+    <%- include("./partials/lessonsList_02.ejs")%>
+    <div class="aside-right w-75 h-auto p-4">
+      <div class="manange-bar p-4 bg-white d-flex w-100">
+        <p class="fw-bold fs-3">เพิ่มบทเรียน</p>
+        <a href="/adminIndex/adminLessonIndex" class="add-button btn btn-primary m-0 p-2">
+          ยกเลิกการเพิ่ม<i class="bi bi-x-circle-fill mx-2"></i>
+        </a>
+
+      </div>
+      <div class="lesson-content p-4 bg-white w-100 my-4 py-5">
+        <form action="/adminIndex/editLessonName" method="post">
+            <input type="text" class="d-none" name="_id" value="<%=lesson._id %>">
+          <div class="mb-3">
+            <label for="LessonNumber" class="form-label">ลำดับบทเรียน:</label>
+            <input type="number" class="form-control p-3 w-50" name="LessonNumber" value="<%=lesson.LessonNumber%>" step="1">
+          </div>
+          <div class="mb-3">
+            <label for="lessonName" class="form-label">ชื่อบทเรียน:</label>
+            <input type="text" class="form-control p-3 w-50" name="LessonName" value="<%=lesson.LessonName%>" >
+            <div id="emailHelp" class="form-text">*หากลำดับและชื่อบทเรียนนั้นมีอยู่แล้วจะไม่สามารถเพิ่มได้</div>
+          </div>
+          <button type="submit" class="add-lesson-btn btn btn-success py-2 px-3 shadow">
+            <span>บันทึก</span><i class="bi bi-save-fill mx-2"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</body>
+
+</html>

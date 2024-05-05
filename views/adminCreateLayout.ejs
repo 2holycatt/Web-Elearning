@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Lessons</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="/css/getMoreAddContent.css">
+  <link rel="stylesheet" href="/css/animation.css">
+  <%- include("./partials/header.ejs")%>
+  <style>
+    .allContent {
+      height: fit-content !important;
+    }
+
+    .oldContent {
+      height: fit-content !important;
+    }
+
+    .hide-layout-11,
+    .hide-layout-2,
+    .hide-layout-3,
+    .hide-layout-4 {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      height: fit-content !important;
+
+    }
+
+    .cancelIcon,
+    .cancelIcon2,
+    .cancelIcon3,
+    .cancelIcon4 {
+      font-size: 2em !important;
+      border: none !important;
+      background-color: white !important;
+      margin-bottom: 0em !important;
+    }
+
+    .addLayout01Form {
+      padding-bottom: 1em !important;
+    }
+
+    .show-layout-2 {
+      display: block;
+      opacity: 1;
+      /* สิ้นสุดที่ความทึบ 1 */
+      transition: opacity 0.5s ease;
+      /* กำหนดการเปลี่ยนแปลงที่ต้องการ */
+      height: fit-content !important;
+
+    }
+
+    .showoldlayoutSpan,
+    .hidoldlayoutSpan {
+      font-size: smaller !important;
+    }
+
+    .showAndHideBtn {
+      height: fit-content !important;
+    }
+
+
+    .hideOldContentDiv,
+    .showOldContentDiv {
+      display: flex;
+      justify-content: start;
+    }
+
+    .hideOldContentDiv,
+    .hidedContent {
+      display: none;
+    }
+
+    .showOldContent {
+      display: block;
+      opacity: 1;
+      /* สิ้นสุดที่ความทึบ 1 */
+      transition: opacity 0.5s ease;
+      /* กำหนดการเปลี่ยนแปลงที่ต้องการ */
+      height: fit-content !important;
+
+    }
+
+    .hide-layout-2 {
+      height: fit-content !important;
+    }
+
+    .teaxtAreaLayout4_1 {
+      text-indent: 1em !important;
+      padding-top: 1em !important;
+      width: 100% !important;
+      border: none !important;
+
+    }
+
+    .addAndMinus {
+      border: none !important;
+      margin-left: 0.5em !important;
+      background-color: #DDE6ED1A !important;
+    }
+
+    .addAnd:hover .bi-plus-square {
+      display: none !important;
+    }
+
+    .addAnd:hover .bi-plus-square-fill {
+      display: inline !important;
+    }
+
+    .minusAnd:hover .bi-dash-square {
+      display: none !important;
+    }
+
+    .minusAnd:hover .bi-dash-square-fill {
+      display: inline !important;
+    }
+
+
+    .setBorder {
+      border: 0.125px solid black;
+      border-radius: 0.5em !important;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
+      padding: 0.10em !important;
+      text-indent: 0.25em !important;
+      font-size: medium !important;
+      margin-bottom: 0.5em !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="blur-container">
+    <%- include("./partials/nav.ejs")%>
+    <!-- <div class="above-nav d-flex px-4 py-3">
+      <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+        <i class="bi bi-house mx-2"></i>
+        <a href="/adminIndex" class="a-home">
+          <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+        </a>
+      </div>
+      <a href="#" class="status-a mx-2 my-0 align-middle">
+        <p class="m-0">บทเรียน</p>
+      </a>
+    </div> -->
+    <div class="main-content d-flex w-100 h-auto">
+      <%- include("./partials/lessonsList.ejs")%>
+      <div class="row allContent w-75">
+        <div class="col-12 oldContent aside-right w-100 px-4 py-2">
+          <div class="manange-bar p-4 bg-white d-flex w-100">
+            <p class="fw-bold fs-3">เพิ่มบทเรียน</p>
+            <a href="/adminIndex/adminLessonIndex" class="add-button btn btn-primary m-0 p-2">
+              ย้อนกลับ<i class="bi bi-x-circle-fill mx-2"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-12 aside-right w-100 px-4 py-2">
+          <div class="hide-layout-11 lesson-content py-2 bg-white my-4">
+            <form class="addLayout01Form" action="/adminIndex/createLayout_01" method="post" enctype="multipart/form-data">
+              <input class="d-none" type="text" name="_id" value="<%= lesson_id %>">
+              <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="กรอกหัวข้อ..." required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <textarea class="text-areas-indent subDes mx-5 w-75" name="MainDescription" id="" rows="auto" placeholder="กรอกข้อความส่วนอธิบายเนื้อหาเพิ่มเติม"></textarea>
+              <div class="lesson-content py-4 px-3 bg-white w-100 my-4">
+                <textarea class="text-areas-indent subDesNumber2 w-75 my-2" name="SubDescription" id="" rows="auto" placeholder="กรอกข้อความส่วนอธิบายเนื้อหาเพิ่มเติม..."></textarea>
+                <div class="aboutImageLayout">
+                  <div class="layout1-contents1 h-auto my-0 mx-auto p-5">
+                    <div class="h-auto">
+                      <input class="Topic1 form-control p-3 h-auto my-0 mx-auto" name="title" placeholder="..." required>
+                      <div class="h-100 w-100 d-flex justify-content-center">
+                        <div class="file-input-container">
+                          <input class="file-input" type="file" name="Url" accept="image/*,video/*" required />
+                          <p class="upload-font">อัปโหลดไฟล์</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="h-100 content-2">
+                      <textarea class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-0 " name="ImageDescription" id="" rows="auto" placeholder="เนื้อหา..." required></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-end">
+                  <button type="button" class="minusNewLayout setRadius my-3 mx-2 d-none">
+                    <i class="bi bi-dash-circle-fill fs-3">
+                    </i>
+                  </button>
+                  <button type="button" class="addMore setRadius my-3">
+                    <i class="bi bi-plus-circle-fill fs-3">
+                    </i>
+                  </button>
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout01 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Layout2 -->
+
+          <div class="hide-layout-2 lesson-content py-2 bg-white my-4">
+            <form class="addLayout01Form" action="/adminIndex/createLayout_02" method="post" enctype="multipart/form-data">
+              <input class="d-none" type="text" name="_id" value="<%= lesson_id %>">
+              <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="กรอกข้อความหรือคำอธิบาย..." required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon2 layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="setMargin py-4 px-4 bg-white w-100">
+                <div class="Layout2Contents w-100">
+                  <div class="changeLayout02">
+                    <div class="Layout2ContentsDiv p-1">
+                      <div class="subLayout2Contents bg-white">
+                        <textarea name="TextArea1" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                      </div>
+                      <div class="subLayout2Contents bg-white">
+                        <textarea name="TextArea2" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                      </div>
+                    </div>
+                    <div class="subLayout2Contents2 bg-white">
+                      <textarea name="TextArea3" class="textAreaLayout2 w-100 h-100" placeholder="กรอกข้อความหรือคำอธิบาย..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-end">
+                  <!-- <button type="button" class="minusNewLayout setRadius my-3 mx-2 d-none">
+                    <i class="bi bi-dash-circle-fill fs-3">
+                    </i>
+                  </button>
+                  <button type="button" class="addMore setRadius my-3">
+                    <i class="bi bi-plus-circle-fill fs-3">
+                    </i>
+                  </button> -->
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout02 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Layout03 -->
+
+          <div class="hide-layout-3 lesson-content py-2 bg-white my-4">
+            <form class="addLayout01Form" action="/adminIndex/createLayout_03" method="post" enctype="multipart/form-data">
+              <input class="d-none" type="text" name="_id" value="<%= lesson_id %>">
+              <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="คำอธิบายเกี่ยวกับไฟล์" required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon3 layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="setMargin py-4 px-4 bg-white w-100">
+                <div class="Layout2Contents w-100 p-3">
+                  <input class="" type="file" name="FileForm" accept="image/*,video/*,application/pdf" required />
+
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-end">
+                  <!-- <button type="button" class="minusNewLayout setRadius my-3 mx-2 d-none">
+                    <i class="bi bi-dash-circle-fill fs-3">
+                    </i>
+                  </button>
+                  <button type="button" class="addMore setRadius my-3">
+                    <i class="bi bi-plus-circle-fill fs-3">
+                    </i>
+                  </button> -->
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout03 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Layout04 -->
+
+          <div class="hide-layout-4 lesson-content py-2 bg-white my-4">
+            <form class="addLayout01Form" action="/adminIndex/createLayout_04" method="post" enctype="multipart/form-data">
+              <input class="d-none" type="text" name="_id" value="<%= lesson_id %>">
+              <div class="IandMain d-grid">
+                <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" placeholder="หัวข้อหรือคำอธิบาย" required>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="cancelIcon4 layout-1-a mx-4">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="setMargin py-4 px-4 bg-white w-100">
+                <div class="Layout2Contents w-100 p-3">
+                  <textarea class="teaxtAreaLayout4_1" name="Description" class="w-100 h-25" placeholder="คำอธิบาย"></textarea>
+                  <div class="columnGrid">
+                    <div class="listContents my-2 w-100">
+                      <input type="text" name="list" class="setBorder w-75" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-button-1 w-50 d-flex justify-content-start">
+                  <button type="button" class="addAndMinus addAnd bg-white my-3">
+                    <i class="bi bi-plus-square text-success fs-4"><span class="fs-6"> เพิ่มรายการ</span></i>
+                    <i class="bi bi-plus-square-fill text-success fs-4" style="display: none;"><span class="fs-6"> เพิ่มรายการ</span></i>
+                  </button>
+                  </button>
+                  <button type="button" class="addAndMinus minusAnd bg-white my-3">
+                    <i class="bi bi-dash-square text-danger fs-4"><span class="fs-6"> ลดรายการ</span></i>
+                    <i class="bi bi-dash-square-fill text-danger fs-4" style="display: none;"><span class="fs-6"> ลดรายการ</span></i>
+                  </button>
+                </div>
+                <div class="add-button-2 w-50 d-flex justify-content-end">
+                  <button type="button" class="setRadius cancelbtnLayout04 btn btn-danger my-3 p-2 shadow-sm w-25 mx-2">ยกเลิก
+                    <i class="bi bi-x-lg mx-2"></i>
+                  </button>
+                  <button type="submit" class="setRadius submitBtn2 btn btn-success my-3 p-2 shadow-sm w-25 mx-3">บันทึก
+                    <i class="bi bi-save-fill mx-2"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="lesson-content p-4 bg-white w-100 h-auto">
+            <div class="descp-div">
+              <p class="fs-3 text-success fw-bold">เพิ่มเนื้อหา</p>
+              <p class="fs-6">เลือกรูปแบบที่ต้องการ</p>
+            </div>
+            <div class="layouts-div px-4 py-3">
+              <div class="row">
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <button type="button" class="layout w-75 h-75 shadow rounded border-0">
+                    <img class="img-fluid" src="/images/indexMed/test-image.jpg" alt="รูปใช้ในการทดสอบ">
+                  </button>
+                  <p class="fs-6 text-center">
+                    รูปแบบที่ 1
+                  </p>
+                </div>
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <button type="button" class="layout-2-a w-75 h-75 shadow rounded border-0">
+                    <img class="img-fluid" src="/images/indexMed/test-image.jpg" alt="รูปใช้ในการทดสอบ">
+                  </button>
+                  <p class="fs-6 text-center">
+                    รูปแบบที่ 2
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <button type="button" class="layout-3-a w-75 h-75 shadow rounded border-0">
+                    <img class="img-fluid" src="/images/indexMed/test-image.jpg" alt="รูปใช้ในการทดสอบ">
+                  </button>
+                  <p class="fs-6 text-center">
+                    รูปแบบที่ 3
+                  </p>
+                </div>
+                <div class="layoutType col-6 d-flex flex-column align-items-center justify-content-center">
+                  <button type="button" class="layout-4-a w-75 h-75 shadow rounded border-0">
+                    <img class="img-fluid" src="/images/indexMed/test-image.jpg" alt="รูปใช้ในการทดสอบ">
+                  </button>
+                  <p class="fs-6 text-center">
+                    รูปแบบที่ 4
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cancelBtn = document.querySelector('.cancelIcon');
+      const cancelBtn2 = document.querySelector('.cancelIcon2');
+      const cancelBtn3 = document.querySelector('.cancelIcon3');
+      const cancelBtn4 = document.querySelector('.cancelIcon4');
+
+
+      const hideLayout1Div = document.querySelector('.hide-layout-11');
+      const hideLayout2Div = document.querySelector('.hide-layout-2');
+      const hideLayout3Div = document.querySelector('.hide-layout-3');
+      const hideLayout4Div = document.querySelector('.hide-layout-4');
+
+      const layout1Button = document.querySelector('.layout');
+      const layout2Button = document.querySelector('.layout-2-a');
+      const layout3Button = document.querySelector('.layout-3-a');
+      const layout4Button = document.querySelector('.layout-4-a');
+
+      const cancelbtnLayout01 = document.querySelector('.cancelbtnLayout01');
+      const cancelbtnLayout02 = document.querySelector('.cancelbtnLayout02');
+      const cancelbtnLayout03 = document.querySelector('.cancelbtnLayout03');
+      const cancelbtnLayout04 = document.querySelector('.cancelbtnLayout04');
+
+      // Add a delegated change event listener for .file-input
+      $(document).on('change', '.file-input', function() {
+        var fileName = this.files[0].name;
+        // console.log(fileName);
+
+        if (fileName.includes('.')) {
+          var fileParts = fileName.split('.');
+          var fileExtension = fileParts.pop();
+          var fileNameWithoutExtension = fileParts.join('.');
+
+          var maxLength = 10;
+
+          if (fileNameWithoutExtension.length > maxLength) {
+            fileNameWithoutExtension = fileNameWithoutExtension.substring(0, maxLength) + '...';
+          }
+
+          var newFileName = fileNameWithoutExtension + '.' + fileExtension;
+          document.querySelector('.upload-font').innerText = newFileName;
+        } else {
+          document.querySelector('.upload-font').innerText = fileName;
+        }
+      });
+
+      cancelBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout1Div.style.display = 'none';
+
+      });
+
+      cancelBtn2.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout2Div.style.display = 'none';
+
+      });
+
+      cancelBtn3.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout3Div.style.display = 'none';
+
+      });
+
+      cancelBtn4.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout4Div.style.display = 'none';
+
+      });
+
+      cancelbtnLayout01.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout1Div.style.display = 'none';
+
+      });
+
+      cancelbtnLayout02.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout2Div.style.display = 'none';
+
+      });
+
+      cancelbtnLayout03.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout3Div.style.display = 'none';
+
+      });
+
+      cancelbtnLayout04.addEventListener('click', function(event) {
+        event.preventDefault();
+        hideLayout4Div.style.display = 'none';
+
+      });
+
+      layout1Button.addEventListener('click', function(event) {
+        if (!hideLayout1Div.contains(event.target)) {
+          hideLayout1Div.style.display = 'block';
+          hideLayout1Div.classList.toggle('show-layout-2');
+        }
+      });
+
+      layout2Button.addEventListener('click', function(event) {
+        if (!hideLayout2Div.contains(event.target)) {
+          hideLayout2Div.style.display = 'block';
+          hideLayout2Div.classList.toggle('show-layout-2');
+        }
+      });
+
+      layout3Button.addEventListener('click', function(event) {
+        if (!hideLayout3Div.contains(event.target)) {
+          hideLayout3Div.style.display = 'block';
+          hideLayout3Div.classList.toggle('show-layout-2');
+        }
+      });
+
+      layout4Button.addEventListener('click', function(event) {
+        if (!hideLayout4Div.contains(event.target)) {
+          hideLayout4Div.style.display = 'block';
+          hideLayout4Div.classList.toggle('show-layout-2');
+        }
+      });
+    });
+
+    let layoutCounter = 0;
+    $('.minusNewLayout').addClass('d-none');
+
+    $('.addMore').click(function() {
+      layoutCounter++;
+      var newLayout = `<div class="newLayout layout1-contents${layoutCounter} h-auto my-3 mx-auto p-5">` +
+        `<div class="h-auto">` +
+        `<input class="Topic1 form-control p-3 h-auto my-0 mx-auto" name="title${layoutCounter}" id="title${layoutCounter}" placeholder="..." required>` +
+        `<div class="h-100 w-100 d-flex justify-content-center">` +
+        `<div class="file-input-container">` +
+        `<input class="new-file-input file-input${layoutCounter}" type="file" name="Url${layoutCounter}" accept="image/*,video/*" required />` +
+        `<p class="new-upload-font new-text${layoutCounter}">อัปโหลดไฟล์</p>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `<div class="h-100 content-2">` +
+        `<textarea class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-0" name="ImageDescription${layoutCounter}" id="ImageDescription${layoutCounter}" rows="auto" placeholder="เนื้อหา..." required></textarea>` +
+        `</div>` +
+        `</div>`;
+
+      $('.aboutImageLayout').append(newLayout).hide().fadeIn('slow');
+      $('.minusNewLayout').removeClass('d-none');
+
+      // Trigger a change event for the new file input
+      // $(`.file-input${layoutCounter}`).change();
+      $(document).on('change', `.file-input${layoutCounter}`, function() {
+        // let countFiles = 1;
+        var fileName = this.files[0].name;
+
+        if (fileName.includes('.')) {
+          var fileParts = fileName.split('.');
+          var fileExtension = fileParts.pop();
+          var fileNameWithoutExtension = fileParts.join('.');
+          var maxLength = 10;
+
+          if (fileNameWithoutExtension.length > maxLength) {
+            fileNameWithoutExtension = fileNameWithoutExtension.substring(0, maxLength) + '...';
+          }
+
+          var newFileName = fileNameWithoutExtension + '.' + fileExtension;
+          document.querySelector(`.new-text${layoutCounter}`).innerText = newFileName;
+          // countFiles++;
+        } else {
+          document.querySelector(`.new-text${layoutCounter}`).innerText = fileName;
+          // countFiles++;
+        }
+      })
+    });
+
+
+    $('.submitBtn').click(function() {
+      var newlayoutCounter = `<input type="hidden" class="d-none" name="layoutCounter" value="${layoutCounter}">`;
+      $('.addLayout01Form').append(newlayoutCounter);
+    });
+
+    $('.minusNewLayout').click(function() {
+      var numberOfLayouts = $('.newLayout').length;
+
+      if (numberOfLayouts > 0) {
+        $('.newLayout:last').fadeOut('slow', function() {
+          $(this).remove();
+        });
+
+        layoutCounter--;
+      }
+
+      if (layoutCounter === 0) {
+        $('.minusNewLayout').addClass('d-none');
+      }
+
+    });
+
+    let layoutCounter2 = 0;
+    $('.minusAnd').addClass('d-none');
+
+    $('.addAnd').click(function() {
+      layoutCounter2++;
+      var newList = `<input type="text" name="list${layoutCounter2}" class="setBorder w-75" required>`;
+
+      $('.listContents').append(newList).hide().fadeIn('slow');
+      $('.minusAnd').removeClass('d-none');
+    });
+
+    $('.minusAnd').click(function() {
+      var numberOfLayouts = $('.listContents input').length;
+
+      if (numberOfLayouts > 0) {
+        $('.listContents input:last').fadeOut('slow', function() {
+          $(this).remove();
+        });
+
+        layoutCounter2--;
+      }
+
+      if (layoutCounter2 === 0) {
+        $('.minusAnd').addClass('d-none');
+      }
+    });
+
+    $('.submitBtn2').click(function() {
+      var newlayoutCounter2 = `<input type="hidden" class="d-none" name="layoutCounter2" value="${layoutCounter2}">`;
+      $('.listContents').append(newlayoutCounter2);
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+* {
+    font-family: "Noto Sans Thai", sans-serif !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/images/pexels-pixabay-52527.jpg");
+    background-size: cover;
+    backdrop-filter: blur(10px);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.p-div {
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    height: auto !important;
+}
+
+.head-p {
+    border-bottom: 1px solid #EAEFF4;
+}
+
+
+.name-web {
+    border-left: 5px solid #8a2be2;
+    padding-left: 0.75em;
+}
+
+.des-web {
+    font-size: smaller !important;
+    text-indent: 1.25em;
+}
+

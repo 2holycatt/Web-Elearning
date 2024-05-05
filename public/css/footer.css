@@ -1,0 +1,73 @@
+*{
+    color: #ffffff;
+}
+
+.p_logo_footer{
+    text-align: center;
+    font-size:2em;
+    font-weight: bold;
+    background-color: #181D31;
+    padding: 1em;
+    
+    
+}
+
+.p_logo_footer::after {
+    
+    content: "";
+    display: block;
+    width: 15%;
+    height: 0.22em;
+    margin: 0 auto;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.icon_footer{
+    width: 100%;
+}
+
+.footer_icon{
+    display: flex;
+    margin: 0 auto;
+    width: 30%;
+    height: 30%;
+}
+
+.copyright{
+    background-color: #ffffff;
+    padding: 0.2em;
+    color: white;
+}
+
+.p_copyr{
+    text-align: center;
+    color: #181D31;
+}
+
+h1{
+    color:#181D31;
+    display: flex;
+    justify-content: center;
+    margin: 0.5em;
+
+}
+
+article{
+    
+    background-color: #1e2337;
+    
+
+}
+
+.ad_nxt_art{
+    width: 100%;
+    height: auto;
+    display: inline;
+    
+}
+
+.logo_footer{
+    margin-top: 2em;
+    
+}

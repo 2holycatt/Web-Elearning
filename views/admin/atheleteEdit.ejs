@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/header.ejs")%>
+    <style>
+        .athlete-contain{
+            padding: 1em 5em;
+        }
+        .athlete-list{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: center;
+            place-items: center;
+            
+        }.athlete-item{
+            width: fit-content;
+            text-align: center;
+        }
+        .athlete-item img{
+            display: block;
+            object-fit: cover;
+            width: 13em;
+            height: 15em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../partials/nav.ejs")%>
+    <div class="athlete-contain mt-4">
+        <h1 class="mb-5">จัดการ Athletes</h1>
+        <div class="athlete-list">
+        <%if(athlete.length==0){%>
+            <p>ไม่มีข้อมูลนักกีฬา</p>
+        <%}else{
+            athlete.forEach(athlete => {%>
+                <% if (athlete.confirmed) { %>
+                    <%
+                    let athleteImg = (athlete.user.img)? athlete.user.img:"avartar.png"
+                    %>
+                <div class="athlete-item">
+                    <a href="/athletes/editAthletes/<%=athlete._id%>"> <img id="<%=athlete._id%>" class="athlete" src="/images/profile/<%= athleteImg%>"></a>
+                    <h4 class="mt-2"><%= athlete.nickname%></h4>
+                    <p class="mt-1"><%= athlete.country%></p>
+                    <p><%= //athlete%></p>
+                    <a class="btn btn-danger" href="/athletes/deleteAthletes/<%=athlete._id%>" onclick="return confirm('Are you sure you want to delete this Athlete?')">delete</a>
+                </div>
+                <% } %>
+            <%})
+        }%>
+        </div>
+
+    </div>
+
+
+    <script>
+        let athlete = document.querySelectorAll('.athlete')
+        console.log(athlete);
+        athlete.forEach(e => {
+            e.addEventListener('click', ()=>{
+                window.location.href = `/athletes/info/?id=${e.id}`
+            })
+        });
+    </script>
+</body>
+</html>

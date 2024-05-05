@@ -1,0 +1,11 @@
+.swal-icon-center {
+    margin: 1em auto !important;
+}
+.swal-btn-padding {
+    padding: 0.5em !important; 
+    margin: 1em auto !important;
+}
+
+.swal-container-padding {
+    padding: 1em !important; /* ปรับขนาด padding ตามที่ต้องการ */
+}

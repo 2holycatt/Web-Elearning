@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+  <link rel="stylesheet" href="css/style_2.css">
+  <%- include("./partials/header.ejs")%>
+
+  <style>
+    .descp {
+      text-indent: 2em;
+      margin: 0 2em;
+    }
+
+    .rectangle-141 {
+      background-color: white;
+      border-radius: 0.75em;
+      box-shadow: 0em 0.75em 1.5em -0.25em #919eab1f, 0em 0em 0.125em #919eab33;
+      height: 14.6875em;
+      left: 4.6875em;
+      top: 37.3125em;
+      width: 39.125em;
+      width: 75%;
+      margin: 2em 2em;
+    }
+
+    /* .inFirst {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-bottom: 1px solid #EAEFF4;
+
+    } */
+
+    .inFirst {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .classroomDiv {
+      /* position: absolute; */
+      display: flex;
+      justify-content: start;
+      z-index: 1;
+    }
+
+    .classroom-p {
+      background-color: #8A2BE2;
+      color: white !important;
+      padding: 0.5em !important;
+      border-radius: 0 0 0.5em 0!important;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+
+
+    }
+
+    /* .classroomDiv2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: absolute;
+      z-index: 1;
+      top: 55%;
+    } */
+
+    .card-1 {
+      width: 90% !important;
+      height: fit-content !important;
+      transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+      cursor: pointer;
+      border-radius: 0.5em;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+
+    }
+
+    .card-1:hover {
+      transform: scale(1.05);
+    }
+
+    .card-header {
+      border-right: 1px solid #EAEFF4;
+      border-bottom: 1px solid #EAEFF4;
+
+    }
+
+    .classroomDiv {
+      border-top: 1px solid #EAEFF4;
+      /* padding-top: 2em !important; */
+
+    }
+
+    .a-list-1 {
+      color: #8A2BE2 !important;
+    }
+
+    .setColumn {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .setColumn-p {
+      display: grid;
+      grid-template-columns: 1.25fr 1.25fr 0.5fr !important;
+      padding-bottom: 0.5em !important;
+      margin-bottom: 0.5em !important;
+
+      border-bottom: 1px solid #0D6EFD;
+      
+    }
+
+    .setColumn-p-lesson {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr !important;
+      padding-bottom: 0.5em !important;
+      margin-bottom: 0.5em !important;
+      border-bottom: 1px solid #0D6EFD;
+      
+    }
+
+    .setColumn-p-2 {
+      display: grid;
+      grid-template-columns: 1.25fr 1.25fr 0.5fr !important;
+      font-size: smaller;
+    }
+
+     .setColumn-p-lesson-2 {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr !important;
+      font-size: smaller;
+    }
+
+    .a-link {
+      color: #5A6A85;
+      padding-bottom: 0.5em !important;
+      margin-bottom: 0.5em !important;
+    }
+
+    @keyframes moveUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .upDownDiv {
+      animation: moveUpDown 1s infinite;
+    }
+
+    .upDownDiv {
+      position: relative;
+      transition-duration: 0.3s;
+    }
+
+    .up-down-a:hover,
+    .up-down-a:hover .bi {
+      color: #8A2BE2 !important;
+      transition: 0.3s;
+    }
+
+    /* .logo-dent {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-radius: 50%;
+      width: fit-content;
+      height: auto;
+    } */
+    /* .secondDiv{
+      margin-top: 6em !important;
+    } */
+
+    /* .box {
+      transform: translateX(400%);
+      transition: transform 0.8s ease;
+    }
+    .box:nth-of-type(even){
+      transform: translateX(-400%);
+    }
+    .box.show {
+      transform: translateX(0);
+    } */
+
+    .firstDiv {
+      height: fit-content;
+      background-image: url('/images/bg-2.jpg') !important;
+      /* filter: blur(6px); */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 0;
+      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
+
+    }
+
+    .setShadow {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+    }
+
+    .lesson-content{
+      height: fit-content !important;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav>
+    <%- include("./partials/nav.ejs") %>
+    <!-- <div class="element-student">
+    </div> -->
+  </nav>
+  <div class="firstDiv row" style="margin-top: 5em !important; margin-bottom: 5em !important">
+    <div class="setShadow">
+      <div class="inFirst row px-5 py-5">
+        <div class="col-4 d-flex justify-content-center">
+          <img class="w-75 h-auto logo-dent" src="/images/indexMed/Ellipse9.png" alt="ตราสัญลักษณ์ คณะทันตแพทย์ศาตร์">
+        </div>
+        <div class="col-8 d-flex text-white" style="align-items: center;">
+          <div>
+            <p>
+              <span class="fs-3 ">สื่อการเรียนการสอนออนไลน์ : เรื่องส่วนประกอบของฟันเทียม</span><br>
+              <span class="fs-4 ">Online Learning : Component Parts of Dental Prosthesis</span>
+            </p>
+            <img class="line img-fluid mb-3" src="images/indexMed/line-1.svg" />
+            <p>
+              <span class="fs-4 ">คณะทันตยแพทย์ศาสตร์ มหาวิทยาลัยขอนแก่น</span><br>
+              <span class="fs-4 ">Faculty of Dentistry Khon Kaen University</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="classroomDiv2 col-12 w-100">
+        <div>
+          <p class="fw-bold fs-4 text-primary">ห้องเรียน</p>
+        </div>
+        <div>
+          <p class="fw-bold fs-4 text-primary">แบบทดสอบ</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="upDownDiv d-flex justify-content-center" style="margin-bottom: 10em !important;">
+    <a href="#forUpdown" class="text-dark up-down-a">
+      <i class="bi bi-chevron-double-down fs-1"></i>
+    </a>
+  </div>
+  <div class="classroomDiv col-12 w-100" id="forUpdown" data-aos="fade-right" data-aos-duration="1000">
+    <p class="fw-bold fs-3 text-primary classroom-p">ห้องเรียน</p>
+  </div>
+  <div class="row px-3 py-5 secondDiv">
+    <div class="col-4 box" data-aos="fade-up" data-aos-duration="1000">
+      <p class="fw-bold mx-3 fs-5" style="border-left: 0.25em solid #0D6EFD !important;
+      padding-left: 0.25em !important;
+      color: #5A6A85;">บทเรียน</p>
+      <div class="lesson-content p-2 mx-3 bg-white w-auto my-2" style="height: fit-content;">
+        <div class="px-3 my-3">
+          <div class="setColumn">
+            <!-- <a href="/adminIndex/eachLessons?lessonId=">
+              <div class="card-1 text-bg-white mb-4" style="max-width: 15.125em; max-height: 8.8125em ; position: relative;">
+                <div class="card-header bg-white px-2 py-1 fw-bold text-primary" style="width: fit-content; border-bottom-right-radius: 0.5em; position: absolute; ">
+                  บทเรียน
+                </div>
+                <div class="card-body-1 d-flex justify-content-center p-4">
+                  <img src="/images/indexMed/DENTISTRY_KKU.svg.png" class="card-img" alt="รูปของบทเรียน" style="height: 100%; width: 50%; object-fit: cover; max-width: 15.125em; max-height: 8.8125em ;">
+                </div>
+              </div>
+            </a> -->
+            <div class="setColumn-p-lesson fw-bold">
+              <p>ชื่อ</p>
+              <p>Post</p>
+              <!-- <p>Times</p> -->
+            </div>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-lesson-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <!-- <p>30 น.</p> -->
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-lesson-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <!-- <p>30 น.</p> -->
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-lesson-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 box" data-aos="fade-up" data-aos-duration="1000">
+      <p class="fw-bold mx-3 fs-5" style="border-left: 0.25em solid #0D6EFD !important;
+      padding-left: 0.25em !important;
+      color: #5A6A85;">แบบทดสอบ</p>
+      <div class="lesson-content p-2 mx-3 bg-white w-auto my-2">
+        <div class="px-3 my-3">
+          <div class="setColumn">
+            <!-- <a href="/adminIndex/eachLessons?lessonId=">
+              <div class="card-1 text-bg-white mb-4" style="max-width: 15.125em; max-height: 8.8125em ; position: relative;">
+                <div class="card-header bg-white px-2 py-1 fw-bold text-primary" style="width: fit-content; border-bottom-right-radius: 0.5em; position: absolute; ">
+                  บทเรียน
+                </div>
+                <div class="card-body-1 d-flex justify-content-center p-4">
+                  <img src="/images/indexMed/DENTISTRY_KKU.svg.png" class="card-img" alt="รูปของบทเรียน" style="height: 100%; width: 50%; object-fit: cover; max-width: 15.125em; max-height: 8.8125em ;">
+                </div>
+              </div>
+            </a> -->
+            <div class="setColumn-p fw-bold">
+              <p>ชื่อ</p>
+              <p>Deadline</p>
+              <p>Times</p>
+            </div>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 box" data-aos="fade-up" data-aos-duration="1000">
+      <p class="fw-bold mx-3 fs-5" style="border-left: 0.25em solid #0D6EFD !important;
+      padding-left: 0.25em !important;
+      color: #5A6A85;">งานที่มอบหมาย</p>
+      <div class="lesson-content p-2 mx-3 bg-white w-auto my-2">
+        <div class="px-3 my-3">
+          <div class="setColumn">
+            <!-- <a href="/adminIndex/eachLessons?lessonId=">
+              <div class="card-1 text-bg-white mb-4" style="max-width: 15.125em; max-height: 8.8125em ; position: relative;">
+                <div class="card-header bg-white px-2 py-1 fw-bold text-primary" style="width: fit-content; border-bottom-right-radius: 0.5em; position: absolute; ">
+                  บทเรียน
+                </div>
+                <div class="card-body-1 d-flex justify-content-center p-4">
+                  <img src="/images/indexMed/DENTISTRY_KKU.svg.png" class="card-img" alt="รูปของบทเรียน" style="height: 100%; width: 50%; object-fit: cover; max-width: 15.125em; max-height: 8.8125em ;">
+                </div>
+              </div>
+            </a> -->
+            <div class="setColumn-p fw-bold">
+              <p>ชื่อ</p>
+              <p>Post Date</p>
+              <p>Deadline</p>
+            </div>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>ส่วนประกอบฟันเทียม</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>ส่วนประกอบย่อย</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+            <a href="/adminIndex/eachLessons?lessonId=" class="a-link">
+              <div class="setColumn-p-2">
+                <p>เหล็กดัดฟัน</p>
+                <p>15/03/2567</p>
+                <p>30 น.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p><%=userData.email%></p><br>
+      <p><%=userData._id%></p><br>
+      <p><%=userData.teacher.tel%></p>
+    </div>
+  </div>
+  <%- include("./partials/footer.ejs") %>
+  <!-- <div class="row">
+    <div class="col-12 mx-5 d-flex">
+      <div>
+        <p class="descp text-dark">เว็ปไซต์นี้เต็มไปด้วยเนื้อหาการเรียนการสอนที่เกี่ยวกับส่วนของ
+          ประกอบของฟันเทียมบางส่วนและแบบของตะขอ ควิชหรือแบบทดสอบ
+          ต่าง ๆ ที่เกี่ยวกับเนื้อหาการเรียนเพื่อทดสอบความรู้จากเนื้อหาที่เรียน
+          และนักศึกษาก็ยังสามารถติดตามเนื้อหาการเรียนได้ตลอดเวลา
+        </p>
+        <div class="rectangle-141 p-4">
+          <p class="text-dark fw-bold">จัดการข้อมูล</p>
+        </div>
+      </div>
+      <img class="w-50 h-auto" src="images/indexMed/rectangle-6.png" />
+    </div>
+  </div> -->
+
+  <!-- <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script> -->
+  <script>
+    AOS.init();
+  </script>
+  <!-- <script src="/js/scroll.js"></script> -->
+
+</body>
+
+
+</html>

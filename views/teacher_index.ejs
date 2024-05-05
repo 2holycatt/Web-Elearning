@@ -1,0 +1,32 @@
+<!-- views/student_dashboard.ejs -->
+<html>
+
+<head>
+  <title>Teacher Home</title>
+</head>
+
+<body>
+  <nav class="nav">
+    <ul>
+      <li class="user">
+        <%= user.name || user.username || user.email %>
+      </li>
+      <li><a href="/teacher">หน้าแรก</a></li>
+      <li class="avatar avatar-online current">
+        <a href="/profile"><img
+            src="https://secure.gravatar.com/avatar/0d36b4ae4b9c67a2b162710923f792ed?s=35&amp;d=identicon"
+            class="userpicture" width="35" height="35" alt=""></a>
+        <i style="border-color: black;"></i>
+      </li>
+      <li>
+        <form action="/logout" method="post">
+          <button class="logout" type="submit">Sign out</button>
+        </form>
+      </li>
+    </ul>
+    <h1>Welcome, <%= user.name %>!</h1>
+    You're teacher.
+    <!-- Your student dashboard content goes here -->
+</body>
+
+</html>

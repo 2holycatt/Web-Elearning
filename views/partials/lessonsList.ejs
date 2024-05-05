@@ -1,0 +1,172 @@
+<style>
+  .each-lesson-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .small-text {
+    font-size: small !important;
+    width: 40% !important;
+    margin: 0 0 !important;
+
+  }
+
+  .each-lesson-a:hover {
+    /* เพิ่ม .each-lesson-a:focus */
+    border-left: 0.2em solid #8A2BE2 !important;
+    /* background-color: #404258 !important; */
+  }
+
+  .each-lesson-a:hover .hide-button {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  .addLessonLink{
+    width: 60%;
+    background-color: #8A2BE2 !important;
+    border-radius: 2em !important;
+    margin: 1em auto !important;
+  }
+
+  .addLessonLink:hover{
+    width: 60%;
+    background-color: white !important;
+    border-radius: 2em !important;
+    margin: 1em auto !important;
+    color: #8A2BE2 !important;
+    border: 1px solid #8A2BE2 !important;
+    transition: 0.5s;
+  }
+
+  .addLessonLink:hover i{
+    color: #8A2BE2 !important;
+    border:none !important;
+    transition: 0.5s;
+    }
+
+  .addLessonLink i {
+    color: white !important;
+
+  }
+
+  .above-nav-status{
+    border-right: 1px solid #EAEFF4;
+    /* position: fixed; */
+    height: auto!important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    
+  }
+
+  .bold-menus{
+    border-left: 0.25em solid #8A2BE2;
+    padding-left: 0.75em !important;
+    
+
+  }
+
+  .menues-sub,
+  .a-list-1, .a-list-2, .a-list-3, .a-list-4,
+  .a-list-5, .a-list-6, .a-list-7{
+    text-decoration: none;
+    color: #5A6A85;
+    transition-duration: 0.3s;
+  }
+
+  .menues-sub:hover{
+    color: #8A2BE2 !important;
+    transition: 0.3s;
+  }
+  
+  .a-list-1:hover, .a-list-2:hover, .a-list-3:hover, .a-list-4:hover,
+  .a-list-5:hover, .a-list-6:hover, .a-list-7:hover {
+    color: #8A2BE2 !important;
+    transition: 0.3s;
+
+  }
+
+</style>
+<div class="above-nav-status p-4" style="width: 20%;">
+  <p class="fs-6 fw-bold bold-menus" style="margin-bottom: 1em !important;">
+    ห้องเรียน
+  </p>
+  <div class="menues">
+    <p class="menues-sub fs-6 my-2">
+      <!-- <i class="bi bi-card-list mx-2"></i> -->
+      <i class="bi-1 bi bi-book-half mx-2"></i>
+      <a href="/adminIndex/adminLessonIndex" class="a-list-1">บทเรียน</a>
+    </p>
+    <p class="menues-sub my-2">
+      <i class="bi-2 bi bi-list-task mx-2"></i>
+      <a href="/adminIndex/assignmentIndex" class="a-list-2">งานที่มอบหมาย</a>
+    </p>
+    <p class="menues-sub my-2">
+      <!-- <i class="bi bi-database-add mx-2"></i> -->
+      <i class="bi-3 bi bi-pencil-square mx-2"></i>
+      <a href="/adminIndex/adminExam" class="a-list-3">แบบทดสอบ</a>
+    </p>
+  </div>
+  <p class="fs-6 fw-bold bold-menus my-4" style="margin-bottom: 1em !important;">
+    จัดการข้อมูลนักศึกษา
+  </p>
+  <div class="menues">
+    <p class="menues-sub fs-6 my-2">
+      <i class="bi-4 bi-bar-chart mx-2"></i>
+      <a href="/adminIndex/adminLessonIndex" class="a-list-4">แดชบอร์ด (Dashboard)</a>
+    </p>
+    <p class="menues-sub my-2">
+      <i class="bi-5 bi-person-lines-fill mx-2" class="a-list-5"></i>
+      <a href="/adminIndex/adminAssignment" class="a-list-5">รายชื่อนักศึกษา</a>
+    </p>
+    <p class="menues-sub my-2">
+      <!-- <i class="bi bi-database-add mx-2"></i> -->
+      <i class="bi-6 bi-clock-history mx-2" class="a-list-6"></i>
+      <a href="/adminIndex/adminExam" class="a-list-6">การเข้าใช้งาน (Logs file)</a>
+    </p>
+    <p class="menues-sub my-2">
+      <!-- <i class="bi bi-database-add mx-2"></i> -->
+      <i class="bi-7 bi-person-check mx-2" class="a-list-7"></i>
+      <a href="/adminIndex/adminExam" class="a-list-7">การกำหนดสิทธิ์</a>
+    </p>
+  </div>
+  <!-- <% if (lessons.length > 0) { %>
+  <p class="list-lesson-p fw-bold fs-5 mx-2">รายชื่อบทเรียน <br>
+    <span class="list-lesson-p-span fw-light fs-6">จำนวนบท: <%= lessons.length %></span>
+  </p>
+  <% lessons.forEach(lesson => { %>
+  <a href="/adminIndex/eachLessons?lessonId=<%= lesson._id %>" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <%= lesson.LessonName %><br>
+        <span class="list-lesson-p-span fw-light">บทที่: <%= lesson.LessonNumber %></span>
+      </p>
+      <div class="hide-button d-none">
+        <a href="/adminIndex/getEditLessonNamePage?lessonId=<%= lesson._id %>" class="small-text btn btn-warning me-2 px-1">
+          <span class="small-text">
+            แก้ไข
+          </span>
+        </a>
+        <a href="/adminIndex/deleteLesson?lessonId=" class="small-text btn btn-danger px-1">
+          <span class="small-text">
+            ลบ
+          </span>
+        </a>
+      </div>
+    </div>
+  </a>
+  <% }); %>
+  <% } else {%>
+  <p class="list-lesson-p fw-bold fs-5 mx-2">รายชื่อบทเรียน <br>
+    <span class="list-lesson-p-span fw-light fs-6">จำนวนบท: <%= lessons.length %> </span>
+  </p>
+  <div class="each-lesson py-2 px-3">
+    <p class="text-center m-3">ยังไม่มีบทเรียนใด ๆ</p>
+  </div>
+  <% } %>
+  <div class="d-flex justify-content-center">
+    <a href="/adminIndex/addLesson" class="addLessonLink btn m-0 p-2">
+      <i class="bi bi-plus fs-5"></i>
+    </a>
+  </div> -->
+</div>

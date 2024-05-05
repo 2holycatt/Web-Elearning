@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h1>EDIT </h1>
+    <h2>Athlete Information</h2>
+
+    <form method="POST" action="/athletes/updateAthletes">
+        <label for="_id">id:</label>
+        <input type="text" id="_id" name="_id" value="<%= athlete._id %>" readonly><br>
+        <label for="aka">AKA (Athlete's Nickname):</label>
+        <input type="text" id="nickname" name="nickname" value="<%= athlete.nickname %>"><br>
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" name="weight" value="<%= athlete.weight %>"><br>
+        <label for="height">Height:</label>
+        <input type="number" id="height" name="height" value="<%= athlete.height %>"><br>
+        <label for="height">Reach:</label>
+        <input type="number" id="reach" name="reach" value="<%= athlete.reach %>"><br>
+        <label for="height">Dday:</label>
+        <input type="date" id="bday" name="bday" value="<%= formattedBday %>"><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="<%= athlete.country %>"><br>
+        <label for="weightClass">Weight Class:</label>
+        <input type="text" id="weightClass" name="weightClass" value="<%= athlete.weightClass %>"><br>
+        <select class="form-select" name="team" id="team">
+            <option value="65146ec7b4dc114c8e1d99e8" <% if(String(athlete.team) === '65146ec7b4dc114c8e1d99e8') { %>selected<% } %>>team A</option>
+            <option value="65147d6fb4dc114c8e1d9a1a" <% if(String(athlete.team) === '65147d6fb4dc114c8e1d9a1a') { %>selected<% } %>>team B</option>
+            <option value="65147d76b4dc114c8e1d9a1b" <% if(String(athlete.team) === '65147d76b4dc114c8e1d9a1b') { %>selected<% } %>>team C</option>
+            <option value="65147d79b4dc114c8e1d9a1c" <% if(String(athlete.team) === '65147d79b4dc114c8e1d9a1c') { %>selected<% } %>>team D</option>
+        </select>        
+        <label for="weightClass">wins:</label>
+        <input type="number" id="wins" name="wins" value="<%= athlete.wins %>"><br>
+        <label for="weightClass">losses:</label>
+        <input type="number" id="losses" name="losses" value="<%= athlete.losses %>"><br>
+        <label for="weightClass">draw:</label>
+        <input type="number" id="draws" name="draws" value="<%= athlete.draws %>"><br>
+        <label for="weightClass">knockouts:</label>
+        <input type="number" id="knockouts" name="knockouts" value="<%= athlete.knockouts %>"><br>
+        <label for="weightClass">knockoutsLosses:</label>
+        <input type="number" id="knockoutsLosses" name="knockoutsLosses" value="<%= athlete.knockoutsLosses %>"><br>
+        <label for="weightClass">technicalKnockouts:</label>
+        <input type="number" id="technicalKnockouts" name="technicalKnockouts" value="<%= athlete.technicalKnockouts %>"><br>
+        <label for="weightClass">technicalKnockoutsLosses:</label>
+        <input type="number" id="technicalKnockoutsLosses" name="technicalKnockoutsLosses" value="<%= athlete.technicalKnockoutsLosses %>"><br>
+        <label for="weightClass">overwhelmingScore:</label>
+        <input type="number" id="overwhelmingScore" name="overwhelmingScore" value="<%= athlete.overwhelmingScore %>"><br>
+        <label for="weightClass">overwhelmingScoreLosses:</label>
+        <input type="number" id="overwhelmingScoreLosses" name="overwhelmingScoreLosses" value="<%= athlete.overwhelmingScoreLosses %>"><br>
+        <label for="weightClass">majorityVotes:</label>
+        <input type="number" id="majorityVotes" name="majorityVotes" value="<%= athlete.majorityVotes %>"><br>
+        <label for="weightClass">majorityVotesLosses:</label>
+        <input type="number" id="majorityVotesLosses" name="majorityVotesLosses" value="<%= athlete.majorityVotesLosses %>"><br>
+        <button type="submit">Confirm</button>
+    </form>
+
+</body>
+
+
+</html>

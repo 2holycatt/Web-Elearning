@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/images/pexels-pixabay-52527.jpg");
+    background-size: cover;
+    backdrop-filter: blur(10px);
+}
+
+.login-form,
+.regiester-form,
+.login-As-admin {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* .img-logo{
+          margin: 0 auto !important;
+          height: 25%;
+      } */
+.description-form {
+    border-radius: 10px;
+
+}
+
+.name-web {
+    border-left: 5px solid #8a2be2;
+    padding-left: 0.75em;
+}
+
+.des-web {
+    font-size: smaller !important;
+    text-indent: 1.25em;
+}
+
+.a-register {
+    text-decoration: none;
+}
+
+.register-form {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    background-color: #0056b3;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.regiester-form, .login-As-admin {
+    display: none;
+
+}
+
+.bounce-in {
+    display: block;
+    animation: bounce-in 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+    2% {
+        transform: translateY(-98vh);
+        opacity: 0.02;
+    }
+
+    4% {
+        transform: translateY(-96vh);
+        opacity: 0.04;
+    }
+
+
+    20% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    21% {
+        transform: translateY(0.4px);
+    }
+
+    22% {
+        transform: translateY(-0.2px);
+    }
+
+    23% {
+        transform: translateY(0.1px);
+    }
+
+    24% {
+        transform: translateY(-0.05px);
+    }
+
+    25% {
+        transform: translateY(0.02px);
+    }
+
+    26% {
+        transform: translateY(0);
+    }
+
+
+    48% {
+        transform: translateY(0.01px);
+    }
+
+    49% {
+        transform: translateY(-0.005px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    51% {
+        transform: translateY(0.005px);
+    }
+
+    52% {
+        transform: translateY(0);
+    }
+
+
+
+    64% {
+        transform: translateY(-0.01px);
+    }
+
+    65% {
+        transform: translateY(0.005px);
+    }
+
+    66% {
+        transform: translateY(0);
+    }
+
+
+    88% {
+        transform: translateY(1.85px);
+        opacity: 0.96;
+    }
+
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

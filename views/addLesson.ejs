@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Lessons</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <%- include("./partials/header.ejs")%>
+  <style>
+    .descp {
+      text-indent: 2em;
+      margin: 0 2em;
+    }
+
+    .rectangle-141 {
+      background-color: white;
+      border-radius: 0.75em;
+      box-shadow: 0em 0.75em 1.5em -0.25em #919eab1f, 0em 0em 0.125em #919eab33;
+      height: 14.6875em;
+      left: 4.6875em;
+      top: 37.3125em;
+      width: 39.125em;
+      width: 75%;
+      margin: 2em 2em;
+    }
+
+    .home-div,
+    .a-home {
+      color: #999999 !important;
+    }
+
+    .above-nav {
+      background-color: #dde6ed33;
+    }
+
+    .status-a {
+      color: #404258 !important;
+    }
+
+    .list-lesson-p {
+      color: #8A2BE2;
+
+    }
+
+    .list-lesson-p-span {
+      color: #4B0082;
+    }
+
+    .each-lesson {
+      border-top: 0.1em solid #8A2BE2;
+
+    }
+
+    .aside-right {
+      background-color: #dde6ed1a;
+      height: 100%;
+    }
+
+    .manange-bar {
+      border-radius: 1em;
+      justify-content: space-between !important;
+    }
+
+    .add-button {
+      border-radius: 0.5em !important;
+      width: 20%;
+
+    }
+
+    .main-content {
+      height: 100%;
+    }
+
+    .lesson-content {
+      height: 100%;
+      border-radius: 1em !important;
+
+      justify-content: center !important;
+      border-top: 0.5em solid #8A2BE2;
+    }
+
+    .lesson-nothing {
+      margin: 25% 0 !important;
+      padding: 0 !important;
+    }
+
+    .add-lesson-btn {
+      float: none !important;
+      width: auto;
+    }
+
+    input[type=file] {
+      border: 1px solid #ced4da;
+      border-radius: 0.5em;
+
+    }
+
+    input[type=file]::file-selector-button {
+      margin-right: 1em;
+      border-top: none;
+      border-left: none;
+      border-bottom: none;
+      border-right: 1px solid #ced4da;
+      ;
+      background: white;
+      padding: 0.5em 1em;
+      border-radius: 0.5em;
+      color: #084cdf;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+
+    }
+
+    input[type=file]::file-selector-button:hover {
+      background: #0d45a5;
+      color: white;
+    }
+
+    .img-input::placeholder {
+      color: #ced4da !important;
+    }
+
+  </style>
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs")%>
+  <!-- <div class="above-nav d-flex px-4 py-3">
+    <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+      <i class="bi bi-house mx-2"></i>
+      <a href="/adminIndex" class="a-home">
+        <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+      </a>
+    </div>
+
+    <a href="#" class="status-a mx-2 my-0 align-middle">
+      <p class="m-0">บทเรียน</p>
+    </a>
+
+  </div> -->
+  <div class="main-content d-flex h-auto">
+    <% const pageName = "addLesson" %>
+    <%- include("./partials/lessonsList.ejs", { pageName: pageName })%>
+    <div class="aside-right w-75 h-auto p-4 bg-white">
+      <div class="manange-bar p-3 bg-white d-flex w-100">
+        <p class="fw-bold fs-3">เพิ่มบทเรียน</p>
+        <a href="/adminIndex/adminLessonIndex" class="add-button btn btn-primary m-0 p-2">
+          ยกเลิกการเพิ่ม<i class="bi bi-x-circle-fill mx-2"></i>
+        </a>
+      </div>
+      <div class="lesson-content p-4 bg-white w-100 my-4" style="height: auto;">
+        <form action="/adminIndex/createLayout" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="select" class="form-label">ปีการศึกษา:</label>
+            <input type="text" list="script" class="form-control p-3 w-25" value="<%=schoolYearId %>" name="schoolYear" placeholder="ตัวเลข 4 หลัก" pattern="\d{4}" title="กรุณากรอกตัวเลข 4 ตัวอักษร" required>
+            <datalist id="script">
+              <% schoolYears.forEach (year => {%>
+              <option value="<%= year.schoolYear%>"></option>
+              <% });%>
+            </datalist>
+            <div id="scriptData" class="form-text my-1 w-50"><span class="text-primary">* </span>ปีการศึกษาที่กรอกมีผลต่อ<span class="text-danger"> การเข้าถึงบทเรียน </span>ของนักศึกษา หากปีการศึกษาของ
+              <span class="text-primary"> นักศึกษา</span> และ <span class="text-primary">บทเรียน </span>ไม่ตรงกัน นักศึกษาจะไม่สามารถเข้าถึงบทเรียนในปีการศึกษานั้น ๆ ได้</div>
+
+          </div>
+          <div class="mb-3">
+            <label for="lessonName" class="form-label">ชื่อบทเรียน:</label>
+            <input type="text" class="form-control p-3 w-50" name="lessonName" placeholder="กรอกชื่อบทเรียน" required>
+          </div>
+          <div class="mb-3">
+            <label for="LessonImage" class="form-label">รูปภาพหน้าปก:</label><br>
+            <input type="file" class="w-50 img-input" style="background-color: white !important;" name="LessonImage" accept="image/*">
+            <div id="emailHelp" class="form-text my-1"><span class="text-primary">* </span>ไม่ต้องทำการอัปโหลดรูปภาพ หากไม่มีรูปภาพที่ต้องการใช้</div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="add-lesson-btn btn btn-primary py-2 px-3 shadow">
+              <span>ถัดไป</span><i class="bi bi-arrow-right mx-2"></i>
+              </i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+  </div>
+  <%- include("./partials/footer.ejs")%>
+
+
+
+</body>
+
+</html>

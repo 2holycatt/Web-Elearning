@@ -1,0 +1,265 @@
+<!-- bootstrap -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/globals.css">
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<!-- <style>
+  .element-student {
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the bottom of the page */
+    width: 100%;
+    /* Full width */
+  }
+
+  /* Main content */
+</style> -->
+<!-- <nav>
+  <div class="element-student">
+    <div class="overlap-3"> -->
+<!-- <div class="group-4">
+      <div class="overlap-4">
+        <div class="text-wrapper-28">ค้นหาบทเรียน....</div>
+        <img class="vector" src="/images/indexMed/vector.svg" />
+      <img class="vector" src="images/indexMed/vector.svg" /> 
+      </div>
+      <img class="img" src="/images/indexMed/vector-1.png" />
+      <img class="img" src="images/indexMed/vector-1.png" /> 
+    </div> -->
+<!-- <a href="/adminIndex" class="text-wrapper-29">หน้าหลัก</a>
+    <a href="/adminIndex/adminLessonIndex" class="text-wrapper-30">ห้องเรียน</a>
+    <a href="/adminIndex/adminExamsIndex" class="text-wrapper-31">แบบทดสอบ</a>
+    <a href="/adminIndex/manageStudent" class="text-wrapper-32">ข้อมูลนักศึกษา</a> -->
+<!-- <img class="moon-symbol" src="/images/indexMed/moon-symbol.png" /> -->
+<!-- <img class="DENTISTRY-KKU" src="/images/indexMed/dentistry-kku-1.png" />
+    </div>
+  </div>
+</nav> -->
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> -->
+<style>
+  .main-nav {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* background-color: #F4F6FF ; */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    /* border-bottom: 0.25em solid #8A2BE2; */
+    border-bottom: 1px solid #EAEFF4;
+    box-sizing: border-box;
+    align-items: center !important;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.899);
+    backdrop-filter: blur(1em);
+
+  }
+
+  .img-lo {
+    margin-left: 2em !important;
+  }
+
+  .sub-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ul-nav {
+    display: flex;
+    align-items: center !important;
+    list-style-type: none;
+    text-decoration: none;
+    color: #5A6A85 !important;
+
+  }
+
+
+  .li-a {
+    margin-right: 1em !important;
+    color: #5A6A85 !important;
+
+
+  }
+
+  .logo-a {
+    height: fit-content;
+    width: 25%;
+  }
+
+  .a-li {
+    text-decoration: none;
+    color: #5A6A85 !important;
+
+  }
+
+  .down-bi {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+  }
+
+  .show-drop:hover .dropdown {
+    display: block;
+    position: absolute;
+    list-style: none;
+    text-decoration: none !important;
+    border-radius: 0.5em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+    background-color: white;
+    padding: 0.5em 1em !important;
+  }
+
+  .a-li:hover {
+    color: #8A2BE2 !important;
+    transform: scale(1.1) !important;
+    transition: 0.3s;
+  }
+
+  .logo-a,
+  .a-li {
+    transition-duration: 0.3s;
+  }
+
+  .logo-a:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+
+  .drop-li:hover .drop-li,
+  .drop-li:hover .a-li {
+    transform: scale(1.05) !important;
+    transition: 0.3s;
+  }
+
+  .search-input {
+    border-radius: 0.5em;
+    border: 1px solid #8A2BE2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+    color: #5A6A85;
+
+
+  }
+
+  .search-input:hover {
+    cursor: pointer;
+  }
+
+  .search-input::placeholder {
+    color: #5A6A85;
+  }
+
+  .in-sub-div-2 {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .bi-moon-fill {
+    color: #8A2BE2;
+  }
+
+  .search-button {
+    border: 1px solid #8A2BE2;
+    color: #8A2BE2;
+
+    background-color: white;
+    margin-left: 0.5em !important;
+    border-radius: 0.5em;
+    transition-duration: 0.3s;
+  }
+
+  .search-button:hover {
+    background-color: #8A2BE2;
+    color: white;
+    transition: 0.3s;
+
+  }
+</style>
+<div class="nav main-nav">
+  <div class="d-flex ">
+    <a href="/adminIndex" class="logo-a d-flex justify-content-between">
+      <img style="width: 40%;" class="img-lo h-auto my-2" src="/images/indexMed/DENTISTRY_KKU.svg.png" />
+    </a>
+    <ul class="ul-nav">
+      <li class="li-a a-li"><a href="" class="a-li">หน้าหลัก</a></li>
+      <li class="li-a show-drop"><a href="/adminIndex" class="a-li d-flex">ห้องเรียน <i class="bi bi-chevron-down mx-1"></i>
+          </i></a>
+        <ul class="dropdown">
+          <!-- <a href="/adminIndex" class="text-wrapper-29">หน้าหลัก</a>
+    <a href="/adminIndex/adminLessonIndex" class="text-wrapper-30">ห้องเรียน</a>
+    <a href="/adminIndex/adminExamsIndex" class="text-wrapper-31">แบบทดสอบ</a>
+    <a href="/adminIndex/manageStudent" class="text-wrapper-32">ข้อมูลนักศึกษา</a> -->
+          <li class="drop-li my-1"><a class="a-li" href="/adminIndex/adminLessonIndex">บทเรียน</a></li>
+          <li class="drop-li my-1"><a class="a-li" href="/adminIndex/adminAssignment">งานที่มอบหมาย</a></li>
+          <li class="drop-li my-1"><a class="a-li" href="/adminIndex/adminExamsIndex">แบบทดสอบ</a></li>
+        </ul>
+      </li>
+      <li class="li-a show-drop"><a href="/adminIndex/manageStudent" class="a-li d-flex">จัดการข้อมูลนักศึกษา <i class="bi bi-chevron-down mx-1"></i></a>
+        <ul class="dropdown">
+          <!-- <a href="/adminIndex/manageStudent" class="text-wrapper-32">ข้อมูลนักศึกษา</a> -->
+
+          <li class="drop-li my-1"><a class="a-li" href="#">แดชบอร์ด (Dashboard)</a></li>
+          <li class="drop-li my-1"><a class="a-li" href="/adminIndex/uploadStudent">รายชื่อนักศึกษา</a></li>
+          <li class="drop-li my-1"><a class="a-li" href="#">การเข้าใช้งาน (Logs file)</a></li>
+          <li class="drop-li my-1"><a class="a-li" href="#">การกำหนดสิทธิ์</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+  </div>
+  <div class="in-sub-div-2 d-flex justify-content-between">
+    <div class="mx-5 d-flex">
+      <i class="bi bi-moon-fill mx-2"></i>
+      <p>Dark theme</p>
+    </div>
+    <form action="" class="d-flex">
+      <input class="px-2 py-2 search-input" type="text" placeholder="ค้นหา">
+      <button type="submit" class="search-button px-3 py-2">ค้นหา</button>
+    </form>
+    <!-- <i class="bi bi-person-circle fs-1 mx-5 text-primary"></i> -->
+    <a href="/logout" class="text-primary">
+      ออกจากระบบ
+    </a>
+  </div>
+</div>

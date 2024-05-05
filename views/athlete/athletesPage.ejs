@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/header.ejs")%>
+    <%- include("../partials/nav.ejs")%>
+    <style>
+        .athlete-contain{
+            padding: 1em 5em;
+        }
+        .athlete-list{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: center;
+            place-items: center;
+            
+        }.athlete-item{
+            width: fit-content;
+            text-align: center;
+        }
+        .athlete-item img{
+            display: block;
+            object-fit: cover;
+            width: 13em;
+            height: 15em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="athlete-contain mt-4">
+        <h1 class="mb-5">Athletes</h1>
+        <div class="athlete-list">
+        <%if(athletesData.length==0){%>
+            <p>ไม่มีข้อมูลนักกีฬา</p>
+        <%}else{
+            athletesData.forEach(athlete => {%>
+                <% if (athlete.confirmed) { %>
+                    <%
+                   let athleteImg = (athlete.user.img)? athlete.user.img:"avartar.png"
+                    %>
+                <div class="athlete-item">
+                    <img id="<%=athlete._id%>" class="athlete" src="/images/profile/<%= athleteImg%>" alt="<%= athlete.nickname%>">
+                    <h4 class="mt-2"><%= athlete.nickname%></h4>
+                    <p class="mt-1"><%= athlete.country%></p>
+                <% } %>
+            <%})
+        }%>
+        </div>
+
+    </div>
+
+
+    <script>
+        let athlete = document.querySelectorAll('.athlete')
+        console.log(athlete);
+        athlete.forEach(e => {
+            e.addEventListener('click', ()=>{
+                const encodedId = encodeURIComponent(e.id);
+                console.log("Encoded ID:", encodedId);
+                window.location.href = `/athletes/find/${encodedId}`
+            })
+        });
+    </script>
+</body>
+</html>

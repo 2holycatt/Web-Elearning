@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Lessons</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <%- include("./partials/header.ejs")%>
+
+  <style>
+    * {
+      box-sizing: border-box !important;
+    }
+
+    .card-1,
+    .card-body-1 {
+
+      border: none !important;
+
+    }
+
+    .descp {
+      text-indent: 2em;
+      margin: 0 2em;
+    }
+
+
+    .rectangle-141 {
+      background-color: white;
+      border-radius: 0.75em;
+      box-shadow: 0em 0.75em 1.5em -0.25em #919eab1f, 0em 0em 0.125em #919eab33;
+      height: 14.6875em;
+      left: 4.6875em;
+      top: 37.3125em;
+      width: 39.125em;
+      width: 75%;
+      margin: 2em 2em;
+    }
+
+    .home-div,
+    .a-home {
+      color: #999999 !important;
+    }
+
+    .above-nav {
+      background-color: white !important;
+      border-bottom: 1px solid #999999;
+    }
+
+    .status-a {
+      color: #404258 !important;
+    }
+
+    .list-lesson-p {
+      color: #8A2BE2;
+
+    }
+
+    .list-lesson-p-span {
+      color: #4B0082;
+    }
+
+    .each-lesson {
+      border-top: 0.1em solid #8A2BE2;
+    }
+
+    /* .each-lesson-a {
+      border-top: 0.1em solid #8A2BE2;
+    } */
+
+    .aside-right {
+      background-color: #dde6ed1a;
+      height: 100%;
+    }
+
+    .manange-bar {
+      border-radius: 0.5em;
+      justify-content: space-between !important;
+    }
+
+    .add-button {
+      border-radius: 0.5em !important;
+      width: 20% !important;
+      height: auto !important;
+
+    }
+
+    .lesson-content {
+      height: fit-content !important;
+      border-radius: 1em !important;
+
+      justify-content: center !important;
+      /* border-top: 0.5em solid #8A2BE2; */
+    }
+
+    .lesson-nothing {
+      margin: 25% 0 !important;
+      padding: 0 !important;
+    }
+
+    .each-lesson-a {
+      text-decoration: none !important;
+    }
+
+    .each-lesson-a:hover .each-lesson {
+      border-left: 0.2em solid #8A2BE2 !important;
+      /* background-color: #404258 !important; */
+    }
+
+    .card-img-top {
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important;
+    }
+
+    .setColumn {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+
+    .card-a {
+      text-decoration: none !important;
+
+    }
+
+    .card-a:hover,
+    .card-a:hover .p-lesson-name {
+      color: #007bff !important;
+      transition: 0.5s;
+    }
+
+    .card-a:hover .bi-book {
+      color: #007bff !important;
+      transition: color 0.5s;
+    }
+
+    .bi-book-fill {
+      display: none;
+    }
+
+    .card-a:hover .bi-book-fill {
+      display: inline-block !important;
+      transition: 0.5s;
+    }
+
+    .card-a:hover .bi-book {
+      display: none;
+      transition: 0.5s;
+    }
+
+    .manange-bar,
+    .lesson-content {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+      border-radius: 0.5em;
+    }
+
+    .card-1 {
+      width: 90% !important;
+      height: fit-content !important;
+      transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+      cursor: pointer;
+      border-radius: 0.5em;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+
+    }
+
+    .card-1:hover {
+      transform: scale(1.05);
+    }
+
+    .card-header {
+      border-right: 1px solid #EAEFF4;
+      border-bottom: 1px solid #EAEFF4;
+
+    }
+
+    .a-list-1,
+    .bi-1 {
+      color: #8A2BE2 !important;
+    }
+
+
+    #yearSelector {
+      border-color: #EAEFF4;
+      border-radius: 0.5em;
+      background-color: white !important;
+      font-size: smaller;
+      padding: 0.5em !important;
+    }
+
+    #yearSelector option {
+      color: #404258;
+      background-color: white !important;
+
+    }
+
+    /* .set-border {
+      border-bottom: 1px solid #EAEFF4;
+      padding-bottom: 1em !important;
+
+    } */
+
+    .set-border-bottom {
+      border-bottom: 1px solid #EAEFF4;
+      margin-bottom: 1em !important;
+      display: flex;
+      align-items: center;
+
+    }
+
+    .set-align {
+      display: flex;
+      align-items: center;
+      margin: 0 0.5em !important;
+    }
+
+    .lesson-bar {
+      border-left: 0.25em solid #007bff !important;
+      padding-left: 0.5em !important;
+      margin-right: 0.5em !important;
+
+    }
+
+
+    .aside-right {
+      position: relative;
+      float: none;
+    }
+
+    .float-btn {
+      position: sticky;
+      bottom: 5em;
+      /* left: 10px; */
+      z-index: 100;
+      left: 3em;
+      margin-right: 1em !important;
+      align-items: center;
+      width: auto;
+      background-color: #404258e1;
+      backdrop-filter: blur(0.5em);
+      border-radius: 0.5em;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+
+      /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
+      /* border: 1px solid #6f6f6f; */
+      /* backdrop-filter: blur(0.2em); */
+      /* max-width: 13em; */
+    }
+
+    .custom-title-class2 {
+      /* padding: 1em !important; */
+      margin: 2em !important;
+      color: #404258;
+      /* ปรับค่า padding ตามต้องการ */
+    }
+
+    .custom-container-class2 {
+      padding: 2em !important;
+      /* ปรับค่า padding ตามต้องการ */
+    }
+
+    .custom-icon-class2 {
+      margin: 1em auto !important;
+
+    }
+
+    .custom-popup-class {
+      width: fit-content;
+      height: fit-content;
+      padding: 1em !important;
+    }
+
+    .custom-footer-class {
+      padding: 2em auto !important;
+    }
+
+    /* .float-btn div {
+      
+    } */
+  </style>
+
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs")%>
+  <!-- <div class="above-nav d-flex px-4 py-3">
+    <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+      <i class="bi bi-house mx-2"></i>
+      <a href="/adminIndex" class="a-home">
+        <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+      </a>
+    </div>
+    <a href="#" class="status-a mx-2 my-0 align-middle">
+      <p class="m-0">บทเรียน</p>
+    </a>
+  </div> -->
+  <div class="main-content d-flex">
+    <% const pageName = "adminLessonIndex" %>
+    <%- include("./partials/lessonsList.ejs", { pageName: pageName })%>
+    <!-- <div style="width: 20%;"><p class="w-100">&nbsp;</p></div> -->
+    <div class="aside-right bg-white h-auto p-4" style="width: 80%;">
+      <div class="manange-bar px-4 py-3 bg-white d-flex w-100">
+        <p class="fw-bold fs-3 lesson-bar">เพิ่มบทเรียนด้วยการคัดลอก</p>
+        <div>
+          <a href="/adminIndex/addLesson" class="btn btn-primary m-0 p-2">
+            เพิ่มบทเรียน<i class="bi bi-plus-circle-fill mx-2"></i>
+          </a>
+          <a href="/adminIndex/copyLessons" class="btn btn-secondary m-0 p-2" disabled>
+            เพิ่มบทเรียนด้วยการคัดลอก <i class="bi bi-copy mx-2"></i>
+          </a>
+        </div>
+      </div>
+      <!-- <div class="lesson-content p-4 bg-white w-100 my-4">
+        <p class="lesson-nothing text-center">ยังไม่มีข้อมูลจากบทเรียน
+          <br>โปรดเลือกบทเรียนที่มีอยู่ในรายชื่อหากต้องดูข้อมูลและจัดการ
+        </p>
+      </div> -->
+
+      <div class="lesson-content p-4 bg-white w-100 my-4">
+        <!-- <p class="lesson-nothing text-center">ยังไม่มีข้อมูลจากบทเรียน
+          <br>โปรดเลือกบทเรียนที่มีอยู่ในรายชื่อหากต้องดูข้อมูลและจัดการ
+        </p> -->
+        <div class="d-flex">
+          <div class="set-border d-flex">
+            <p class="fw-bold fs-5 my-1 mx-2" style="border-left: 0.25em solid #387bef; padding-left: 0.75em !important;">ปีการศึกษาต่าง ๆ</p>
+            <!-- <div class="d-flex justify-content-center" style="align-items: center;">
+              <label class="mx-2" for="yearSelector">ปีการศึกษา: </label>
+              <select id="yearSelector">
+                <option value="all">ทั้งหมด</option>
+                <% schoolYears.forEach (year => {%>
+                <option value="<%= year.schoolYear%>"><%=year.schoolYear%></option>
+                <% });%>
+              </select>
+            </div> -->
+          </div>
+        </div>
+        <p class="mx-3 my-2 text-secondary"><i class="bi bi-exclamation-circle text-primary"></i>
+          ทำการเลือกปีการศึกษาที่ต้องการจะคัดลอก โดยมีขั้นตอนดังนี้ <br>
+          1. เลือกปีการศึกษาแรกที่ต้องการจะคัดลอก <br>
+          2. เลือกปีการศึกษาที่สองที่ต้องการเพิ่มบทเรียนจากปีการศึกษาแรกที่ถูกคัดลอก<br>
+        </p>
+        <p class="mx-3 text-warning fw-bold">ข้อควรระวัง: <span class="fw-normal text-secondary">ปีการศึกษาที่ถูกคัดลอก จะต้องมีบทเรียนก่อน ถึงจะทำการคัดลอกได้</span> </p>
+        <form action="/adminIndex/copyLessons" method="post" id="copyForm">
+
+          <% if (lessons.length > 0 || lessons.length < 1) { %>
+          <div class="px-3 my-3">
+            <% schoolYears.forEach ((year, index) => {%>
+            <div class="showYear show<%=year.schoolYear%>" data-aos="fade-left" data-aos-duration="1000">
+              <% if (year.lessonArray.length > 0) { %>
+              <div class="set-border-bottom">
+                <p class="my-2 p-schoolYear"><span class="text-dark fw-bold">ปีการศึกษา:</span><span class="text-primary allYear year<%=index+1%>"> <%=year.schoolYear%></span></p>
+                <div class="form-check form-switch set-align">
+                  <p>เลือกปีการศึกษานี้: </p>
+                  <input class="form-check-input hasLessons mx-2" type="checkbox" name="checkbox<%=index+1%>" value="<%=year._id%>" role="switch" id="flexSwitchCheckDefault">
+                  <label class="form-check-label p-has text-success" for="flexSwitchCheckDefault"></label>
+                </div>
+              </div>
+              <% } else if (year.lessonArray.length < 1) {%>
+              <div class="set-border-bottom">
+                <p class="my-2 p-schoolYear"><span class="text-dark fw-bold">ปีการศึกษา:</span><span class="text-primary "> <%=year.schoolYear%></span></p>
+                <div class="form-check form-switch set-align">
+                  <p>เลือกปีการศึกษานี้: </p>
+                  <input class="form-check-input noLessons mx-2" type="checkbox" name="noLessons<%=index+1%>" value="<%=year._id%>" role="switch" id="flexSwitchCheckDefault">
+                  <label class="form-check-label p-no text-success" for="flexSwitchCheckDefault"></label>
+
+                </div>
+              </div>
+              <%}%>
+            <div class="setColumn">
+              <% if (year.lessonArray.length > 0) {%>
+              <% lessons.forEach(lesson => { %>
+              <% if (lesson.LessonImage && lesson.LessonImage.data && (year.schoolYear == lesson.schoolYear.schoolYear) ) { %>
+              <a href="/adminIndex/eachLessons?lessonId=<%= lesson._id %>">
+                <div class="card-1 text-bg-white mb-3" style="max-width: 15.125em; max-height: 8.8125em ; position: relative;">
+                  <div class="card-header bg-white px-2 py-1 fw-bold text-primary" style="width: fit-content; border-bottom-right-radius:0.5em; position: absolute;">
+                    <%= lesson.LessonName %>
+                  </div>
+                  <div class="card-body-1">
+                    <img src="data:<%= lesson.LessonImage.contentType %>;base64,<%= lesson.LessonImage.data.toString('base64') %>" alt="<%= lesson.LessonName %>" class="card-img" alt="รูปของบทเรียน" style="width: 100%; height: 20%; max-width: 15.125em; max-height: 8.8125em; border-radius: 0.5em;">
+                    <!-- /* <img src="/images/indexMed/DENTISTRY_KKU.svg.png" class="card-img" alt="รูปของบทเรียน" style="height: 100%; width: 50%; object-fit: cover;"> */ -->
+                  </div>
+                </div>
+              </a>
+              <% } else if (year.schoolYear == lesson.schoolYear.schoolYear) { %>
+              <a href="/adminIndex/eachLessons?lessonId=<%= lesson._id %>">
+                <div class="card-1 text-bg-white mb-4" style="max-width: 15.125em; max-height: 8.8125em ; position: relative;">
+                  <div class="card-header bg-white px-2 py-1 fw-bold text-primary" style="width: fit-content; border-bottom-right-radius: 0.5em; position: absolute; ">
+                    <%= lesson.LessonName %>
+                  </div>
+                  <div class="card-body-1 d-flex justify-content-center p-4">
+                    <img src="/images/indexMed/DENTISTRY_KKU.svg.png" class="card-img" alt="รูปของบทเรียน" style="height: 100%; width: 50%; object-fit: cover; max-width: 15.125em; max-height: 8.8125em ;">
+                  </div>
+                </div>
+              </a>
+              <% } %>
+              <% }); %>
+              <% } else if (year.lessonArray.length < 1) {%>
+              <p class="showYear show<%=year.schoolYear%> mb-2">ไม่พบบทเรียนในระบบของปีการศึกษา:<span> <%= year.schoolYear%></span>
+              </p>
+              <% } %>
+            </div>
+          </div>
+          <% });%>
+      </div>
+      <% } %>
+      <div class="float-btn d-flex justify-content-between">
+        <p class="fs-6 text-white my-1 mx-3"><span class="text-warning fw-bold"><i class="bi bi-exclamation-circle mx-2"></i>โปรดทราบ: </span>ต้องเลือกปีการศึกษาให้ครบ 2 ปีการศึกษา จึงจะสามารถบันทึกได้</p>
+        <div class="p-2 d-flex" style="height: fit-content !important; align-items: center;">
+          <!-- <p class="fs-6 text-white my-2">ปีการศึกษาที่ 1: <span class="yeartext1"></span></p>
+        <p class="fs-6 text-white my-2">ปีการศึกษาที่ 2: <span class="yeartext2"></span></p> -->
+          <button class="submit-form btn btn-success py-2 px-2" type="submit" disabled>บันทึกการคัดลอก <i class="bi bi-copy mx-2"></i></button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <%- include("./partials/footer.ejs")%>
+  <script>
+    const checkbox = document.querySelectorAll('.form-check-input');
+    const year = document.querySelectorAll('.allYear');
+    const submitBtn = document.querySelector('.submit-form')
+    const checkboxArray = Array.from(checkbox);
+
+    let countTimes = 0;
+    const maxCount = 2;
+
+    checkboxArray.forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        // ตรวจสอบว่า checkbox ถูกคลิกหรือไม่
+        if (checkbox.checked && checkbox.name.startsWith('noLessons') && (countTimes == 0)) {
+          checkbox.checked = false;
+          // console.log(countTimes);
+          Swal.fire({
+            icon: "warning",
+            position: 'middle',
+            text: "ปีการศึกษาแรกที่เลือกต้องมีบทเรียนในปีการศึกษาก่อน",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+              container: 'custom-container-class2',
+              text: 'custom-title-class2',
+              icon: 'custom-icon-class2',
+              popup: 'custom-popup-class',
+            },
+          });
+        } else if (checkbox.checked && checkbox.name.startsWith('checkbox')) {
+          countTimes++;
+          // console.log(countTimes);
+
+          // ตรวจสอบว่า countTimes มากกว่า maxCount หรือไม่
+          if (countTimes > maxCount) {
+            Swal.fire({
+              icon: "warning",
+              position: 'middle',
+              text: "สามารถเลือกปีการศึกษาได้สูงสุดแค่ 2 ครั้งเท่านั้น",
+              showConfirmButton: false,
+              timer: 2000,
+              customClass: {
+                container: 'custom-container-class2',
+                text: 'custom-title-class2',
+                icon: 'custom-icon-class2',
+                popup: 'custom-popup-class',
+              },
+            });
+            countTimes--;
+
+            checkbox.checked = false;
+          }
+
+        } else if (!checkbox.checked && checkbox.name.startsWith('checkbox')) {
+          countTimes--;
+          console.log(countTimes);
+
+        } else if (checkbox.checked && checkbox.name.startsWith('noLessons') && (countTimes > 0)) {
+          countTimes++;
+          console.log(countTimes);
+
+          // ตรวจสอบว่า countTimes มากกว่า maxCount หรือไม่
+          if (countTimes > maxCount) {
+            // alert(`จำนวน checkbox ที่เลือก มากกว่า ${maxCount}`);
+            Swal.fire({
+              icon: "warning",
+              position: 'middle',
+              text: "สามารถเลือกปีการศึกษาได้สูงสุดแค่ 2 ครั้งเท่านั้น",
+              showConfirmButton: false,
+              timer: 2000,
+              customClass: {
+                container: 'custom-container-class2',
+                text: 'custom-title-class2',
+                icon: 'custom-icon-class2',
+                popup: 'custom-popup-class',
+              },
+            });
+            countTimes--;
+
+            checkbox.checked = false;
+          }
+
+        } else if (!checkbox.checked && checkbox.name.startsWith('noLessons') && (countTimes > 0)) {
+          countTimes--;
+          console.log(countTimes);
+        }
+
+        if (countTimes == maxCount) {
+          submitBtn.removeAttribute('disabled');
+        } else {
+          submitBtn.setAttribute('disabled', true);
+        }
+
+      });
+    });
+
+    // document.getElementsByClassName('.submit-forim').addEventListener('click', function(event) {
+    //   // แสดง Swal ก่อนที่ฟอร์มจะถูกส่ง
+    //   let timerInterval;
+    //   Swal.fire({
+    //     icon: "info",
+    //     html: "ระบบกำลังทำการคัดลอกบทเรียน",
+    //     timer: 4000,
+    //     timerProgressBar: true,
+    //     customClass: {
+    //       container: 'custom-container-class2',
+    //       text: 'custom-title-class2',
+    //       icon: 'custom-icon-class2',
+    //       popup: 'custom-popup-class',
+    //     },
+    //     didOpen: () => {
+    //       Swal.showLoading();
+    //       const timer = Swal.getPopup().querySelector("b");
+    //       timerInterval = setInterval(() => {
+    //         timer.textContent = `${Swal.getTimerLeft()}`;
+    //       }, 100);
+    //     },
+    //     willClose: () => {
+    //       clearInterval(timerInterval);
+    //     }
+    //   }).then((result) => {
+    //     // แสดง Swal เมื่อคัดลอกบทเรียนเสร็จสิ้น
+    //     Swal.fire({
+    //         icon: "success",
+    //         position: 'middle',
+    //         text: "คัดลอกบทเรียนเสร็จสิ้น",
+    //         showConfirmButton: false,
+    //         timer: 2000,
+    //         customClass: {
+    //           container: 'custom-container-class2',
+    //           text: 'custom-title-class2',
+    //           icon: 'custom-icon-class2',
+    //           popup: 'custom-popup-class',
+    //         }
+    //       }),
+    //       setTimeout(function() {
+    //         submitForm();
+    //       }, 1000);
+
+    //   });
+
+    //   function submitForm() {
+    //     // ส่งฟอร์ม
+    //     document.getElementById('copyForm').submit();
+    //   }
+
+    // });
+  </script>
+  <script>
+    AOS.init();
+  </script>
+
+
+</body>
+
+
+</html>

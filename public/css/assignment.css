@@ -1,0 +1,200 @@
+.add-button {
+    width: fit-content !important;
+}
+
+.list-header {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important;
+}
+
+.p-header-1,
+.p-header-2 {
+    border-right: 1px solid #999999 !important;
+}
+
+.p-header-4 {
+    border-left: 1px solid #999999 !important;
+}
+
+.student-list {
+    border-bottom: 1px solid #cdcdcd !important;
+    color: #898989 !important;
+}
+
+.email-p {
+    font-size: smaller !important;
+}
+
+.link-list {
+    text-decoration: none !important;
+}
+
+.link-list:hover .student-list {
+    color: black !important;
+    transition: 0.3s;
+}
+
+.setRight {
+    border-right: 1px solid #cdcdcd;
+}
+.addContent-a {
+    text-decoration: none !important;
+    transition-duration: 0.3s;
+}
+
+.addContent-a:hover {
+    color: #0d57d6 !important;
+    transition: 0.3s;
+}
+
+.lesson-bar {
+    border-left: 0.25em solid #007bff !important;
+    padding-left: 0.5em !important;
+    margin-right: 0.5em !important;
+
+}
+
+input[type=file] {
+    border: 1px solid #ced4da;
+    border-radius: 0.5em;
+
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 1em;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    border-right: 1px solid #ced4da;
+    background: white;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    color: #084cdf;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+    color: white;
+}
+
+.file-input::placeholder {
+    color: #ced4da !important;
+}
+
+.setWidth70 {
+    width: 70% !important;
+}
+
+.list-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    color: #7C8FAC;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #EAEFF4;
+    margin-top: 1em !important;
+
+
+}
+
+.list-div-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding-top: 1em;
+    border-bottom: 1px solid #EAEFF4;
+
+}
+
+.data-a {
+    text-decoration: none;
+    color: #212529ab;
+
+}
+
+.data-a:hover .staus-p,
+.data-a:hover,
+.data-a:hover p {
+    color: #0f4eba !important;
+}
+
+.list-no-assign {
+    border-bottom: 1px solid #EAEFF4;
+
+}
+
+.assign-head, .desDiv {
+    padding-bottom: 0.5em !important;
+    border-bottom: 1px solid #EAEFF4;
+
+}
+    
+.descriptionText{
+    /* border-top: none;
+    border-left: none;
+    border-right: none; */
+    border:none;
+    text-indent: 0 !important;
+    background-color: white !important;
+}
+
+.fileRowRight {
+    border-top-left-radius: 0.5em !important;
+
+}
+
+.fileRowLeft {
+    border-top-right-radius: 0.5em !important;
+
+}
+
+.file-a, .file-a-2 {
+    font-size: small;
+    text-align: center !important;
+    color: #7C8FAC;
+    margin-bottom: 0.5em !important;
+    
+}
+
+.delFile:hover {
+    color: rgb(119, 0, 0) !important;
+    transition: 0.3s;
+}
+
+.delFile:hover .file-a-2 {
+    color: rgb(119, 0, 0) !important;
+    transition: 0.3s;
+}
+
+
+.file-a-2 {
+    cursor:default;
+}
+
+.file-a:hover {
+    color: #007bff;
+    transition: 0.3s;
+
+}
+
+.docxCol, .imageCol {
+    border-right: 1px solid #ced4da  ;
+    border-bottom: 1px solid #ced4da  ;
+
+}
+.imageCol {
+    border-bottom-right-radius: 0.5em;
+}
+.pdfCol {
+    border-left: 1px solid #ced4da  ;
+    border-right: 1px solid #ced4da  ;
+    border-bottom: 1px solid #ced4da  ;
+    border-bottom-left-radius: 0.5em;
+}
+
+.pdfEdit, .ImgEdit, .docxEdit {
+    border-bottom: 1px solid #ced4da  ;
+    padding-bottom: 0.5em !important;
+
+}
+

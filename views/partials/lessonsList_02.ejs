@@ -1,0 +1,101 @@
+<style>
+  .each-lesson-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .small-text {
+    font-size: small !important;
+    width: 40% !important;
+    margin: 0 0 !important;
+
+  }
+
+  .each-lesson-a:hover {
+    /* เพิ่ม .each-lesson-a:focus */
+    border-left: 0.2em solid #8A2BE2 !important;
+    /* background-color: #404258 !important; */
+  }
+
+  .each-lesson-a:hover .hide-button {
+    display: block !important;
+    cursor: pointer;
+  }
+  
+  .above-nav-status{
+    border-right: 1px solid #EAEFF4;
+    height: auto !important;
+    overflow: hidden;
+    left: 0;
+  }
+
+
+.bold-menus{
+  border-left: 0.25em solid #8A2BE2;
+  padding-left: 0.75em !important;
+
+}
+
+.menues-sub,
+.a-list-1, .a-list-2, .a-list-3{
+  text-decoration: none;
+  color: #5A6A85 !important;
+  transition-duration: 0.3s;
+}
+
+.menues-sub:hover{
+  color: #8A2BE2 !important;
+  transition: 0.3s;
+}
+
+.a-list-1:hover, .a-list-2:hover, .a-list-3:hover {
+  color: #8A2BE2 !important;
+  transition: 0.3s;
+
+}
+
+</style>
+<div class="above-nav-status w-25 p-4" style="width: 20%;">
+  <p class="fs-6 fw-bold bold-menus" style="margin-bottom: 1em !important;">
+    ห้องเรียน
+  </p>
+  <div class="menues">
+    <p class="menues-sub fs-6">
+      <!-- <i class="bi bi-card-list mx-2"></i> -->
+      <i class="bi-1 bi bi-book-half mx-2"></i>
+      <a href="/adminIndex/adminLessonIndex" class="a-list-1">บทเรียน</a>
+    </p>
+    <p class="menues-sub">
+      <i class="bi-2 bi bi-list-task mx-2"></i>
+      <a href="/adminIndex/adminAssignment" class="a-list-2">งานที่มอบหมาย</a>
+    </p>
+    <p class="menues-sub">
+      <!-- <i class="bi bi-database-add mx-2"></i> -->
+      <i class="bi-3 bi bi-pencil-square mx-2"></i>
+      <a href="/adminIndex/adminExam" class="a-list-3">แบบทดสอบ</a>
+    </p>
+  </div>
+  <!-- <% if (lessons.length > 0) { %>
+  <p class="list-lesson-p fw-bold fs-5 mx-2">รายชื่อบทเรียน <br>
+    <span class="list-lesson-p-span fw-light fs-6">จำนวนบท: <%= lessons.length %></span>
+  </p>
+  <% lessons.forEach(lesson => { %>
+  <a href="/adminIndex/eachLessons?lessonId=<%= lesson._id %>" class="text-decoration-none">
+    <div class="each-lesson each-lesson-a each-lesson-grid py-2">
+      <p class="list-lesson-p fw-bold fs-6 mx-2">
+        <%= lesson.LessonName %><br>
+        <span class="list-lesson-p-span fw-light">บทที่: <%= lesson.LessonNumber %></span>
+      </p>
+    </div>
+  </a>
+  <% }); %>
+  <% } else { %>
+  <p class="list-lesson-p fw-bold fs-5 mx-2">รายชื่อบทเรียน <br>
+    <span class="list-lesson-p-span fw-light fs-6">จำนวนบท: <%= lessons.length %> </span>
+  </p>
+  <div class="each-lesson py-2 px-3">
+    <p class="text-center m-3">ยังไม่มีบทเรียนใด ๆ</p>
+  </div>
+  <% } %> -->
+  
+</div>

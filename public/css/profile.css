@@ -1,0 +1,125 @@
+body {
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;
+}
+
+.main-body {
+    padding: 15px;
+}
+
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col,
+.gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.mb-3,
+.my-3 {
+    margin-bottom: 1rem !important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.shadow-none {
+    box-shadow: none !important;
+}
+.profile-info{
+    position: relative;
+}
+.profile-wrap{
+    width: 10em;
+    height: 10em;
+}
+.profile-info img{
+    object-fit: cover;
+    width: 10em;
+    height: 10em;
+    cursor: pointer;
+    /* transition: all .3s ease 0s; */
+    user-select: none;
+}
+.list-group-flush li{
+    padding: 1rem;
+}
+.list-group-flush li svg{
+    margin-right: 1rem;
+}
+input[type="file"] {
+    display: none;
+}
+.profile-manage{
+    background-color: #1a202c;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    position: absolute;
+    top: 60%;
+    display: none;
+    z-index: 5;
+}
+.toggle-on{
+    display: block;
+}
+.change-profile
+,.view-profile{
+    font-size: 1.15em;
+    padding: .75rem 1.5rem;
+    display: flex;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.pointer{
+    cursor: pointer;
+}
+.change-profile:hover
+,.view-profile:hover{
+    background-color: #212844;
+}
+#user-profile:active{
+    scale: .92;
+}
+#profile-setting{
+    width: fit-content;
+    background-color: #212844;
+    
+}
+#profile-setting:active{
+    transform: scale(.95);
+}
+#profile-setting span{
+    color: white;
+}

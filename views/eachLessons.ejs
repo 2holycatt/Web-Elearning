@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lessons</title>
+  <!-- <link rel="stylesheet" href="/css/event.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/getMoreAddContent.css">
+
+  <%- include("./partials/header.ejs")%>
+  <style>
+    .descp {
+      text-indent: 2em;
+      margin: 0 2em;
+    }
+
+    .rectangle-141 {
+      background-color: white;
+      border-radius: 0.75em;
+      box-shadow: 0em 0.75em 1.5em -0.25em #919eab1f, 0em 0em 0.125em #919eab33;
+      height: 14.6875em;
+      left: 4.6875em;
+      top: 37.3125em;
+      width: 39.125em;
+      width: 75%;
+      margin: 2em 2em;
+    }
+
+    .home-div,
+    .a-home {
+      color: #999999 !important;
+    }
+
+    .above-nav {
+      background-color: #dde6ed33;
+    }
+
+    .status-a {
+      color: #404258 !important;
+    }
+
+    .list-lesson-p {
+      color: #8A2BE2;
+
+    }
+
+    .list-lesson-p-span {
+      color: #4B0082;
+    }
+
+    .each-lesson {
+      border-top: 0.1em solid #8A2BE2;
+
+    }
+
+    .aside-right {
+      background-color: #dde6ed1a;
+      height: 100%;
+    }
+
+    .manange-bar {
+      border-radius: 1em;
+      /* grid-template-columns: 1fr 1fr; */
+      /* justify-content: space-between !important; */
+
+    }
+
+    .add-button {
+      border-radius: 0.5em !important;
+      width: 20%;
+
+    }
+
+    .main-content {
+      height: 100%;
+    }
+
+    .lesson-content {
+      height: 100%;
+      border-radius: 1em !important;
+
+      justify-content: center !important;
+      border-top: 0.5em solid #8A2BE2;
+    }
+
+    .lesson-nothing {
+      /* margin: 25% 0 !important; */
+      padding: 0 !important;
+    }
+
+    .add-lesson-btn {
+      float: right;
+      width: auto;
+    }
+
+
+    .show-layout-2 {
+      display: block;
+      opacity: 1;
+      /* สิ้นสุดที่ความทึบ 1 */
+      transition: opacity 0.5s ease;
+      /* กำหนดการเปลี่ยนแปลงที่ต้องการ */
+    }
+
+    .layout01-mainDes {
+
+      font-size: xx-large !important;
+      font-weight: bolder !important;
+
+    }
+
+    /* .input-mainSubDes,
+    .input-mainDes,
+    .input-mainSubDes2 {
+      white-space: pre-wrap !important;
+      overflow: auto !important;
+    } */
+
+    .subDes,
+    .subDesNumber2 {
+      border: none !important;
+    }
+
+    .layout1-contents {
+      background-color: #dde6ed1a;
+      width: 85%;
+
+    }
+
+    .layout01_gird {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+    }
+
+
+    .Topic1 {
+      background-color: #8A2BE2 !important;
+      color: white !important;
+      border-radius: 1em !important;
+      width: 70% !important;
+    }
+
+    .Topic1::placeholder {
+      color: white !important;
+      font-size: xx-large;
+      font-weight: bolder;
+      text-align: center !important;
+    }
+
+    #file-input {
+      display: none !important;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: ฟ;
+      /* ทำให้สูงเต็มหน้าจอ */
+    }
+
+    .file-icon {
+      font-size: 7em;
+    }
+
+    .content-2 {
+      border-top: 0.5em solid #8A2BE2;
+      border-radius: 1em !important;
+      height: 100% !important;
+      background-color: #dde6ed1a !important;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+    }
+
+    .main-content-long-text {
+      color: #8A2BE2 !important;
+      border: none !important;
+
+    }
+
+    .text-areas-indent {
+      text-indent: 2em;
+    }
+
+    .main-content-long-text::placeholder {
+      color: #8A2BE2 !important;
+      /* text-indent: 2em !important; */
+    }
+
+    .setEdge1,
+    .setEdge2 {
+      border-right: 1px solid #8A2BE2 !important;
+      border-bottom-width: 50% !important;
+      box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset !important;
+    }
+
+    .add-button-2 {
+      float: right;
+
+    }
+
+    .layout01_gird {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+    }
+
+    .allCOntent {
+      height: fit-content;
+    }
+
+    .subLayout2Contents2 div {
+      height: fit-content !important;
+    }
+
+    .setborder {
+      border-radius: 0.5em !important;
+    }
+
+    .addContent-a {
+      text-decoration: none !important;
+      transition-duration: 0.3s;
+    }
+
+    .addContent-a:hover {
+      color: #0d57d6 !important;
+      transition: 0.3s;
+    }
+
+    .lesson-bar {
+      border-left: 0.25em solid #387bef !important;
+      padding-left: 0.5em !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include("./partials/nav.ejs")%>
+  <!-- <div class="above-nav d-flex px-4 py-3">
+    <div class="home-div above-nav-home d-flex mx-2 my-0 align-middle">
+      <i class="bi bi-house mx-2"></i>
+      <a href="/adminIndex" class="a-home">
+        <p class="m-0">หน้าหลัก &nbsp;&nbsp;></p>
+      </a>
+    </div>
+
+    <a href="#" class="status-a mx-2 my-0 align-middle">
+      <p class="m-0">บทเรียน</p>
+    </a>
+
+  </div> -->
+  <div class="main-content d-flex w-100 h-auto">
+    <%- include("./partials/lessonsList.ejs")%>
+    <div class="row allCOntent" style="width: 80% !important;">
+      <div class="col-12 aside-right px-4 py-4 bg-white" style="width: 100% !important;">
+        <div class="manange-bar px-4 py-3 bg-white w-100">
+          <div class="d-flex" style="border-bottom: 1px solid #ced4daa0; padding-bottom: 0.5em !important;">
+            <div class="d-flex w-75" style="align-items: center; grid-template-columns: 0.5fr 1.5fr;">
+              <p class="fw-normal w-auto fs-6 lesson-bar" style="margin-left: 0.5em !important;">บทเรียน:
+                <span class="fw-normal fs-6 text-primary" style="margin-right: 1em !important;"><%=lesson.LessonName%></span>
+                ปีการศึกษา:
+                <span class="fw-normal fs-6 text-primary"><%=lesson.schoolYear.schoolYear%></span>
+              </p>
+              <a href="/adminIndex/eachLessons?lessonId=<%=lesson._id%>" class="edit-a text-dark px-2" style="border-left: 1px solid #ced4daa0 ;margin:0em 1em !important; font-size: small;">แก้ไขชื่อและรูปปก<i class="bi bi-pencil mx-2"></i>
+              </a>
+            </div>
+            <div class="d-flex w-25 justify-content-end" style="align-items: center; margin-top: 0.5 !important;">
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="d-flex w-50">
+              <a href="/adminIndex/getMoreAddContent?lesson=<%=lesson._id%>" class="add-button btn btn-primary my-2 p-2">
+                เพิ่มเนื้อหา<i class="bi bi-plus-circle-fill mx-2"></i>
+              </a>
+              <a href="/adminIndex/editLesson?lesson=<%=lesson._id%>" class="btn add-button btn-warning my-2 p-2 mx-2" style="height: fit-content !important;">
+                แก้ไขเนื้อหาภายในบทเรียน<i class="bi bi-pencil-square mx-2"></i>
+              </a>
+            </div>
+            <div class="d-flex w-50 justify-content-end">
+              <a href="/adminIndex/deleteLesson?lessonId=<%=lesson._id%>" class="btn add-button btn-danger my-2 p-2 mx-2" style="height: fit-content !important;">
+                ลบบทเรียน: <span class="text-light"><%=lesson.LessonName%></span><i class="bi bi-eraser-fill mx-2"></i>
+              </a>
+            </div>
+          </div>
+          <!-- <p class="fw-bold fs-5 lesson-bar">บทเรียน: <span class="fw-normal fs-5 text-primary"><%=lesson.LessonName%></span>
+          <span class="fw-bold fs-5 mx-2">ปีการศึกษา: </span><span class="fw-normal fs-5 text-primary"><%= schYear %></span></p> -->
+        </div>
+        <div class="hide-layout-2">
+          <% if (foundLayouts.length > 0) { %>
+          <% foundLayouts.forEach(Layout => {%>
+          <% if (Layout.name == "Layout01") {%>
+          <p class="layout01-mainDes mx-3 my-3"><%= Layout.Topic%></p>
+          <p class="text-areas-indent mx-3 w-75"><%= Layout.MainDescription%></p>
+          <!-- <input class="input-mainSubDes form-control mx-5 p-3 w-75 h-auto" name="LessonNumber" placeholder="กรอกข้อความส่วนอธิบายเนื้อหาเพิ่มเติม..."> -->
+          <div class="lesson-content py-4 px-3 bg-white w-100 my-4">
+            <p class="text-areas-indent my-2 w-75"><%= Layout.SubDescription%></p>
+            <% const AboutImage = Layout.AboutImage %>
+            <% AboutImage.forEach ( Img => { %>
+            <% if (Img[0]) {%>
+            <div class="layout1-contents h-auto my-0 mx-auto p-5">
+              <div class="layout01_gird">
+                <div class="AboutImage h-auto">
+                  <div class="w-100">
+                    <p class="Topic1 p-3 h-auto my-0 mx-auto text-center"><%= Img.title %></p>
+                  </div>
+                  <div class="w-100 text-center">
+                    <img class="ImageFile w-75 h-75 my-4 shadow rounded" src="data:image/<%= Img.Url.contentType %>;base64,<%= Img.Url.data.toString('base64') %>" alt="รูปภาพประกอบการเรียน">
+                  </div>
+                </div>
+                <div class="h-100 content-2">
+                  <p class="text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-3" style="color: #212529 !important;"><%= Img.ImageDescription %></p>
+                </div>
+              </div>
+              <%} else {%>
+              <div class="layout01_gird my-5">
+                <div class="AboutImage h-auto">
+                  <div class="w-100">
+                    <p class="Topic1 p-3 h-auto my-0 mx-auto text-center"><%= Img.title %></p>
+                  </div>
+                  <div class="w-100 text-center">
+                    <img class="ImageFile w-75 h-75 my-4 shadow rounded" src="data:image/<%= Img.Url.contentType %>;base64,<%= Img.Url.data.toString('base64') %>" alt="รูปภาพประกอบการเรียน">
+                  </div>
+                </div>
+                <div class="h-100 content-2">
+                  <p class="fs-5 text-areas-indent main-content-long-text my-2 h-100 w-100 py-2 px-3" style="color: #212529 !important;"><%= Img.ImageDescription %></p>
+                </div>
+              </div>
+              <% } %>
+              <% }); %>
+            </div>
+          </div>
+          <% } else if (Layout.name == "Layout02") {%>
+          <div class="lesson-content py-2 bg-white my-4">
+            <input class="d-none" type="text" name="_id" value="<%= Layout._id %>">
+            <div class="IandMain d-grid">
+              <p class="fs-1 mx-4 p-3"><%=Layout.Topic %></p>
+              <!-- <input class="input-mainDes form-control mx-4 p-3 h-auto" name="Topic" value="<%=Layout.Topic %>"> -->
+            </div>
+            <div class="setMargin py-4 px-4 bg-white w-100">
+              <div class="Layout2Contents w-100">
+                <div class="changeLayout02">
+                  <div class="Layout2ContentsDiv p-1">
+                    <div class="subLayout2Contents bg-white">
+                      <div class="w-100 h-auto bg-white p-3">
+                        <p><%=Layout.TextArea1%></p>
+                      </div>
+                      <!-- <textarea name="TextArea1" class="textAreaLayout2 w-100 h-100 bg-white" disabled></textarea> -->
+                    </div>
+                    <div class="subLayout2Contents bg-white">
+                      <div class="w-100 h-auto bg-white p-3">
+                        <p><%=Layout.TextArea2%></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="subLayout2Contents2 bg-white">
+                    <div class="w-100 h-auto bg-white p-3">
+                      <p><%=Layout.TextArea3%></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } else if (Layout.name == "Layout03") {%>
+          <div class="lesson-content py-2 bg-white my-4">
+            <input class="d-none" type="text" name="_id" value="<%= Layout._id %>">
+            <div class="IandMain d-grid">
+              <p class="mx-4 px-1 py-3 h-auto fs-4"><%=Layout.Description%></p>
+            </div>
+            <div class="setMargin py-2 px-4 bg-white w-100">
+              <div class="Layout2Contents w-100 p-3 d-flex justify-content-center">
+                <img class="ImageFile h-100 w-100 mx-auto my-2 shadow rounded" src="data:image/<%= Layout.File.contentType %>;base64,<%= Layout.File.data.toString('base64') %>" alt="รูปภาพประกอบการเรียน">
+              </div>
+            </div>
+          </div>
+          <% } else if (Layout.name == "Layout04") {%>
+          <div class="lesson-content py-2 bg-white my-4">
+            <input class="d-none" type="text" name="_id" value="<%= Layout._id %>">
+            <div class="IandMain d-grid">
+              <p class="mx-4 p-3 fs-2"><%= Layout.Topic%></p>
+            </div>
+            <div class="setMargin px-4 bg-white w-100">
+              <div class="Layout2Contents w-100 p-3">
+                <p class="w-100 h-auto setborder bg-white p-3 setEdge1"><%= Layout.Description%></p>
+                <div class="columnGrid">
+                  <div class="listContents my-3 w-100">
+                    <div class="w-50 h-auto bg-white setborder setEdge2">
+                      <% const List = Layout.Lists %>
+                      <% List.forEach((list, index) => { %>
+                      <p class="px-3 py-2 "><%= list.list %></p>
+                      <% }); %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } else if (Layout.name == "Layout05") { %>
+          <div class="lesson-content py-2 bg-white my-4">
+            <input class="d-none" type="text" name="_id" value="<%= Layout._id %>">
+            <div>
+              <p class="mx-4 p-3 fs-2"><%= Layout.name %></p>
+              <div>
+                <!-- <embed src="/pdfs/example.pdf" type="application/pdf" width="100%" height="600px" /> -->
+                <a href="/adminIndex/showFile?fileId=<%=Layout._id%>" target="_blank">โชว์ pdf</a>
+              </div>
+              <!-- <div>
+                <a href="/adminIndex/pdfDowload?id=<%= Layout._id %>">ดาวน์โหลด PDF</a>
+                <a href="/adminIndex/showPdf?pdfId=<%= Layout._id %>">แสดงผล PDF</a>
+              </div> -->
+            </div>
+          </div>
+          <% }; %>
+          <% }); %>
+        </div>
+        <% } else {%>
+        <div class="lesson-content bg-white w-100 py-3 my-4">
+          <p class="px-3">บทเรียนยังไม่มีเนื้อหา เนื่องจากคุณยังไม่ได้เพิ่มเนื้อหาใด ๆ ให้แก่บทเรียนนี้
+          </p>
+          <a href="/adminIndex/getMoreAddContent?lesson=<%=lesson._id%>" class="px-3 addContent-a text-primary">
+            เพิ่มเนื้อหา
+            <i class="bi bi-plus-circle-fill"></i>
+          </a>
+
+        </div>
+        <% }; %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <%- include("./partials/footer.ejs")%>
+</body>
+
+</html>

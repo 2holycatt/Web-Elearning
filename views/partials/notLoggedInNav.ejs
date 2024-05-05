@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/globals.css">
+<style>
+
+    .loginBtn {
+        background-color: #8A2BE2;
+        color: white;
+        margin: auto 2em !important;
+    }
+    .loginBtn:hover {
+        border: 1px solid #8A2BE2 !important;
+        transition: 0.3s;
+    }
+  .main-nav {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* background-color: #F4F6FF ; */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    /* border-bottom: 0.25em solid #8A2BE2; */
+    border-bottom: 1px solid #EAEFF4;
+    box-sizing: border-box;
+    align-items: center !important;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.899);
+    backdrop-filter: blur(1em);
+
+  }
+
+  .img-lo {
+    margin-left: 2em !important;
+  }
+
+  .sub-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ul-nav {
+    display: flex;
+    align-items: center !important;
+    list-style-type: none;
+    text-decoration: none;
+    color: #5A6A85 !important;
+
+  }
+
+
+  .li-a {
+    margin-right: 1em !important;
+    color: #5A6A85 !important;
+
+
+  }
+
+  .logo-a {
+    height: fit-content;
+    width: 25%;
+  }
+
+  .a-li {
+    text-decoration: none;
+    color: #5A6A85 !important;
+
+  }
+
+  .down-bi {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+  }
+
+  .show-drop:hover .dropdown {
+    display: block;
+    position: absolute;
+    list-style: none;
+    text-decoration: none !important;
+    border-radius: 0.5em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+    background-color: white;
+    padding: 0.5em 1em !important;
+  }
+
+  .a-li:hover {
+    color: #8A2BE2 !important;
+    transform: scale(1.1) !important;
+    transition: 0.3s;
+  }
+
+  .logo-a,
+  .a-li {
+    transition-duration: 0.3s;
+  }
+
+  .logo-a:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+
+  .drop-li:hover .drop-li,
+  .drop-li:hover .a-li {
+    transform: scale(1.05) !important;
+    transition: 0.3s;
+  }
+
+  .search-input {
+    border-radius: 0.5em;
+    border: 1px solid #8A2BE2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px !important;
+    color: #5A6A85;
+
+
+  }
+
+  .search-input:hover {
+    cursor: pointer;
+  }
+
+  .search-input::placeholder {
+    color: #5A6A85;
+  }
+
+  .in-sub-div-2 {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .bi-moon-fill {
+    color: #8A2BE2;
+  }
+
+  .search-button {
+    border: 1px solid #8A2BE2;
+    color: #8A2BE2;
+
+    background-color: white;
+    margin-left: 0.5em !important;
+    border-radius: 0.5em;
+    transition-duration: 0.3s;
+  }
+
+  .search-button:hover {
+    background-color: #8A2BE2;
+    color: white;
+    transition: 0.3s;
+
+  }
+</style>
+<div class="nav main-nav">
+  <div class="d-flex ">
+    <a href="/login" class="logo-a d-flex justify-content-between">
+      <img style="width: 40%;" class="img-lo h-auto my-2" src="/images/indexMed/DENTISTRY_KKU.svg.png" />
+    </a>
+    <ul class="ul-nav">
+      <li class="li-a a-li"><a href="/login" class="a-li">หน้าหลัก</a></li>
+      <li class="li-a a-li"><a href="/login" class="a-li">บทเรียน</a></li>
+      <li class="li-a a-li"><a href="/login" class="a-li">งานที่มอบหมาย</a></li>
+      <li class="li-a a-li"><a href="/login" class="a-li">แบบทดสอบ</a></li>
+    </ul>
+  </div>
+  <div class="in-sub-div-2 d-flex justify-content-end">
+    <a href="/login" class="loginBtn btn px-2 py-1">
+        เข้าสู่ระบบ
+    </a>
+  </div>
+</div>
