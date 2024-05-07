@@ -17,12 +17,14 @@ const teacherMiddleware = require("../middleware/teacherMiddleware");
 
 // Not Logged in Routes
 router.get('/', redirectIfAuth, adminController.notLoggedIn);
-router.get('/login', redirectIfAuth, LoginController.ifNotLoggedIn);
-router.get('/logout', LoginController.logout);
-
+// router.get('/login', redirectIfAuth, LoginController.ifNotLoggedIn);
+// router.get('/logout', LoginController.logout);
+router.get('/auth/google', redirectIfAuth, LoginController.authGoogle);
+router.get('/auth/google/callback', LoginController.authGoogleCallback);
+router.get('/logoutGoogle', LoginController.logoutGoogle);
 
 // Login Process
-router.post('/loginToWeb', LoginController.loginPage);
+// router.post('/loginToWeb', LoginController.loginPage);
 router.post('/saveInfoStudent', LoginController.saveInfoStudent);
 
 // Admin Center Router
@@ -40,6 +42,8 @@ router.get('/adminIndex/showFile', teacherMiddleware, adminController.showFile);
 router.post('/adminIndex/createLayout', adminController.createLayout);
 router.get('/adminIndex/eachLessons', teacherMiddleware, adminController.eachLessons)
 router.get('/adminIndex/copyLessons', teacherMiddleware, adminController.copyLessons)
+
+router.get('/studentIndex', studentMiddleware, adminController.studentIndex);
 
 
 //Admin Assignments Router

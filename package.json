@@ -9,6 +9,7 @@
     "@fancyapps/ui": "^5.0.33",
     "aos": "^2.3.4",
     "atob": "^2.1.2",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "chart.js": "^4.4.0",

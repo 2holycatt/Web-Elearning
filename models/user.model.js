@@ -8,10 +8,10 @@ const userSchema = new Schema({
         unique: true,
         required: [true, 'Please provide email']
     },
-    password: {
-        type: String,
-        required: [true, 'Please provide password']
-    },
+    // password: {
+    //     type: String,
+    //     required: [true, 'Please provide password']
+    // },
     fname: {
         type: String,
         default: "default",
@@ -50,22 +50,22 @@ const userSchema = new Schema({
 }, 
 { timestamps: true })
 
-userSchema.pre('save', function(next) {
-    const user = this
+// userSchema.pre('save', function(next) {
+//     const user = this
 
-    // const validDomains = /@(kkumail\.com|kku\.ac\.th)$/i; 
+//     // const validDomains = /@(kkumail\.com|kku\.ac\.th)$/i; 
 
-    // if (!validDomains.test(user.email)) {
-    //     return next(new Error('Invalid email domain. Only kkumail.com and kku.ac.th are allowed.'));
-    // }
+//     // if (!validDomains.test(user.email)) {
+//     //     return next(new Error('Invalid email domain. Only kkumail.com and kku.ac.th are allowed.'));
+//     // }
 
-    bcrypt.hash(user.password, 10).then(hash => {
-        user.password = hash
-        next()
-    }).catch(error => {
-        console.error(error);
-    })
-})
+//     bcrypt.hash(user.password, 10).then(hash => {
+//         user.password = hash
+//         next()
+//     }).catch(error => {
+//         console.error(error);
+//     })
+// })
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

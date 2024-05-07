@@ -122,7 +122,7 @@ app.use((req, res, next) => {
 app.use(cors());
 
 
-const url = "mongodb+srv://papinwits:kuttojang13@cluster0.9p5j1aq.mongodb.net/Elearning";
+const url = "mongodb://localhost:27017/Elearning";
 
 mongoose.connect(url)
     .then(() => {

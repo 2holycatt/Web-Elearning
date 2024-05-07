@@ -6,6 +6,7 @@ const studentSchema = new Schema(
 {
     schoolId:{
         type: 'string',
+        unique: true
     },
     yearLevel:{ 
         type: String,

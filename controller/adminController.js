@@ -25,8 +25,22 @@ const adminIndex = async (req, res) => {
     const lessons = await Lesson.find().sort({ createdAt: 1 }).exec();
     const getLessonId = req.query.lessonId;
     const lesson = await Lesson.findById(getLessonId);
-
+    console.log(userData);
     res.render("adminIndex", { lessons, lesson, userData });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("เกิดข้อผิดพลาด");
+  }
+}
+
+const studentIndex = async (req, res) => {
+  try {
+    const userData = await User.findById(req.session.userId);
+    const lessons = await Lesson.find().sort({ createdAt: 1 }).exec();
+    const getLessonId = req.query.lessonId;
+    const lesson = await Lesson.findById(getLessonId);
+
+    res.render("studentIndex", { lessons, lesson, userData });
   } catch (err) {
     console.error(err);
     res.status(500).send("เกิดข้อผิดพลาด");
@@ -633,5 +647,6 @@ module.exports = {
   copyLessons,
   pdfDowload,
   showFile,
-  notLoggedIn
+  notLoggedIn,
+  studentIndex
 }
